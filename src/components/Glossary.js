@@ -201,16 +201,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Usability\">Usability</a> finding</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Usability-Befund\">Usability-Befund</a></p>",
-          "term-english": "Finding",
-          "term-german": "Befund"
-        },
-        {
-          "categories": [
             "Rollen",
             "Anforderungen"
           ],
@@ -228,17 +218,6 @@ class Glossary extends Component {
           "description-german": "<p>Eine <a href=\"#/Usability-Evaluierung\">Usability-Evaluierung</a>, bei der <a href=\"#/Benutzer\">Benutzer</a>, ausgehend von ihren Erfahrungen bei der Benutzung eines <a href=\"#/Interaktives System\">interaktiven Systems</a>, subjektive Daten in einem <a href=\"#/Fragebogen\">Fragebogen angeben</a>.<br/>Anmerkungen:<br/>1.\tBenutzerbefragungen können verwendet werden, um die <a href=\"#/Zufriedenstellung\">Zufriedenstellung</a> der <a href=\"#/Benutzer\">Benutzer</a> mit einem <a href=\"#/Interaktives System\">interaktiven System</a> zu bewerten und um Informationen über den <a href=\"#/Nutzungskontext\">Nutzungskontext</a> zu sammeln.<br/>2.\tBenutzerbefragungen sollten in Übereinstimmung mit dem in Abbildung 1 skizzierten Prozess <a href=\"#/Menschzentrierte Gestaltung\">menschzentrierter Gestaltung</a> entwickelt werden.</p>",
           "term-english": "User survey",
           "term-german": "Benutzerbefragung"
-        },
-        {
-          "categories": [
-            "Planung",
-            "Gestaltung",
-            "System"
-          ],
-          "description-english": "<p>Written or other information for users about an <a href=\"#/glossary?term=Interactive+system\">Interactive system</a>, how it works, and how to use it.<br />Note:<br />1.\t<a href=\"#/glossary?term=User\">User</a> documentation is a form of <a href=\"#/glossary?term=User+assistance\">User assistance</a>.</p>",
-          "description-german": "<p>F\u00fcr <a href=\"#/glossary?term=Benutzer\">Benutzer</a> geschriebene oder andere Anleitungen zu dem interaktiven System, wie es funktioniert, und wie man es bedient.<br />Anmerkung:<br />1.\tBenutzer\u00addokumentation ist eine Form der <a href=\"#/glossary?term=Benutzerunterst%C3%BCtzung\">Benutzerunterst\u00fctzung</a>.</p>",
-          "term-english": "User documentation",
-          "term-german": "Benutzerdokumentation"
         },
         {
           "categories": [
@@ -282,28 +261,6 @@ class Glossary extends Component {
           "description-german": "<p>Informationen, um einem <a href=\"#/Benutzer\">Benutzer</a> bei der Interaktion mit einem <a href=\"#/Interaktives System\">interaktiven System</a> zu helfen.<br/>Anmerkungen:<br/>1.\tBenutzerunterstützung kann die Beschreibung der <a href=\"#/Benutzungsschnittstelle\">Benutzungsschnittstelle</a> selbst beinhalten, aber auch Informationen, wie der <a href=\"#/Benutzer\">Benutzer</a> am besten die Möglichkeiten des <a href=\"#/Interaktives System\">interaktiven Systems</a> für die Erfüllung seiner Anforderungen einsetzen kann.<br/>2.\tBenutzerunterstützung schließt alle Formen von Hilfestellung, die für den <a href=\"#/Benutzer\">Benutzer</a> zur Verfügung stehen, ein, z.B.:<br/>a.\t Benutzerdokumentation: Schriftliche oder andere Informationen für <a href=\"#/Benutzer\">Benutzer</a> über ein <a href=\"#/Interaktives System\">interaktives System</a>, wie es funktioniert und wie es benutzt wird;<br/>b.\tOnlinehilfe: Unterstützung geliefert durch Computersoftware, die thematisch, prozedural oder verweisend sein kann;<br/>c.\tSysteminitiierte Benutzerführung: Unaufgeforderte explizite Information zu einem Ereignis oder einer Bedingung von einem <a href=\"#/Interaktives System\">interaktiven System</a> zu einem <a href=\"#/Benutzer\">Benutzer</a>.<br/><br/>Beispiele für systeminitiierte Benutzerführung sind:<br/>a.\tMeldungen (informativ, Warnung, Fehler), zum Beispiel „Ihr Akku ist fast leer. Bitte verbinden Sie Ihr Notebook mit einem Ladegerät“;<br/>b.\tStatusinformationen, zum Beispiel „Sie haben 7 neue Nachrichten“;<br/>c.\tAnweisungen, zum Beispiel „Trennen Sie E-Mail-Adressen durch ein Leerzeichen, Komma, Semikolon oder Zeilenumbruch.“</p>",
           "term-english": "User assistance",
           "term-german": "Benutzerunterst\u00fctzung"
-        },
-        {
-          "categories": [
-            "Gestaltung",
-            "Implementierung",
-            "Planung"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Human-centred+design\">Human-centred design</a>.</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Menschzentrierte+Gestaltung\">Menschzentrierte Gestaltung</a>.</p>",
-          "term-english": "User-centred design",
-          "term-german": "Benutzerzentrierte Gestaltung"
-        },
-        {
-          "categories": [
-            "Planung",
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "<p><a href=\"#/glossary?term=Usability\">Usability</a> <a href=\"#/glossary?term=Evaluation\">Evaluation</a> that involves representative users performing specific tasks with the <a href=\"#/glossary?term=Interactive+system\">Interactive system</a> to enable identification of <a href=\"#/glossary?term=Usability\">Usability</a> problems, or measurements of <a href=\"#/glossary?term=Efficiency\">Efficiency</a>, <a href=\"#/glossary?term=Effectiveness\">Effectiveness</a>, <a href=\"#/glossary?term=User\">User</a> <a href=\"#/glossary?term=Satisfaction\">Satisfaction</a>, or other measures of <a href=\"#/glossary?term=User+experience\">User experience</a>.<br />Note:<br />1.\tSee <a href=\"#/glossary?term=Usability\">Usability</a> test.</p>",
-          "description-german": "<p><a href=\"#/glossary?term=Usability-Evaluierung\">Usability-Evaluierung</a>, die repr\u00e4sentative <a href=\"#/glossary?term=Benutzer\">Benutzer</a> involviert, die bestimmte Aufgaben mit dem interaktiven System ausf\u00fchren, um die Identifikation von <a href=\"#/glossary?term=Usability\">Usability</a>-Problemen oder die Messung von <a href=\"#/glossary?term=Effizienz\">Effizienz</a>, <a href=\"#/glossary?term=Effektivit%C3%A4t\">Effektivit\u00e4t</a> und <a href=\"#/glossary?term=Zufriedenstellung\">Zufriedenstellung</a> zu erm\u00f6glichen.<br />Anmerkung:<br />1.\tSiehe <a href=\"#/glossary?term=Usability-Test\">Usability-Test</a>.</p>",
-          "term-english": "Usability evaluation \u2013  User based",
-          "term-german": "Benutzerzentrierte Usability-Evaluierung"
         },
         {
           "categories": [
@@ -430,36 +387,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Test",
-            "Evaluierung",
-            "Prinzipien"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Usability\">Usability</a> evaluation.</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Usability-Evaluierung\">Usability-Evaluierung</a></p>",
-          "term-english": "Evaluation",
-          "term-german": "Evaluierung"
-        },
-        {
-          "categories": [
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "<p>A document reporting the results of a <a href=\"#/glossary?term=Usability\">Usability</a> test, an <a href=\"#/glossary?term=Inspection\">Inspection</a> or a <a href=\"#/glossary?term=User\">User</a> survey.<br />Note:<br />1.\tThe <a href=\"#/glossary?term=Evaluation\">Evaluation</a> report for a <a href=\"#/glossary?term=Usability\">Usability</a> test is usually referred to as a usability <a href=\"#/glossary?term=Test+report\">Test report</a>.</p>",
-          "description-german": "<p>Ein Dokument, in dem die Ergebnisse eines <a href=\"#/glossary?term=Usability\">Usability</a>-Tests, einer <a href=\"#/glossary?term=Inspektion\">Inspektion</a> oder einer <a href=\"#/glossary?term=Benutzerbefragung\">Benutzerbefragung</a> dokumentiert werden.<br />Anmerkung:<br />1.\tDas Dokument f\u00fcr einen <a href=\"#/glossary?term=Usability-Test\">Usability-Test</a> wird \u00fcblicherweise als <a href=\"#/glossary?term=Usability-Testbericht\">Usability-Testbericht</a> bezeichnet.</p>",
-          "term-english": "Evaluation report",
-          "term-german": "Evaluierungsbericht"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Moderator\">Moderator</a></p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Moderator\">Moderator</a></p>",
-          "term-english": "Facilitator",
-          "term-german": "Facilitator"
-        },
-        {
-          "categories": [
             "Anforderungen",
             "Evaluierung"
           ],
@@ -560,16 +487,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Rollen",
-            "Gestaltung"
-          ],
-          "description-english": "<p>A person who creates and organizes the structure of information to enable each <a href=\"#/glossary?term=User\">User</a> group to efficiently locate required information when using interactive systems. <br />Note: <br />1.\tInformation architect is a process <a href=\"#/glossary?term=Role\">Role</a> in <a href=\"#/glossary?term=Human-centred+design\">Human-centred design</a>.</p>",
-          "description-german": "<p>Eine Person die die Struktur von Information in interaktiven Systemen f\u00fcr das effiziente Auffinden durch jede <a href=\"#/glossary?term=Benutzergruppe\">Benutzergruppe</a> kreiert und organisiert.<br />Anmerkung:<br />1.\tInformationsarchitekt ist eine <a href=\"#/glossary?term=Rolle\">Rolle</a> im Prozess der menschzentrierten Gestaltung.</p>",
-          "term-english": "Information architect",
-          "term-german": "Informationsarchitekt"
-        },
-        {
-          "categories": [
             "Gestaltung",
             "Anforderungen"
           ],
@@ -577,35 +494,6 @@ class Glossary extends Component {
           "description-german": "<p>Die Benennung und Strukturierung der Information, die für den <a href=\"#/Benutzer\">Benutzer</a> zugänglich sein muss.<br/>Anmerkung:<br/>1.\tBeispiele für UX-bezogene Ergebnisse in der Informationsarchitektur:<br/>a.\tDatenmodell aus der Benutzerperspektive; Inhalte und Hierarchie der Inhalte;<br/>b.\tDie Ausdrücke, die in der <a href=\"#/Benutzungsschnittstelle\">Benutzungsschnittstelle</a> für Navigation und Inhalt verwendet werden;<br/>c.\t<a href=\"#/Navigationsstruktur\">Navigationsstruktur</a>, zum Beispiel Menüstruktur und Sitemap.</p>",
           "term-english": "Information architecture",
           "term-german": "Informationsarchitektur"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Usability\">Usability</a> <a href=\"#/glossary?term=Evaluation\">Evaluation</a> \u2013 Inspection based</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Inspektionsbasierte+Usability-Evaluierung\">Inspektionsbasierte Usability-Evaluierung</a></p>",
-          "term-english": "Inspection",
-          "term-german": "Inspektion"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "<p><a href=\"#/glossary?term=Usability\">Usability</a> <a href=\"#/glossary?term=Evaluation\">Evaluation</a> based on the judgment of one or more evaluators who examine or use an <a href=\"#/glossary?term=Interactive+system\">Interactive system</a> to identify potential <a href=\"#/glossary?term=Usability\">Usability</a> problems and deviations from established criteria.<br />Notes:<br />1.\t<a href=\"#/glossary?term=Inspection\">Inspection</a>-based <a href=\"#/glossary?term=Usability\">Usability</a> evaluation is often performed by usability experts or subject matter experts who base their judgement on prior experience of usability problems encountered by users and their own knowledge of ergonomic <a href=\"#/glossary?term=User\">User</a> interface guidelines and styleguides.<br />2.\t<a href=\"#/glossary?term=Heuristic\">Heuristic</a> <a href=\"#/glossary?term=Evaluation\">Evaluation</a> is a technique for <a href=\"#/glossary?term=Inspection\">Inspection</a> based <a href=\"#/glossary?term=Usability\">Usability</a> evaluation.</p>",
-          "description-german": "<p><a href=\"#/glossary?term=Usability-Evaluierung\">Usability-Evaluierung</a> die auf der Beurteilung ein oder mehrerer Evaluatoren basiert, die ein <a href=\"#/glossary?term=Interaktives+System\">Interaktives System</a> pr\u00fcfen oder benutzen, um potentielle <a href=\"#/glossary?term=Usability\">Usability</a>-Probleme und Abweichungen von anerkannten Kriterien zu identifizieren.<br />Anmerkungen:<br />1.\tInspektionsbasierte Usability-<a href=\"#/glossary?term=Evaluierung\">Evaluierung</a> wird oft von <a href=\"#/glossary?term=Usability\">Usability</a>-Experten oder Fachexperten durchgef\u00fchrt, die ihre Urteile auf die fr\u00fchere Erfahrung mit Usability-Problemen und ihr eigenes Wissen \u00fcber Gestaltungsregeln und Styleguides gr\u00fcnden.<br />2.\t<a href=\"#/glossary?term=Heuristische+Evaluierung\">Heuristische Evaluierung</a> ist eine Vorgehensweise f\u00fcr Inspektionsbasierte <a href=\"#/glossary?term=Usability-Evaluierung\">Usability-Evaluierung</a>.</p>",
-          "term-english": "Usability evaluation \u2013 Inspection based",
-          "term-german": "Inspektionsbasierte Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "<p>A person who defines and designs the interaction between humans and system based on <a href=\"#/glossary?term=User\">User</a> requirements and the <a href=\"#/glossary?term=Context+of+use\">Context of use</a>.<br />Note: <br />1.\tScenarios and personas are also important bases for the work of the interaction designer<br />2.\tInteraction designer is a process <a href=\"#/glossary?term=Role\">Role</a> in <a href=\"#/glossary?term=Human-centred+design\">Human-centred design</a>. </p>",
-          "description-german": "<p>Eine Person die die Interaktion zwischen Mensch und System auf Basis der Nutzungs\u00adanforderungen und <a href=\"#/glossary?term=Nutzungskontext\">Nutzungskontext</a> definiert und konzipiert. <br />Anmerkung:<br />1.\tSzenarien und Personas sind auch wichtige Grundlagen f\u00fcr die Arbeit des Interaktionsdesigners.<br />2.\tInteraktionsdesigner ist eine <a href=\"#/glossary?term=Rolle\">Rolle</a> im Prozess der menschzentrierten Gestaltung.</p>",
-          "term-english": "Interaction designer",
-          "term-german": "Interaktionsdesigner"
         },
         {
           "categories": [
@@ -628,16 +516,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Anforderungen",
-            "Gestaltung"
-          ],
-          "description-english": "<p>What the <a href=\"#/glossary?term=Interactive+system\">Interactive system</a> should be capable of from the point of view of the stakeholders.</p>",
-          "description-german": "<p>Was das interaktive System aus Sicht des Interessenvertreters leisten muss.<br />Anmerkung:<br />1.\tDer englische Ausdruck f\u00fcr Interessenvertreteranforderung ist Stakeholder requirement.</p>",
-          "term-english": "Stakeholder requirement",
-          "term-german": "Interessenvertreteranforderung"
-        },
-        {
-          "categories": [
             "Test",
             "Evaluierung"
           ],
@@ -654,16 +532,6 @@ class Glossary extends Component {
           "description-german": "<p>Eine schriftliche Liste geeigneter Fragen und Hinweise, die der Interviewer während eines <a href=\"#/Interview\">Interviews</a> verwendet, um sicherzustellen, dass alle relevanten Themen abgedeckt werden.</p>",
           "term-english": "Interview checklist",
           "term-german": "Interviewcheckliste"
-        },
-        {
-          "categories": [
-            "Anforderungen",
-            "Planung"
-          ],
-          "description-english": "<p>Use of the <a href=\"#/glossary?term=Interactive+system\">Interactive system</a> is easy to understand, regardless of the <a href=\"#/glossary?term=User\">User</a>'s experience, knowledge, language skills, or current concentration level. <br />Note: <br />1.\tAffordances and <a href=\"#/glossary?term=Self-descriptiveness\">Self-descriptiveness</a> are means to make an <a href=\"#/glossary?term=Interactive+system\">Interactive system</a> intuitive.</p>",
-          "description-german": "<p>Die Benutzung des interaktiven Systems ist unmittelbar zu verstehen \u2013 unabh\u00e4ngig von der Erfahrung, vom Wissen, von den Sprachkenntnissen oder vom momentanen Konzentrationsgrad des Benutzers.<br />Anmerkung:<br />1.\t<a href=\"#/glossary?term=Affordance\">Affordance</a> und <a href=\"#/glossary?term=Selbstbeschreibungsf%C3%A4higkeit\">Selbstbeschreibungsf\u00e4higkeit</a> sind Mittel, ein <a href=\"#/glossary?term=Interaktives+System\">Interaktives System</a> intuitiv zu gestalten.</p>",
-          "term-english": "Intuitive",
-          "term-german": "Intuitiv"
         },
         {
           "categories": [
@@ -773,15 +641,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Evaluierung"
-          ],
-          "description-english": "<p>See Post-session <a href=\"#/glossary?term=Interview\">Interview</a>.</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Post-Session+Interview\">Post-Session Interview</a>.</p>",
-          "term-english": "Debriefing",
-          "term-german": "Nachbesprechung"
-        },
-        {
-          "categories": [
             "System",
             "Planung"
           ],
@@ -832,26 +691,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "System",
-            "Planung"
-          ],
-          "description-english": "<p>The key units of information, or data, with which users interact in order to carry out their tasks. <br />Examples of <a href=\"#/glossary?term=Task\">Task</a> objects:<br />1.\tFor a customer management system: <br />- A letter to a customer;<br />\t- A list of the customer's unpaid bills;<br />\t- An order from the customer.<br />2.\tFor a train ticket vending machine:<br />\t- A ticket:<br />\t- A receipt for the purchase of a ticket;<br />\t- A travel plan.</p>",
-          "description-german": "<p>Die wichtigsten Informationseinheiten oder Daten mit denen <a href=\"#/glossary?term=Benutzer\">Benutzer</a> interagieren, um ihre Aufgaben durchzuf\u00fchren.<br />Anmerkung:<br />1.\tDer englische Ausdruck f\u00fcr Nutzungsobjekt ist Task object.<br />Beispiele f\u00fcr Nutzungsobjekte:<br />1.\tF\u00fcr ein Kundenmanagementsystem: <br />\t- Ein Brief an einen Kunden, <br />\t- Eine Liste unbezahlter Rechnungen des Kunden, <br />\t- Eine Auftrag von dem Kunden.<br />2.\tF\u00fcr einen Automaten der Bahnkarten verkauft:<br />\t- Eine Fahrkarte,<br />\t- Eine Quittung f\u00fcr den Kauf einer Fahrkarte,<br />\t- Einen Reiseplan.</p>",
-          "term-english": "Task object",
-          "term-german": "Nutzungsobjekt"
-        },
-        {
-          "categories": [
-            "Gestaltung",
-            "Evaluierung"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Usability\">Usability</a> problem</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Usability-Problem\">Usability-Problem</a></p>",
-          "term-english": "Problem",
-          "term-german": "Nutzungsproblem"
-        },
-        {
-          "categories": [
             "Test",
             "Planung"
           ],
@@ -869,16 +708,6 @@ class Glossary extends Component {
           "description-german": "<p>Eine Frage in einem <a href=\"#/Interview\">Interview</a>, die keinen Hinweis auf das erwartete Format oder den erwarteten Inhalt der Antwort gibt.<br />Anmerkungen: <br />1.\tOffene Fragen sind in <a href=\"#/Interview\">Interviews</a> zu bevorzugen, weil sie <a href=\"#/Benutzer\">Benutzer</a> zur freien Rede animieren und ausführliche Antworten auf die Frage zulassen.<br />2.\tVergleiche mit <a href=\"#/Geschlossene Frage\">geschlossener Frage</a>.<br />Beispiele:<br />1.\tFür Beispiele zu offenen (und <a href=\"#/Neutrale Frage\">neutralen</a>) <a href=\"#/Interview\">Interviewfragen</a> siehe <a href=\"#/Neutrale Frage\">Neutrale Frage</a></p>",
           "term-english": "Open question",
           "term-german": "Offene Frage"
-        },
-        {
-          "categories": [
-            "System",
-            "Gestaltung"
-          ],
-          "description-english": "<p>Assistance delivered through computer software that can be topic-oriented, procedural or reference information. <br />Notes:<br />1.\tMost online help is designed to give assistance in the use of an <a href=\"#/glossary?term=Interactive+system\">Interactive system</a>, but can also be used to present information on a broad range of subjects. <br />2.\tOnline help is a form of <a href=\"#/glossary?term=User\">User</a> assistance.</p>",
-          "description-german": "<p>Unterst\u00fctzung die durch ein Computerprogramm bereitgestellt wird. Onlinehilfe kann themenorientiert, verfahrensorientiert oder ein Hinweis sein.<br />Anmerkungen:<br />1.\tOnlinehilfe kann auch Informationen zu weitergehenden Themenbereichen bieten.<br />2.\tOnlinehilfe ist eine Form der <a href=\"#/glossary?term=Benutzerunterst%C3%BCtzung\">Benutzerunterst\u00fctzung</a>.</p>",
-          "term-english": "Online help",
-          "term-german": "Onlinehilfe"
         },
         {
           "categories": [
@@ -980,16 +809,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "<p>A series of questions for prospective participants to identify whether they represent the intended users and therefore qualify to participate in a human-centred activity, for example a <a href=\"#/glossary?term=Usability\">Usability</a> test or a <a href=\"#/glossary?term=Focus+group\">Focus group</a>.<br />Notes:<br />1.\tA recruitment screener is used during <a href=\"#/glossary?term=Recruiting\">Recruiting</a> to determine whether candidates have the required qualifications to participate in the activity.<br />2.\tRelevant qualifications include: Background, knowledge of the subject matter, attitudes and interests.</p>",
-          "description-german": "<p>Eine Reihe von Fragen f\u00fcr potenzielle Teilnehmer hinsichtlich ihrer Qualifikationen zur Teilnahme an einer menschzentrierten Aktivit\u00e4t wie z.B. einem <a href=\"#/glossary?term=Usability-Test\">Usability-Test</a> oder einer <a href=\"#/glossary?term=Fokusgruppe\">Fokusgruppe</a>.<br />Anmerkungen: <br />1.\tEin Rekrutierungsfragebogen wird w\u00e4hrend der <a href=\"#/glossary?term=Rekrutierung\">Rekrutierung</a> von Teilnehmern benutzt, um festzustellen ob Kandidaten \u00fcber die erforderlichen Qualifikationen zur Teilnahme an der menschzentrierten Aktivit\u00e4t verf\u00fcgen.<br />2.\tRelevante Qualifikationen beinhalten: Hintergrund, Wissen \u00fcber das Sachgebiet, Einstellungen und Interessen.<br />3.\tDer englische Ausdruck f\u00fcr Rekrutierungs\u00ad<a href=\"#/glossary?term=Fragebogen\">Fragebogen</a> ist Screener oder Recruitment Screener.</p>",
-          "term-english": "Recruitment screener",
-          "term-german": "Rekrutierungsfragebogen"
-        },
-        {
-          "categories": [
             "Test",
             "Evaluierung"
           ],
@@ -1006,26 +825,6 @@ class Glossary extends Component {
           "description-german": "<p>Alle Mittel die zur Nutzung eines <a href=\"#/Interaktives System\">interaktiven Systems</a> notwendig sind. <br />Anmerkung: <br />1.\tRessourcen können sein<br/>a.\t Wiederverwendbar - zum Beispiel: Ausrüstung, Informationen und verfügbare menschliche und systembasierte Unterstützung; oder<br/>b.\tErschöpfbar - zum Beispiel: Zeit, menschliche Anstrengung, finanzielle Ressourcen und Materialien.</p>",
           "term-english": "Resource",
           "term-german": "Ressourcen"
-        },
-        {
-          "categories": [
-            "Prinzipien",
-            "Gestaltung"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=User\">User</a> interface <a href=\"#/glossary?term=Guideline\">Guideline</a>.</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Gestaltungsregel\">Gestaltungsregel</a></p>",
-          "term-english": "Guideline",
-          "term-german": "Richtlinie"
-        },
-        {
-          "categories": [
-            "Anforderungen",
-            "Rollen"
-          ],
-          "description-english": "<p>A duty or function that a person carries out within an organization.<br />Notes: <br />1.\tA role describes a set of connected behaviors, rights, obligations, and norms in a job situation. <br />2.\tRoles are occupied by individuals, who are called actors.<br />3.\tDepending on the complexity of a project, several people might share one role or multiple roles might be assigned to one person.<br />4.\tWork roles are \"hats\" that people wear when they take on the corresponding job responsibilities and perform the associated activities.<br />Example: <br />1.\tIn a <a href=\"#/glossary?term=Usability\">Usability</a> test session, one person can simultaneously occupy the roles <a href=\"#/glossary?term=Moderator\">Moderator</a> and <a href=\"#/glossary?term=Note-taker\">Note-taker</a>. In another <a href=\"#/glossary?term=Usability\">Usability</a> test session, in contrast, one person may act as moderator and two other people may both act as note-takers.</p>",
-          "description-german": "<p>Eine Funktion die eine Person innerhalb der Struktur einer Organisation inne hat.<br />Anmerkungen:<br />1.\tEine Rolle beschreibt eine Menge von zusammengeh\u00f6rigen Verhaltensweisen, Rechten, Pflichten und Normen in einem beruflichen Kontext.<br />2.\tRollen werden von Individuen besetzt.<br />3.\tAbh\u00e4ngig von der Komplexit\u00e4t eines Projektes k\u00f6nnen mehrere Menschen eine Rolle teilen oder mehrere Rollen einer Person zugewiesen werden.<br />4.\tArbeitsrollen sind \u201eH\u00fcte\u201c, die Menschen aufhaben, wenn sie die entsprechenden Verantwortlichkeiten \u00fcbernehmen und die damit verbundenen T\u00e4tigkeiten aus\u00fcben.<br />Beispiel:<br />1.\tIn einer <a href=\"#/glossary?term=Usability-Testsitzung\">Usability-Testsitzung</a> kann eine Person gleichzeitig die Rolle des Moderators und die des Protokollanten \u00fcbernehmen. <br />\tIn einer anderen <a href=\"#/glossary?term=Usability\">Usability</a>-Testsitzung hingegen, k\u00f6nnte eine Person als <a href=\"#/glossary?term=Moderator\">Moderator</a> fungieren und zwei andere Personen k\u00f6nnten beide als <a href=\"#/glossary?term=Protokollant\">Protokollant</a> auftreten.</p>",
-          "term-english": "Role",
-          "term-german": "Rolle"
         },
         {
           "categories": [
@@ -1088,16 +887,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Prinzipien",
-            "Implementierung"
-          ],
-          "description-english": "<p>Explicit information about an event or a condition from an <a href=\"#/glossary?term=Interactive+system\">Interactive system</a> to a <a href=\"#/glossary?term=User\">User</a>.<br />Note: <br />1.\tSystem-initiated guidance includes <br />a.\tMessages (informative, warning, error)<br />b.\tStatus information, for example \"7 new messages\"<br />c.\tInstructions, for example \"Separate e-mail addresses by space, comma, semicolon or line break\"<br />2.\tMessages must be constructive, precise, comprehensible and visible. <br />3.\tSystem-initiated guidance is a form of <a href=\"#/glossary?term=User+assistance\">User assistance</a>.</p>",
-          "description-german": "<p>Explizite Information \u00fcber ein Ereignis oder einen Zustand vom interaktiven System an den <a href=\"#/glossary?term=Benutzer\">Benutzer</a>. <br />Anmerkungen: <br />Systeminitiierte Benutzerf\u00fchrung umfasst:<br />Meldungen (informativ, warnend, auf Fehler hinweisend)<br />Statusinformation, z.B. \u201d7 neue Nachrichten\u201d<br />Instruktionen, z.B. \u201dE-Mail-Adressen k\u00f6nnen mit einem Leerzeichen, einem Komma, einem Semikolon oder einem Zeilenumbruch getrennt werden.\u201d<br />2.\tMeldungen, m\u00fcssen konstruktiv, pr\u00e4zise, verst\u00e4ndlich und sichtbar sein.<br />3.\tSysteminitiierte Benutzerf\u00fchrung ist eine Form der <a href=\"#/glossary?term=Benutzerunterst%C3%BCtzung\">Benutzerunterst\u00fctzung</a>.</p>",
-          "term-english": "System-initiated guidance",
-          "term-german": "Systeminitiierte Benutzerf\u00fchrung"
-        },
-        {
-          "categories": [
             "Test",
             "Planung"
           ],
@@ -1105,16 +894,6 @@ class Glossary extends Component {
           "description-german": "<p>Eine erzählende, textuelle Beschreibung des Vorgehens, das ein bestimmter Benutzer anwendet, um eine oder mehrere <a href=\"#/Aufgabe\">Aufgaben</a> zu erledigen.<br />Anmerkungen: <br />1.\tDer spezifische <a href=\"#/Benutzer\">Benutzer</a> in dem Szenario ist oft eine <a href=\"#/Persona\">Persona</a>.<br />2.\tIst-Szenarien werden von einem <a href=\"#/User Experience Professional\">User Experience Professional</a> basierend auf Ergebnissen von <a href=\"#/Beobachtung\">Beobachtungen</a> und <a href=\"#/Kontextuelles Interview\">kontextuellen Interviews</a> erstellt.<br/>3.\tIst-Szenarien sind eine hilfreiche Basis zur Entwicklung von <a href=\"#/Persona\">Personas</a>, da das Analysieren von <a href=\"#/Benutzer\">Benutzern</a> in ihrem aktuellen <a href=\"#/Nutzungskontext\">Nutzungskontext</a> eine Analyse ihres Verhaltens beinhaltet. Zur Analyse ihrer Tätigkeiten gehört herauszufinden, wer diese Tätigkeiten durchführt.<br/>4.\tIst-Szenarien werden von <a href=\"#/Benutzer\">Benutzern</a> überprüft, um Missverständnisse zu entdecken, die während <a href=\"#/Kontextuelles Interview\">kontextueller Interviews</a> aufgetreten sein könnten.<br/><br/>Beispiele:<br/>1.\tIst-Szenario<br/>„John Miller ist ein Geschäftsreisender, der im Laufe einer Woche mehrere Flüge tätigt. Er fährt bevorzugt mit seinem Auto zum Flughafen. Gelegentlich verpasst er ein Flugzeug und bereut dann, nicht mit dem Taxi oder mit der Bahn zum Flughafen gefahren zu sein. Er unterschätzt einfach die Fahrzeugschlangen vor der Einfahrt des Parkhauses und die Laufzeit bis zum Flugsteig.“ Vergleiche dieses Beispiel mit dem entsprechenden Beispiel in <a href=\"#/Nutzungsszenario\">Nutzungsszenario</a>.<br/>2.\tVorschläge von Interviewteilnehmern können dem Ist-Szenario hinzugefügt werden: John Miller schlägt vor: Es wäre wunderbar, wenn ich einfach einen Parkplatz vorbestellen und die Warteschlangen überspringen könnte. Wenn ich feststelle, dass keine Parkplätze zur Verfügung stehen, kann ich einfach ein Taxi rufen. Dies würde mir erlauben, meine Zeit besser zu planen. Sie könnten auch einen Express-Parkservice anbieten, bei dem ich einfach mein Auto und meine Schlüssel abgeben würde und sie würden das Auto für mich parken - gegen eine Gebühr natürlich.“</p>",
           "term-english": "As-is scenario",
           "term-german": "Ist-Szenario"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Usability\">Usability</a> test report.</p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Usability-Testbericht\">Usability-Testbericht</a>.</p>",
-          "term-english": "Test report",
-          "term-german": "Testbericht"
         },
         {
           "categories": [
@@ -1208,25 +987,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Rollen"
-          ],
-          "description-english": "<p>A person who evaluates <a href=\"#/glossary?term=User\">User</a> interfaces in various stages of realization. <br />Notes:<br />1.\tIn cooperation with other stakeholders, the <a href=\"#/glossary?term=Usability\">Usability</a> tester <br />a.\tPlans usability evaluations, <br />b.\tConducts usability evaluations, <br />c.\tCommunicates usability findings to stakeholders.<br />2.\tDuring <a href=\"#/glossary?term=Usability+test\">Usability test</a> sessions the usability tester has the <a href=\"#/glossary?term=Role\">Role</a> of <a href=\"#/glossary?term=Moderator\">Moderator</a> or <a href=\"#/glossary?term=Note-taker\">Note-taker</a>.<br />3.\t<a href=\"#/glossary?term=Usability\">Usability</a> tester is a process <a href=\"#/glossary?term=Role\">Role</a> in <a href=\"#/glossary?term=Human-centred+design\">Human-centred design</a>.</p>",
-          "description-german": "<p>Eine Person die Benutzungsschnittstellen in verschiedenen Stadien der Realisierung evaluiert. <br />Anmerkungen:<br />1.\tIn Kooperation mit anderen Interessensvertretern, muss der <a href=\"#/glossary?term=Usability\">Usability</a>-Tester<br />a.\tdie Usability-Evaluierungen planen<br />b.\tdie Usability-Evaluierungen leiten<br />c.\tdie Usability-Testergebnisse an die <a href=\"#/glossary?term=Interessenvertreter\">Interessenvertreter</a> kommunizieren.<br />2.\tW\u00e4hrend einer <a href=\"#/glossary?term=Usability-Testsitzung\">Usability-Testsitzung</a> \u00fcbernimmt der <a href=\"#/glossary?term=Usability\">Usability</a>-Tester die <a href=\"#/glossary?term=Rolle\">Rolle</a> des Moderators oder des Protokollanten.<br />3.\tUsability-Tester ist eine Rolle im Prozess der menschzentrierten Gestaltung.</p>",
-          "term-english": "Usability tester",
-          "term-german": "Usability-Tester"
-        },
-        {
-          "categories": [
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "<p>See <a href=\"#/glossary?term=Usability\">Usability</a> <a href=\"#/glossary?term=Finding\">Finding</a></p>",
-          "description-german": "<p>Siehe <a href=\"#/glossary?term=Usability-Befund\">Usability-Befund</a>.</p>",
-          "term-english": "Usability test result",
-          "term-german": "Usability-Testergebnis"
-        },
-        {
-          "categories": [
             "Planung",
             "Evaluierung"
           ],
@@ -1267,24 +1027,6 @@ class Glossary extends Component {
         },
         {
           "categories": [
-            "Rollen"
-          ],
-          "description-english": "<p>A person who creates interactive prototypes and implements the <a href=\"#/glossary?term=Dialogue\">Dialogue</a> and <a href=\"#/glossary?term=User\">User</a> experience based on the design created by the <a href=\"#/glossary?term=Interaction+designer\">Interaction designer</a> and the scenarios created by the <a href=\"#/glossary?term=User+requirements+engineer\">User requirements engineer</a>. The <a href=\"#/glossary?term=User+interface\">User interface</a> designer also creates interactive prototypes.<br />Note: <br />1.\tUser interface designer is a process <a href=\"#/glossary?term=Role\">Role</a> in <a href=\"#/glossary?term=Human-centred+design\">Human-centred design</a>.</p>",
-          "description-german": "<p>Eine Person die den <a href=\"#/glossary?term=Dialog\">Dialog</a> und das <a href=\"#/glossary?term=Benutzererlebnis\">Benutzererlebnis</a> basierend auf dem Design des  Interaktions\u00addesigners und den Nutzungsszenarios des User Requirements Engineers implementiert. Der User Interface Designer erzeugt ausserdem interaktive Prototypen.<br />Anmerkung:<br />1.\tUser Interface Designer ist eine <a href=\"#/glossary?term=Rolle\">Rolle</a> im Prozess der menschzentrierten Gestaltung.</p>",
-          "term-english": "User interface designer",
-          "term-german": "User Interface Designer"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "<p>A person who identifies and describes the actual or intended <a href=\"#/glossary?term=Context+of+use\">Context of use</a> of users, and derives the <a href=\"#/glossary?term=User\">User</a> requirements and related organizational requirements, which need to be realized for a specific project. <br />Notes:<br />1.\tThe user requirements engineer identifies the <a href=\"#/glossary?term=Context+of+use\">Context of use</a> based on methods such as interviews with users, observations, user surveys, <a href=\"#/glossary?term=Usability\">Usability</a> evaluations, expert analysis, etc.<br />2.\tThe user requirements engineer generates personas and scenarios that ensure the <a href=\"#/glossary?term=Effectiveness\">Effectiveness</a>, <a href=\"#/glossary?term=Efficiency\">Efficiency</a> and <a href=\"#/glossary?term=Satisfaction\">Satisfaction</a> when performing tasks with the <a href=\"#/glossary?term=Interactive+system\">Interactive system</a>.<br />3.\t User requirements engineer is a process <a href=\"#/glossary?term=Role\">Role</a> in <a href=\"#/glossary?term=Human-centred+design\">Human-centred design</a>.</p>",
-          "description-german": "<p>Eine Person die den tats\u00e4chlichen oder geplanten <a href=\"#/glossary?term=Nutzungskontext\">Nutzungskontext</a> von Benutzern identifiziert und beschreibt. Daraus leitet der User Requirements Engineer die Nutzungsanforderungen und damit verbundene organisatorische Anforderungen ab, die f\u00fcr ein bestimmtes Projekt umgesetzt werden m\u00fcssen. <br />Anmerkungen:<br />1.\tDer User Requirements Engineer identifiziert den Nutzungskontext durch Methoden wie Benutzerinterviews, Beobachtungen, Benutzerbefragungen, <a href=\"#/glossary?term=Usability\">Usability</a>-Evaluierungen, Expertenanalysen usw.<br />2.\tDer User Requirements Engineer erzeugt Nutzungs\u00adszenarien, die die <a href=\"#/glossary?term=Effektivit%C3%A4t\">Effektivit\u00e4t</a>, <a href=\"#/glossary?term=Effizienz\">Effizienz</a> und <a href=\"#/glossary?term=Zufriedenstellung\">Zufriedenstellung</a> bei der Aufgabenerledigung mit dem interaktiven System sicherstellen sollen.<br />3.\tUser Requirements Engineer ist eine <a href=\"#/glossary?term=Rolle\">Rolle</a> im Prozess der menschzentrierten Gestaltung.</p>",
-          "term-english": "User requirements engineer",
-          "term-german": "User Requirements Engineer"
-        },
-        {
-          "categories": [
             "Planung"
           ],
           "description-english": "<p>A screen or page in a <a href=\"#/Low-fidelity prototype\">low-fidelity prototype</a> for a graphical <a href=\"#/User interface\">user interface</a> comprised of lines, rectangular boxes and text that represent the intended interaction design.<br/>Notes:<br/>1.\tWireframes typically do not address visual design and precise layout.</p>",
@@ -1315,58 +1057,55 @@ class Glossary extends Component {
       ],
       chosen:0,
       content:[],
+      sortedEnglishTerms:[],
+      sortedGermanTerms:[],
       English:true
     }
 
     
     
   }
-  componentWillMount(){
-    this.setState({content: this.state.initialContent})
-  }
+  //here I make to copies fron the initial content one is sorted in english and one is sorted in german
   componentDidMount(){
-    this.unlisten = this.props.history.listen((location) => {
-      //var item= location.hash.substring(2).replace(/%20/g, " ");
-      var item= decodeURI(location.hash.substring(2));
-      this.state.initialContent.map((data,index)=>{
-        if(this.state.English){
-          if(data["term-english"]===item){
-            this.setState({
-              chosen:index
-            })
-          } 
-         }
-         else{
-          if(data["term-german"]===item){
-            this.setState({
-              chosen:index
-            })
-          } 
-
-         }
-
-      });
-     // console.log(this.state.chosen);
-      //console.log(this.state.initialContent.indexOf(location.hash.subString(2)));
-    });
+   this.urlListener();
+   this.state.initialContent.sort(function(a, b) { 
+    return a["term-english"].localeCompare(b["term-english"]);
+   });
+  var sortedEng=[...this.state.initialContent];
+   this.state.initialContent.sort(function(a, b) {
+    return a["term-german"].localeCompare(b["term-german"]);
+   });
+  var sortedGer=[...this.state.initialContent];  
+  this.setState({
+    sortedEnglishTerms: sortedEng,
+    sortedGermanTerms : sortedGer
+  });
   }
 
+  //this method handle the searching input to filter the definitions
   handleChange = ({target}) => {
-    var updatedList = this.state.initialContent;
+    var updatedList = [...this.state.initialContent];
     if(this.state.English){
-    updatedList = updatedList.filter(function(item){
-      return item["term-english"].toLowerCase().search(
-      target.value.toLowerCase()) !== -1;
-    });
-  }
-  else{
-    updatedList = updatedList.filter(function(item){
+      updatedList = updatedList.filter(function(item){
+        return item["term-english"].toLowerCase().search(
+        target.value.toLowerCase()) !== -1;
+      });
+      updatedList.sort(function(a, b) { 
+        return a["term-english"].localeCompare(b["term-english"]);
+      });
+      this.setState({sortedEnglishTerms: updatedList});
+    }
+    else{
+      updatedList = updatedList.filter(function(item){
       return item["term-german"].toLowerCase().search(
       target.value.toLowerCase()) !== -1;
     });
-
+    updatedList.sort(function(a, b) {
+      return a["term-german"].localeCompare(b["term-german"]);
+    });
+    this.setState({sortedGermanTerms: updatedList});
   }
-    this.setState({content: updatedList});
+    
   };
   next = ()=>{
     if(this.state.chosen<this.state.initialContent.length-1){
@@ -1402,7 +1141,35 @@ class Glossary extends Component {
       English:false
     })
   }
+ 
+  //this to keep listening to the URL to handle changing between definitions
+  urlListener(){
+    this.unlisten = this.props.history.listen((location) => {
+      //var item= location.hash.substring(2).replace(/%20/g, " ");
+      var item= decodeURI(location.hash.substring(2));
+      this.state.initialContent.map((data,index)=>{
+        if(this.state.English){
+          if(data["term-english"]===item){
+            this.setState({
+              chosen:index
+            })
+          } 
+         }
+         else{
+          if(data["term-german"]===item){
+            this.setState({
+              chosen:index
+            })
+          } 
 
+         }
+
+      });
+     // console.log(this.state.chosen);
+      //console.log(this.state.initialContent.indexOf(location.hash.subString(2)));
+    });
+
+  }
   render(){
     return (
       <div>
@@ -1423,22 +1190,30 @@ class Glossary extends Component {
               <h1>Content</h1>
               <input onChange={ this.handleChange } ></input>
               <nav >
-                <ul>
-                  { this.state.content.map((item)=> (
-                            
-                  <li style={{paddingBottom:" 7px"}} className="nav-item">{this.state.English?<a href={"#/"+item["term-english"]}>{item["term-english"]}</a>:<a href={"#/"+item["term-german"]}>{item["term-german"]}</a>}</li>
-                            
+                {this.state.English?
+                <ul> 
+                  { this.state.sortedEnglishTerms.map((item)=> (         
+                  <li style={{paddingBottom:" 7px"}} className="nav-item"><a href={"#/"+item["term-english"]}>{item["term-english"]}</a></li>          
                     ))
                   }
                 </ul>
+                :
+                <ul> 
+                { this.state.sortedGermanTerms.map((item)=> (         
+                <li style={{paddingBottom:" 7px"}} className="nav-item"><a href={"#/"+item["term-german"]}>{item["term-german"]}</a></li>          
+                  ))
+                }
+              </ul>
+
+                }
               </nav>
             </div>
             <div className={classNames("col-sm-8","col-xs-8","col-md-8","col-lg-8")} >
-              {this.state.English?<h1>{this.state.initialContent[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.initialContent[this.state.chosen]["term-german"]}</h1>}
-              {this.state.English?<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-english"]}} />:<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-german"]}} />}
+                {this.state.English?<h1>{this.state.initialContent[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.initialContent[this.state.chosen]["term-german"]}</h1>}
+                {this.state.English?<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-english"]}} />:<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-german"]}} />}
                 <button onClick={() => this.previous()} type="button" class="btn btn-outline-secondary">{this.state.English?"Previous":"Zurück"}</button>
                 <button onClick={() => this.next()} id="next"  type="button" class="btn btn-outline-secondary">{this.state.English?"Next":"Weiter"}</button>
-              </div>  
+           </div>  
           </div>
         </div>
       </div>
