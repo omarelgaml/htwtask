@@ -1,16 +1,175 @@
 import React, { Component } from 'react';
 import '../App.css';
-import classNames from 'classnames'
+import classNames from 'classnames';
 import 'bootstrap/dist/css/bootstrap.css';
-import ButtonAppBar from './ButtonAppBar'
-
+import ButtonAppBar from './ButtonAppBar';
+import { debug } from 'util';
 class Game extends Component {
-  
   constructor(props){
      
     super(props);
+    /*
+      There is questionsItems and choicesItems in the state with the same initial conent, but after that
+      I will take one question from questionsItems and remove it from the list, so at the end the list will
+      be empty which indicates the end of the quiz. But the choicesItems should stay with the smame size because
+      i will get the cohoices from it for every quesion
+    */
     this.state = {
       questionsItems:[
+        {
+          "categories": [
+            "Test",
+            "Planung"
+          ],
+          "description-english": "A narrative text description of the procedure a specific user currently follows to complete one or more tasks.",
+          "description-german": "Eine erzählende, textuelle Beschreibung des Vorgehens, das ein bestimmter Benutzer anwendet, um eine oder mehrere Aufgaben zu erledigen.",
+          "term-english": "As-is scenario",
+          "term-german": "Ist-Szenario"
+        },
+        {
+          "categories": [
+            "Rollen"
+          ],
+          "description-english": "\n",
+          "description-german": "\n",
+          "term-english": "User experience professional",
+          "term-german": "User Experience Professional"
+        },
+        {
+          "categories": [
+            "Test",
+            "Evaluierung"
+          ],
+          "description-english": "A usability evaluation based on the judgment of one or more evaluators who examine or use an interactive system to identify potential usability problems and deviations from established dialogue principles, heuristics, user interface guidelines and user requirements.\n",
+          "description-german": "Eine Usability-Evaluierung, die auf der Begutachtung durch einen oder mehrere Evaluatoren basiert, die ein interaktives System prüfen oder benutzen, um potenzielle Usability-Probleme und Abweichungen von anerkannten Dialogprinzipien, Heuristiken, Gestaltungsregeln und Nutzungsanforderungen zu identifizieren.\n",
+          "term-english": "Usability inspection",
+          "term-german": "Usability-Inspektion"
+        },
+        {
+          "categories": [
+            "Evaluierung",
+            "Test"
+          ],
+          "description-english": "A result from a usability evaluation.\n",
+          "description-german": "Ergebnis aus einer Usability-Evaluierung.\n",
+          "term-english": "Usability finding",
+          "term-german": "Usability-Befund"
+        },
+        {
+          "categories": [
+            "Test",
+            "Evaluierung"
+          ],
+          "description-english": "A document reporting the results of a usability test, a usability inspection or a user survey.\n",
+          "description-german": "Ein Dokument, in dem die Ergebnisse eines Usability-Tests, einer Usability-Inspektion oder einer Benutzerbefragung berichtet werden.\n",
+          "term-english": "Usability evaluation report",
+          "term-german": "Usability-Evaluierungsbericht"
+        },
+        {
+          "categories": [
+            "Test"
+          ],
+          "description-english": "A usability test where usability test participants solve usability test tasks without a moderator.\n",
+          "description-german": "Ein Usability-Test, bei dem Usability-Testteilnehmer Usability-Testaufgaben ohne Moderator erledigen.\n",
+          "term-english": "Unmoderated usability test",
+          "term-german": "Unmoderierter Usability-Test"
+        },
+        {
+          "categories": [
+            "Implementierung"
+          ],
+          "description-english": "A basic component of a user interface that is presented to the user by the interactive system.\n",
+          "description-german": "Ein Grundelement einer Benutzungsschnittstelle, die dem Benutzer vom interaktivem System präsentiert wird.\n",
+          "term-english": "User interface element",
+          "term-german": "User Interface Element"
+        },
+        {
+          "categories": [
+            "Evaluierung",
+            "Gestaltung"
+          ],
+          "description-english": "A low-level, specific rule or recommendation for user interface design that leaves little room for interpretation, allowing designers to implement it consistently.\n",
+          "description-german": "Konkrete, spezifische Instruktion oder Empfehlung für das Design von Benutzungsschnittstellen, die wenig Interpretationsspielraum lässt, sodass Designer sie konsistent umsetzen können.\n",
+          "term-english": "User interface guideline",
+          "term-german": "Gestaltungsregel"
+        },
+  /*      {
+          "categories": [
+            "Prinzipien"
+          ],
+          "description-english": "The property of a dialogue that allows users to modify interactions and the presentation of information to suit their individual capabilities and needs.\n",
+          "description-german": "Die Eigenschaft eines Dialogs, die Benutzern ermöglicht, die Interaktion mit dem System und die Darstellung von Informationen an ihre individuellen Fähigkeiten und Bedürfnisse anpassen zu können.\n",
+          "term-english": "Suitability for individualisation",
+          "term-german": "Individualisierbarkeit"
+        },*/
+        {
+          "categories": [
+            "Planung",
+            "Test"
+          ],
+          "description-english": "A method for structuring information – such as menus in a navigation structure – that involves writing key concepts onto different cards and asking users to sort these cards into groups.\n",
+          "description-german": "Eine Methode zum Strukturieren von Information – wie beispielsweise Menüs in einer Navigationsstruktur –, bei der Kernbegriffe auf verschiedene Karten geschrieben werden und Benutzer aufgefordert werden, diese Karten in Gruppen zu sortieren.\n",
+          "term-english": "Card sorting",
+          "term-german": "Card-Sorting"
+        },
+        {
+          "categories": [
+            "Gestaltung",
+            "Anforderungen"
+          ],
+          "description-english": "The naming and structuring of the information that must be accessible to the user.\n",
+          "description-german": "Die Benennung und Strukturierung der Information, die für den Benutzer zugänglich sein muss.\n",
+          "term-english": "Information architecture",
+          "term-german": "Informationsarchitektur"
+        },
+        {
+          "categories": [
+            "Test",
+            "Planung"
+          ],
+          "description-english": "A narrative text description that describes an intended usage situation with the interactive system under development.",
+          "description-german": "Eine erzählende, textuelle Beschreibung, die eine zukünftige Benutzungssituation mit dem in Entwicklung befindlichen interaktiven System beschreibt.",
+          "term-english": "Use scenario",
+          "term-german": "Nutzungsszenario"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Evaluierung"
+          ],
+          "description-english": "A graphical or tabular description of all encounters users have with the interactive system covering all touchpoints that influence the user experience, making the overall user experience tangible for others.\n",
+          "description-german": "Eine grafische oder tabellarische Beschreibung aller Begegnungen, die Benutzer mit dem interaktiven System haben und welche alle die User Experience beeinflussenden Touchpoints (Kontaktpunkte) abdeckt, wodurch die gesamte User Experience für andere greifbar wird.\n",
+          "term-english": "User journey map",
+          "term-german": "User Journey Map"
+        },
+        {
+          "categories": [
+            "Planung"
+          ],
+          "description-english": "The goals that are to be achieved for the user of an interactive system when developing the interactive system.\n",
+          "description-german": "Die Ziele, die für den Benutzer eines interaktiven Systems bei der Entwicklung eines interaktiven Systems erreicht werden sollen.\n",
+          "term-english": "Human-centred quality objectives",
+          "term-german": "Menschzentrierte Qualitätsziele"
+        },
+        {
+          "categories": [
+            "Planung"
+          ],
+          "description-english": "A description of the human-centred design activities and deliverables for an interactive system.\n",
+          "description-german": "Eine Beschreibung der Aktivitäten und der UX-Ergebnisse der menschzentrierten Gestaltung für ein interaktives System.\n",
+          "term-english": "User experience project plan",
+          "term-german": "User Experience Projektplan"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Prinzipien"
+          ],
+          "description-english": "The intended outcome.\n",
+          "description-german": "Das angestrebte Arbeitsergebnis.\n",
+          "term-english": "Goal",
+          "term-german": "Ziel"
+        },
         {
           "categories": [
             "Prinzipien"
@@ -26,8 +185,8 @@ class Game extends Component {
             "Gestaltung",
             "Anforderungen"
           ],
-          "description-english": "A condition or capability that must be met or possessed by an interactive system to satisfy an agreement, standard, specification or other formally imposed documents\n",
-          "description-german": "Eine Bedingung oder F\u00e4higkeit, die ein  interaktives System erf\u00fcllen oder besitzen muss, um einer Vereinbarung, einem Standard, einer Spezifikation oder anderen formal zugrunde gelegten Dokumenten zu gen\u00fcgen.\n",
+          "description-english": "A condition or capability that must be met or possessed by an interactive system to satisfy an agreement, standard, specification or other formally imposed documents.\n",
+          "description-german": "Eine Bedingung oder Fähigkeit, die ein interaktives System erfüllen oder besitzen muss, um eine Vereinbarung, eine Norm, eine Spezifikation oder andere formal auferlegte Dokumente zu erfüllen.\n",
           "term-english": "Requirement",
           "term-german": "Anforderung"
         },
@@ -37,8 +196,8 @@ class Game extends Component {
             "Prinzipien",
             "Gestaltung"
           ],
-          "description-english": "Activities required to achieve a goal \n",
-          "description-german": "Aktivit\u00e4t die erforderlich ist, um ein Ziel zu erreichen.\n",
+          "description-english": "A set of activities undertaken in order to achieve a specific goal. \n",
+          "description-german": "Eine Menge von Aktivitäten, die unternommen werden, um ein bestimmtes Ziel zu erreichen.\n",
           "term-english": "Task",
           "term-german": "Aufgabe"
         },
@@ -47,8 +206,8 @@ class Game extends Component {
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "The property of an interactive system to support the user in the completion of the task, i.e. to base the functionality and the dialogue on the task characteristics (rather than the technology chosen to perform the task).\n",
-          "description-german": "Die Eigenschaft eines interaktives Systems den Benutzer zu unterst\u00fctzen, seine Aufgabe zu erledigen, d. h., die Funktionalit\u00e4t und Dialog an die charakteristischen Eigenschaften der Aufgabe anzupassen, anstatt an die zur Aufgabenerledigung eingesetzten Technologie.\n",
+          "description-english": "The property of an interactive system to support the user in the completion of the task – that is, to base the functionality and the dialogue on the task characteristics (rather than the technology chosen to perform the task).\n",
+          "description-german": "Die Eigenschaft eines interaktiven Systems den Benutzer zu unterstützen, seine Aufgabe zu erledigen, d. h., die Funktionalität und Dialog an die charakteristischen Eigenschaften der Aufgabe anzupassen, anstatt an die zur Aufgabenerledigung eingesetzten Technologie.\n",
           "term-english": "Suitability for the task",
           "term-german": "Aufgabenangemessenheit"
         },
@@ -56,8 +215,8 @@ class Game extends Component {
           "categories": [
             "Implementierung"
           ],
-          "description-english": "A description of the subtasks that have to be carried out in order to reach the user\u2019s goals.\n",
-          "description-german": "Eine Beschreibung der Teilaufgaben die erledigt werden m\u00fcssen, um die Ziele des Benutzers zu erreichen.\n",
+          "description-english": "A description of the subtasks within a task that have to be carried out in order to reach the user’s goals.\n",
+          "description-german": "Eine Beschreibung der Teilaufgaben innerhalb einer Aufgabe, die ausgeführt werden müssen, um die Ziele des Benutzers zu erreichen.\n",
           "term-english": "Task model",
           "term-german": "Aufgabenmodell"
         },
@@ -65,8 +224,8 @@ class Game extends Component {
           "categories": [
             "Prinzipien"
           ],
-          "description-english": "The attributes and characteristics of an interactive system that allow people with limited vision, hearing, dexterity, cognition or physical mobility to interact effectively and efficiently with the interactive system.\n",
-          "description-german": "Die Attribute und Charakteristiken eines interaktiven Systems die Menschen mit eingeschr\u00e4nkter Sicht, eingeschr\u00e4nktem H\u00f6ren, eingeschr\u00e4nkter Geschicklichkeit, eingeschr\u00e4nkter Kognition oder eingeschr\u00e4nkter physischer Mobilit\u00e4t erm\u00f6glichen sollen effektiv und effizient mit dem interaktiven System zu interagieren.\n",
+          "description-english": "The extent to which an interactive system enables users to interact with it effectively, efficiently and with satisfaction, regardless of their level of vision, hearing, dexterity, cognition, physical mobility, etc.\n",
+          "description-german":  "Das Ausmaß, in dem ein interaktives System den Benutzern ermöglicht, effektiv, effizient und zufriedenstellend zu interagieren, unbeachtet der Ausprägung ihres Sehens, ihres Hörens, ihrer Geschicklichkeit, ihres Denkens, ihrer physischen Beweglichkeit usw.\n",
           "term-english": "Accessibility",
           "term-german": "Barrierefreiheit"
         },
@@ -75,8 +234,8 @@ class Game extends Component {
             "Rollen",
             "Anforderungen"
           ],
-          "description-english": "Person who interacts with an interactive system, or who uses\u00a0the output of the system.\n",
-          "description-german": "Person, die mit einem interaktiven System arbeitet oder Daten die vom System erzeugt werden benutzt.\n",
+          "description-english": "A person who interacts with an interactive system, or who uses the output of the system.\n",
+          "description-german": "Eine Person, die mit einem interaktiven System interagiert oder die Ergebnisse, die vom System erzeugt werden, benutzt.\n",
           "term-english": "User",
           "term-german": "Benutzer"
         },
@@ -85,29 +244,18 @@ class Game extends Component {
             "Evaluierung",
             "Test"
           ],
-          "description-english": "An evaluation where users are asked to report subjective data into a questionnaire based on their experience in using an interactive system.\n",
-          "description-german": "Eine Evaluierung bei der Benutzer subjektive Daten in einem Fragebogen angeben sollen, basierend auf ihren Erfahrungen bei der Benutzung eines interaktiven Systems. \n",
+          "description-english": "A usability evaluation where users are asked to report subjective data into a questionnaire based on their experience of using an interactive system.\n",
+          "description-german": "Eine Usability-Evaluierung, bei der Benutzer, ausgehend von ihren Erfahrungen bei der Benutzung eines interaktiven Systems, subjektive Daten in einem Fragebogen angeben.\n",
           "term-english": "User survey",
           "term-german": "Benutzerbefragung"
         },
         {
           "categories": [
             "Planung",
-            "Gestaltung",
-            "System"
-          ],
-          "description-english": "Written or other information for users about an interactive system, how it works, and how to use it.\n",
-          "description-german": "F\u00fcr Benutzer geschriebene oder andere Anleitungen zu dem interaktiven System, wie es funktioniert, und wie man es bedient.\n",
-          "term-english": "User documentation",
-          "term-german": "Benutzerdokumentation"
-        },
-        {
-          "categories": [
-            "Planung",
             "Evaluierung"
           ],
-          "description-english": "A person's perceptions and responses resulting from the use or anticipated use of an interactive system.\n",
-          "description-german": "Wahrnehmungen und Reaktionen einer Person, die aus der tats\u00e4chlichen oder erwarteten Benutzung eines interaktiven Systems resultieren. \n",
+          "description-english": "A user’s perceptions and responses that result from the use and/or anticipated use of an interactive system.\n",
+          "description-german": "Die Wahrnehmungen und Reaktionen eines Benutzers, die sich aus der Benutzung und/oder der erwarteten Benutzung eines interaktiven Systems ergeben.\n",
           "term-english": "User experience",
           "term-german": "Benutzererlebnis"
         },
@@ -119,7 +267,7 @@ class Game extends Component {
             "Evaluierung"
           ],
           "description-english": "A collection of users with the same or similar personal characteristics and context of use related to the interactive system.",
-          "description-german": "Eine Gruppe von Benutzern mit denselben oder \u00e4hnlichen Personenmerkmalen und Nutzungskontext bezogen auf das interaktive System.",
+          "description-german": "Eine Gruppe von Benutzern mit gleichen oder ähnlichen persönlichen Merkmalen und Nutzungskontexten bezogen auf das interaktive System.",
           "term-english": "User group",
           "term-german": "Benutzergruppe"
         },
@@ -139,21 +287,10 @@ class Game extends Component {
             "Gestaltung",
             "System"
           ],
-          "description-english": "Information to help a user to interact with an interactive system. \n",
-          "description-german": "Informationen um einem Benutzer bei der Interaktion mit einem interaktiven System zu helfen.\n",
+          "description-english": "Information to help a user to interact with an interactive system.\n",
+          "description-german": "Informationen, um einem Benutzer bei der Interaktion mit einem interaktiven System zu helfen.\n",
           "term-english": "User assistance",
-          "term-german": "Benutzerunterst\u00fctzung"
-        },
-        {
-          "categories": [
-            "Planung",
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "Usability evaluation that involves representative users performing specific tasks with the interactive system to enable identification of usability problems, or measurements of efficiency, effectiveness, user satisfaction, or other measures of user experience.\n",
-          "description-german": "Usability-Evaluierung, die repr\u00e4sentative Benutzer involviert, die bestimmte Aufgaben mit dem interaktiven System ausf\u00fchren, um die Identifikation von Usability-Problemen oder die Messung von Effizienz, Effektivit\u00e4t und Zufriedenstellung zu erm\u00f6glichen.\n",
-          "term-english": "Usability evaluation \u2013  User based",
-          "term-german": "Benutzerzentrierte Usability-Evaluierung"
+          "term-german": "Benutzerunterstützung"
         },
         {
           "categories": [
@@ -161,8 +298,8 @@ class Game extends Component {
             "Gestaltung",
             "Implementierung"
           ],
-          "description-english": "All components of an interactive system (software or hardware) that provide information and controls for the user to accomplish specific tasks with the interactive system.",
-          "description-german": "Alle Bestandteile eines interaktiven Systems (Software oder Hardware), die Informationen und Steuerelemente zur Verf\u00fcgung stellen, die f\u00fcr den Benutzer notwendig sind, um bestimmte Aufgaben mit dem interaktiven System zu erledigen.",
+          "description-english": "All components of an interactive system (software or hardware) that provide information and controls for the user, to allow them to accomplish specific tasks with the interactive system.",
+          "description-german": "Alle Bestandteile eines interaktiven Systems (Software oder Hardware), die dem Benutzer Informationen und Steuerelemente zur Verfügung stellen, die es dem Benutzer erlauben, bestimmte Aufgaben mit dem interaktiven System zu erledigen.",
           "term-english": "User interface",
           "term-german": "Benutzungsschnittstelle"
         },
@@ -171,8 +308,8 @@ class Game extends Component {
             "Rollen",
             "System"
           ],
-          "description-english": "A person who watches users who discuss or carry out tasks that are related to the interactive system.\n",
-          "description-german": "Eine Person, die Benutzer beobachtet, die eine Aufgabe diskutieren oder eine Aufgabe mittels eines interaktiven Systems ausf\u00fchren.\n",
+          "description-english": "A person who watches users in an observation, usability test session or focus group.\n",
+          "description-german": "Eine Person, die Benutzer in einer Beobachtung, Usability-Testsitzung oder Fokusgruppe beobachtet. \n",
           "term-english": "Observer",
           "term-german": "Beobachter"
         },
@@ -181,8 +318,8 @@ class Game extends Component {
             "Prinzipien",
             "Anforderungen"
           ],
-          "description-english": "A technique for gathering contextual information relating to user needs in which an observer watches users who carry out tasks that are related to the interactive system. \n",
-          "description-german": "Eine Technik f\u00fcr das Sammeln von Kontextinformationen zu den Erfordernissen des Nutzungskontexts. W\u00e4hrend einer xxx sieht der Beobachter dem Benutzer bei der Ausf\u00fchrung von Aufgaben am interaktiven System zu. \n",
+          "description-english": "A method for gathering contextual information relating to user needs in which an observer watches users who carry out tasks that are related to the interactive system.\n",
+          "description-german": "Eine Methode zum Sammeln von Kontextinformationen zu den Erfordernissen des Nutzungskontextes, bei der ein Beobachter Benutzer beobachtet, die mit dem interaktiven System in Beziehung stehende Aufgaben ausführen. \n",
           "term-english": "Observation",
           "term-german": "Beobachtung"
         },
@@ -190,8 +327,8 @@ class Game extends Component {
           "categories": [
             "Test"
           ],
-          "description-english": "The first activity in an Interview or a Usability test session where the participant is informed about the purpose of the Interview or Usability test and what their role and contribution are.",
-          "description-german": "Die erste Aktivit\u00e4t in einem Interview oder Usability-Test, in dem dem Teilnehmer erkl\u00e4rt wird, warum das Interview oder der Usability-Test durchgef\u00fchrt wird und was seine Rolle und sein Beitrag ist",
+          "description-english": "The first activity in an interview or a usability test session where the usability test participant is informed about the purpose of the interview or usability test and what their role and contribution will be.",
+          "description-german": "Die erste Aktivität in einem Interview oder in einer Usability-Testsitzung, in der ein Usability-Testteilnehmer über den Zweck des Interviews oder des Usability-Tests, über seine eigene Rolle sowie den erwarteten Beitrag informiert wird.",
           "term-english": "Briefing",
           "term-german": "Briefing"
         },
@@ -201,8 +338,8 @@ class Game extends Component {
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A general reusable solution to a commonly occurring problem within a given context in software design that describes a design problem, a solution, and where this solution has been found to work.\n",
-          "description-german": "Eine wiederverwendbare L\u00f6sung f\u00fcr ein Gestaltungsproblem innerhalb eines Kontexts. Ein\u00a0xxx beschreibt ein Gestaltungsproblem, eine L\u00f6sung und wo sich diese L\u00f6sung als funktionierend herausgestellt hat.\n",
+          "description-english": "A solution to a commonly occurring design problem within a given context of use, that describes the design problem, a general solution, and examples of how to apply it.\n",
+          "description-german": "Eine Lösung eines häufig auftretenden Gestaltungsproblems in einem gegebenen Nutzungskontext. Das Design Pattern beschreibt ein Gestaltungsproblem, eine allgemeine Lösung und Beispiele, wie diese Lösung angewandt werden kann.\n",
           "term-english": "Design pattern",
           "term-german": "Design Pattern"
         },
@@ -213,8 +350,8 @@ class Game extends Component {
             "Prinzipien",
             "Implementierung"
           ],
-          "description-english": "Interaction between a user and an interactive system that consists of user actions (input) and responses from the interactive system (output) in order to achieve a goal.",
-          "description-german": "Interaktion zwischen einem Benutzer und einem interaktiven System in Form einer Folge von Handlungen des Benutzers (Eingaben) und Antworten des interaktiven Systems (Ausgaben), um ein Ziel zu erreichen.",
+          "description-english": "An interaction between a user and an interactive system that consists of user actions (input) and responses from the interactive system (output) in order to achieve a goal.",
+          "description-german": "Die Interaktion zwischen einem Benutzer und einem interaktiven System in Form einer Folge von Handlungen des Benutzers (Eingaben) und Antworten des interaktiven Systems (Ausgaben), um ein Ziel zu erreichen.",
           "term-english": "Dialogue",
           "term-german": "Dialog"
         },
@@ -230,39 +367,21 @@ class Game extends Component {
         },
         {
           "categories": [
-            "Rollen"
-          ],
-          "description-english": "Person who interacts with an interactive system.\n",
-          "description-german": "Eine Person, die mit einem interaktiven System interagiert.\n",
-          "term-english": "Direct user",
-          "term-german": "Direkter Benutzer"
-        },
-        {
-          "categories": [
-            "Test"
-          ],
-          "description-english": "A measure given to a usability problem from a usability test to indicate the impact and criticality on the user experience and the consequences.\n",
-          "description-german": "Ein Ma\u00df f\u00fcr ein Usability-Problem aus einem Usability-Test, das die Auswirkung des Usability-Problems auf das Benutzererlebnis bewertet.\n",
-          "term-english": "Severity rating",
-          "term-german": "Dringlichkeitsstufe"
-        },
-        {
-          "categories": [
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "Extent to which correct and complete goals are achieved.\n",
-          "description-german": "Ausma\u00df der Vollst\u00e4ndigkeit und Genauigkeit der Zielerreichung.\n",
+          "description-english": "The accuracy and completeness with which users achieve specified goals.",
+          "description-german": "Die Genauigkeit und Vollständigkeit, mit der Benutzer festgelegte Ziele erreichen.",
           "term-english": "Effectiveness",
-          "term-german": "Effektivit\u00e4t"
+          "term-german": "Effektivität"
         },
         {
           "categories": [
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "Resources expended to achieve specified goals. \n",
-          "description-german": "Eingesetzte Ressourcen, um bestimmte Ziele zu erreichen.\n",
+          "description-english": "The resources used in relation to the results achieved.",
+          "description-german": "Die verwendeten Ressourcen in Bezug auf die erzielten Ergebnisse.",
           "term-english": "Efficiency",
           "term-german": "Effizienz"
         },
@@ -272,7 +391,7 @@ class Game extends Component {
             "Gestaltung"
           ],
           "description-english": "A prerequisite identified as necessary for a user, or a user group, to achieve a goal, implied or stated within a specific context of use.\n",
-          "description-german": "Eine f\u00fcr einen Benutzer oder eine Benutzergruppe als notwendig identifizierte Voraussetzung, um ein Ziel innerhalb eines bestimmten Nutzungskontextes zu erreichen. \n",
+          "description-german": "Eine Voraussetzung, die für einen Benutzer oder eine Benutzergruppe als notwendig erachtet wird, um ein implizites oder im Rahmen eines bestimmten Nutzungskontextes vorgegebenes Ziel zu erreichen.\n",
           "term-english": "User need",
           "term-german": "Erfordernis"
         },
@@ -282,29 +401,28 @@ class Game extends Component {
             "Evaluierung"
           ],
           "description-english": "Correspondence to predictable contextual needs of the user and to commonly accepted conventions.\n",
-          "description-german": "\u00dcbereinstimmung mit den aus dem Nutzungskontext heraus vorhersehbaren Benutzerbelangen sowie allgemein anerkannten Konventionen.\n",
+          "description-german": "Übereinstimmung mit den aus dem Nutzungskontext heraus vorhersehbaren Benutzerbelangen sowie allgemein anerkannten Konventionen.\n",
           "term-english": "Conformity with user expectations",
-          "term-german": "Erwartungskonformit\u00e4t"
-        },
-        {
-          "categories": [
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "A document reporting the results of a usability test, an inspection or a user survey.\n",
-          "description-german": "Ein Dokument, in dem die Ergebnisse eines Usability-Tests, einer Inspektion oder einer Benutzerbefragung dokumentiert werden.\n",
-          "term-english": "Evaluation report",
-          "term-german": "Evaluierungsbericht"
+          "term-german": "Erwartungskonformität"
         },
         {
           "categories": [
             "Anforderungen",
             "Evaluierung"
           ],
-          "description-english": "The property of a dialogue to achieve the intended result with either no, or minimal, corrective action by the user despite evident errors in input. \n",
+          "description-english": "The property of a dialogue to achieve the intended result with either no, or minimal, corrective action by the user despite evident errors in input.\n",
           "description-german": "Die Eigenschaft eines Dialogs, das beabsichtigte Arbeitsergebnis trotz erkennbar fehlerhafter Eingaben entweder mit keinem oder mit minimalem Korrekturaufwand seitens des Benutzers zu erreichen.\n",
           "term-english": "Error tolerance",
           "term-german": "Fehlertoleranz"
+        },
+        {
+          "categories": [
+            "Prinzipien"
+          ],
+          "description-english": "The property of a Dialogue that allows users to modify interaction and presentation of information to suit their individual capabilities and needs.\n",
+          "description-german": "Die Eigenschaft eines Dialogs die Benutzer ermöglicht die Interaktion mit dem System und die Darstellung von Informationen an ihre individuellen Fähigkeiten und Bedürfnisse anpassen zu können.\n",
+          "term-english": "Suitability for individualization",
+          "term-german": "Individualisierbarkeit"
         },
         {
           "categories": [
@@ -320,21 +438,10 @@ class Game extends Component {
         {
           "categories": [
             "Evaluierung",
-            "Test",
-            "Prinzipien"
-          ],
-          "description-english": "A type of usability evaluation designed and used to improve an interactive system, especially when it is still being designed.\n",
-          "description-german": "Eine Art der Usability-Evaluierung die hilft, das Design f\u00fcr ein interaktives System zu verbessern, besonders w\u00e4hrend es noch gestaltet wird.\n",
-          "term-english": "Formative usability evaluation",
-          "term-german": "Formative Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Evaluierung",
             "Test"
           ],
-          "description-english": "A set of questions that is used collect data from users, often in a user survey.\n",
-          "description-german": "Ein Satz von Fragen, der von Benutzern in einer Benutzerbefragung beantwortet wird, um  Daten zu sammeln.\n",
+          "description-english": "A set of questions that is used to collect data from users, often in a user survey.\n",
+          "description-german": "Ein Satz von Fragen, der verwendet wird, um Daten von Benutzern zu sammeln, oft innerhalb einer Benutzerbefragung.\n",
           "term-english": "Questionnaire",
           "term-german": "Fragebogen"
         },
@@ -344,7 +451,7 @@ class Game extends Component {
             "Test"
           ],
           "description-english": "An interview question that requires an answer from a predetermined set of alternatives, for example yes and no.\n",
-          "description-german": "Eine Interviewfrage die eine Antwort aus einem vordefinierten Satz von Alternativen fordert, oft einfach \u201eja\u201c oder \u201enein\u201c.\n",
+          "description-german": "Eine Interviewfrage, die eine Antwort aus einem vordefinierten Satz von Alternativen fordert, oft einfach „ja“ oder „nein“.\n",
           "term-english": "Closed question",
           "term-german": "Geschlossene Frage"
         },
@@ -363,8 +470,8 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "A usability evaluation method in which one or more evaluators, preferably experts, compare an interactive system to a list of heuristics and identify where the interactive system does not follow those heuristics.\n",
-          "description-german": "Eine Methode der Usability-Evaluierung bei der ein oder mehrere Begutachter \u2013 vorzugsweise Experten \u2013 ein interaktives System mit einer Liste von Heuristiken vergleichen und feststellen an welchen Stellen das interaktive System diesen Heuristiken nicht folgt.\n",
+          "description-english": "A usability inspection in which one or more evaluators compare an interactive system to a list of heuristics and identify where the interactive system does not follow those heuristics.\n",
+          "description-german": "Eine Usability-Inspektion, bei der ein oder mehrere Evaluatoren ein interaktives System mit einer Liste von Heuristiken vergleichen und feststellen, an welchen Stellen das interaktive System diesen Heuristiken nicht folgt.\n",
           "term-english": "Heuristic evaluation",
           "term-german": "Heuristische Evaluierung"
         },
@@ -373,8 +480,8 @@ class Game extends Component {
             "Test",
             "System"
           ],
-          "description-english": "A software prototype of the user interface to the interactive system that is being designed. A xxx resembles the finished interactive system and may or may not be interactive.\n",
-          "description-german": "Ein Software Prototyp der Benutzungsschnittstelle des zu designenden interaktiven Systems. Ein xxx \u00e4hnelt dem fertigen interaktiven System und kann interaktiv oder nicht interaktiv sein.\n",
+          "description-english": "A software prototype of the user interface to the interactive system that is being designed. A high-fidelity prototype more closely resembles the finished interactive system.\n",
+          "description-german": "Ein Software-Prototyp der Benutzungsschnittstelle des zu entwickelnden interaktiven Systems. Ein High-Fidelity-Prototyp ähnelt dem fertigen interaktiven System.\n",
           "term-english": "High-fidelity prototype",
           "term-german": "High-fidelity-Prototyp"
         },
@@ -384,7 +491,7 @@ class Game extends Component {
             "Prinzipien"
           ],
           "description-english": "A family of standards covering human-centred design.\n",
-          "description-german": "Eine Reihe von Standards, die die menschzentrierte Gestaltung interaktiver Systeme betrifft.  \n",
+          "description-german": "Eine Reihe von Standards, die die menschzentrierte Gestaltung interaktiver Systeme betrifft.\n",
           "term-english": "ISO 9241",
           "term-german": "ISO 9241"
         },
@@ -392,67 +499,18 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "Person who\u00a0directly\u00a0uses\u00a0the output of the interactive system, but does not interact directly with the system.\nExample of an xxx:\u00a0\n1.\tA bank customer who receives a paper or electronic statement, or visits a branch is an xxx of the output produced by the bank computer system.",
-          "description-german": "Personen, die direkt die Ergebnisse eines interaktiven Systems nutzen, aber nicht direkt mit dem System interagieren. \nBeispiel f\u00fcr xxx:\n1.\tEin Bankkunde, der ein Dokument oder einen elektronischen Bericht erh\u00e4lt, oder eine Filiale besucht, ist ein xxx eines Arbeitsergebnisses, das mit Hilfe eines Systems erzeugt wurde, das die Mitarbeiter der Bank benutzen.",
+          "description-english": "A user who uses the output of the interactive system, but who does not interact directly with the interactive system.",
+          "description-german": "Ein Benutzer, der die Ergebnisse des interaktiven Systems verwendet, aber nicht direkt mit dem interaktiven System interagiert.",
           "term-english": "Indirect user",
           "term-german": "Indirekter Benutzer"
-        },
-        {
-          "categories": [
-            "Gestaltung",
-            "Prinzipien"
-          ],
-          "description-english": "The property of a dialogue that allows users to modify interaction and presentation of information to suit their individual capabilities and needs.\n",
-          "description-german": "Die Eigenschaft eines Dialogs die Benutzer erm\u00f6glicht die Interaktion mit dem System und die Darstellung von Informationen an ihre individuellen F\u00e4higkeiten und Bed\u00fcrfnisse anpassen zu k\u00f6nnen.\n",
-          "term-english": "Suitability for individualization",
-          "term-german": "Individualisierbarkeit"
-        },
-        {
-          "categories": [
-            "Rollen",
-            "Gestaltung"
-          ],
-          "description-english": "A person who creates and organizes the structure of information to enable each user group to efficiently locate required information when using interactive systems. \n",
-          "description-german": "Eine Person die die Struktur von Information in interaktiven Systemen f\u00fcr das effiziente Auffinden durch jede Benutzergruppe kreiert und organisiert.\n",
-          "term-english": "Information architect",
-          "term-german": "Informationsarchitekt"
-        },
-        {
-          "categories": [
-            "Gestaltung",
-            "Anforderungen"
-          ],
-          "description-english": "The naming and structuring of the information that must be accessible to the user, including task objects, system objects (such as printers) and additional information that users need.",
-          "description-german": "Die Benennung und Strukturierung der Informationen, die f\u00fcr den Benutzer erreichbar sein m\u00fcssen, einschlie\u00dflich der Nutzungsobjekte, Systemobjekte (wie z.B. \u201eDrucker\u201c) und weiterer f\u00fcr den Benutzer erforderlichen Informationen. ",
-          "term-english": "Information architecture",
-          "term-german": "Informationsarchitektur"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "Usability evaluation based on the judgment of one or more evaluators who examine or use an interactive system to identify potential usability problems and deviations from established criteria.\n",
-          "description-german": "Usability-Evaluierung die auf der Beurteilung ein oder mehrerer Evaluatoren basiert, die ein interaktives System pr\u00fcfen oder benutzen, um potentielle Usability-Probleme und Abweichungen von anerkannten Kriterien zu identifizieren.\n",
-          "term-english": "Usability evaluation \u2013 Inspection based",
-          "term-german": "Inspektionsbasierte Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who defines and designs the interaction between humans and system based on user requirements and the context of use.\n",
-          "description-german": "Eine Person die die Interaktion zwischen Mensch und System auf Basis der Nutzungs\u00adanforderungen und Nutzungskontext definiert und konzipiert. \n",
-          "term-english": "Interaction designer",
-          "term-german": "Interaktionsdesigner"
         },
         {
           "categories": [
             "System",
             "Anforderungen"
           ],
-          "description-english": "A combination of hardware, software and/or services that receives input from, and communicates output to, users.\n",
-          "description-german": "Kombination von Hardware-, Software- und Servicekomponenten, die Eingaben von einem Benutzer empf\u00e4ngt und Ausgaben zu einem Benutzer \u00fcbermittelt.\n",
+          "description-english": "A combination of hardware, software and services that users interact with in order to achieve specific goals.\n",
+          "description-german": "Eine Kombination aus Hardware, Software und Dienstleistungen, mit der Benutzer interagieren, um bestimmte Ziele zu erreichen.\n",
           "term-english": "Interactive system",
           "term-german": "Interaktives System"
         },
@@ -460,28 +518,18 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "Individual or organization having a right, share, claim or interest in an interactive system or in its possession of characteristics that meet their needs and expectations.\n",
-          "description-german": "Individuum oder Organisation, die ein Anrecht, einen Anteil, einen Anspruch oder ein Interesse auf ein interaktives System oder an dessen Merkmalen hat, die ihren Erfordernissen und Erwartungen entsprechen. \n",
+          "description-english": "An individual or organisation with an active interest in an interactive system.\n",
+          "description-german": "Eine Person oder Organisation mit einem aktiven Interesse an einem interaktiven System.\n",
           "term-english": "Stakeholder",
           "term-german": "Interessenvertreter"
-        },
-        {
-          "categories": [
-            "Anforderungen",
-            "Gestaltung"
-          ],
-          "description-english": "What the interactive system should be capable of from the point of view of the stakeholders.",
-          "description-german": "Was das interaktive System aus Sicht des Interessenvertreters leisten muss.\n",
-          "term-english": "Stakeholder requirement",
-          "term-german": "Interessenvertreteranforderung"
         },
         {
           "categories": [
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A data-gathering technique that studies a few carefully selected individuals in depth to arrive at a fuller understanding of the work practice across all users. Through inquiry and interpretation, it reveals commonalities across an interactive system's user base.\n",
-          "description-german": "Eine Methode der Datensammlung, die sorgf\u00e4ltig ausgew\u00e4hlte Individuen untersucht, um ein tiefes Verst\u00e4ndnis der Arbeitst\u00e4tigkeit der Benutzer zu erreichen. Durch die Befragung und Interpretation werden Gemeinsamkeiten und Unterschiede innerhalb der Benutzer  eines interaktiven Systems aufgedeckt.  \n",
+          "description-english": "A data-gathering method that questions a few carefully selected individuals in depth to arrive at a fuller understanding of the context of use for an existing or planned interactive system. Through inquiry and interpretation, it reveals commonalities and differences across the user base.\n",
+          "description-german": "Eine Methode zur Datensammlung, die einige sorgfältig ausgewählte Personen eingehend befragt, um zu einem besseren Verständnis des Nutzungskontextes für ein vorhandenes oder geplantes interaktives System zu gelangen. Durch die Befragung und Interpretation werden Gemeinsamkeiten und Unterschiede innerhalb der Benutzer eines interaktiven Systems aufgedeckt. \n",
           "term-english": "Interview",
           "term-german": "Interview"
         },
@@ -489,28 +537,51 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "A written list of suitable questions and cues used by an interviewer during an interview to make sure that all relevant topics are addressed.",
-          "description-german": "Eine schriftliche Liste passender Fragen und Hinweise, die w\u00e4hrend eines Interviews verwendet wird, um sicherzustellen, dass alle relevanten Themen ber\u00fccksichtigt werden.",
+          "description-english": "A written list of suitable questions and cues used by the interviewer during an interview to make sure that all relevant topics are covered.",
+          "description-german": "Eine schriftliche Liste geeigneter Fragen und Hinweise, die der Interviewer während eines Interviews verwendet, um sicherzustellen, dass alle relevanten Themen abgedeckt werden.",
           "term-english": "Interview checklist",
           "term-german": "Interviewcheckliste"
         },
         {
           "categories": [
             "Anforderungen",
-            "Planung"
+            "Gestaltung",
+            "Implementierung"
           ],
-          "description-english": "Use of the interactive system is easy to understand, regardless of the user's experience, knowledge, language skills, or current concentration level. \n",
-          "description-german": "Die Benutzung des interaktiven Systems ist unmittelbar zu verstehen \u2013 unabh\u00e4ngig von der Erfahrung, vom Wissen, von den Sprachkenntnissen oder vom momentanen Konzentrationsgrad des Benutzers.\n",
-          "term-english": "Intuitive",
-          "term-german": "Intuitiv"
+          "description-english": "A set of principles, methods and approaches for improving productivity by reducing documentation and unnecessary formalism, and focusing on iterative development in short cycles, collaboration and communication, incremental improvement and adaptation to changes.",
+          "description-german": "Eine Reihe von Prinzipien, Methoden und Ansätzen zur Produktivitätssteigerung durch Reduzierung von Dokumentation und unnötigem Formalismus mit Fokus auf iterativer Entwicklung in kurzen Zyklen, Zusammenarbeit und Kommunikation, inkrementeller Verbesserung und Anpassung an Veränderungen.",
+          "term-english": "Agile development",
+          "term-german": "Agile Entwicklung"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Gestaltung",
+            "Implementierung"
+          ],
+          "description-english": "An approach to human-centred design that integrates principles and methods for usability and user experience into agile development, thereby achieving economic advantages.",
+          "description-german": "Ein Ansatz der menschzentrierten Gestaltung, der Prinzipien und Methoden für Usability und User Experience in die agile Entwicklung integriert und damit wirtschaftliche Vorteile erzielt.",
+          "term-english": "Lean UX",
+          "term-german": "Lean UX"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Gestaltung",
+            "Implementierung"
+          ],
+          "description-english": "The level of understanding and implementation of a systematic human-centred design process within an organisation.",
+          "description-german": "Das Verständnis und die Umsetzung eines systematischen Prozesses menschzentrierter Gestaltung in einer Organisation.",
+          "term-english": "Usability maturity",
+          "term-german": "Usability-Reife"
         },
         {
           "categories": [
             "Planung",
             "Evaluierung"
           ],
-          "description-english": "Repetitive.\nAn xxx process repeats steps in the human-centred design process until a usability evaluation of the user interface shows that the user requirements have been adequately met.",
-          "description-german": "Wiederholend.\nEin xxx Vorgehen wiederholt Schritte des Prozesses der menschzentrierten Gestaltung solange, bis eine Usability-Evaluierung der Benutzungsschnittstelle zeigt, dass die Nutzungsanforderungen ausreichend erf\u00fcllt sind.",
+          "description-english": "Repetitive.An iterative process repeats steps in the human-centred design process until a usability evaluation of the user interface shows that the user requirements have been adequately met.",
+          "description-german": "Wiederholend.Ein iteratives Vorgehen wiederholt Schritte des Prozesses der menschzentrierten Gestaltung solange, bis eine Usability-Evaluierung der Benutzungsschnittstelle zeigt, dass die Nutzungsanforderungen ausreichend erfüllt sind.",
           "term-english": "Iterative",
           "term-german": "Iterativ"
         },
@@ -519,8 +590,8 @@ class Game extends Component {
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "The same information is presented in the same way throughout the interactive system, in accordance with the user\u2019s expectation.\n",
-          "description-german": "Die gleiche Information wird in gleicher Weise innerhalb des gesamten interaktiven Systems entsprechend der Benutzererwartung dargestellt.\n",
+          "description-english": "The same information is presented in the same way throughout the interactive system, in accordance with the user’s expectation.\n",
+          "description-german": "Dieselbe Information wird im interaktiven System durchgängig in gleicher Weise entsprechend der Erwartung des Benutzers präsentiert.\n",
           "term-english": "Consistency",
           "term-german": "Konsistenz"
         },
@@ -528,8 +599,8 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "An interview that takes place at the location where the user's interaction with the interactive system usually takes place, for example the user's workplace.\n",
-          "description-german": "Ein Interview das dort stattfindet wo die Interaktion des Benutzers mit dem interaktiven System \u00fcblicherweise stattfindet, z.B. am Arbeitsplatz des Benutzers.\n",
+          "description-english": "An interview that takes place at the location where the user’s interaction with the interactive system usually takes place and focuses on the context of use of the user.\n",
+          "description-german": "Ein Interview, das dort stattfindet, wo die Interaktion des Benutzers mit dem interaktiven System üblicherweise erfolgt und das auf den Nutzungskontext des Benutzers abzielt.\n",
           "term-english": "Contextual interview",
           "term-german": "Kontextuelles Interview"
         },
@@ -539,17 +610,17 @@ class Game extends Component {
             "Gestaltung"
           ],
           "description-english": "A dialogue is suitable for learning when it supports and guides the user in learning to use the interactive system.\n",
-          "description-german": "Die Eigenschaft eines Dialogs die Benutzer beim Erlernen der Nutzung des interaktiven Systems zu unterst\u00fctzen und anzuleiten.\n",
+          "description-german": "Die Eigenschaft eines Dialogs die Benutzer beim Erlernen der Nutzung des interaktiven Systems zu unterstützen und anzuleiten.\n",
           "term-english": "Suitability for learning",
-          "term-german": "Lernf\u00f6rderlichkeit"
+          "term-german": "Lernförderlichkeit"
         },
         {
           "categories": [
             "Test",
             "System"
           ],
-          "description-english": "A low-cost, simple illustration of a design or concept used to gather user feedback at the very early stages of design\n",
-          "description-german": "Eine einfache und preiswerte Veranschaulichung eines Designs oder eines Begriffs. Wird benutzt, um Benutzer-Feedback in fr\u00fchen Phasen der Entwicklung einzuholen\n",
+          "description-english": "A low-cost, simple illustration of a design or concept used to gather feedback from users and other stakeholders during the early stages of design. \n",
+          "description-german": "Eine preiswerte, einfache Veranschaulichung eines Designs oder eines Konzepts, das benutzt wird, um Feedback von Benutzern und anderen Interessenvertretern während früher Phasen der Entwicklung einzuholen.\n",
           "term-english": "Low-fidelity prototype",
           "term-german": "Low-fidelity-Prototyp"
         },
@@ -559,7 +630,7 @@ class Game extends Component {
             "Gestaltung"
           ],
           "description-english": "A requirement for an interactive system based on marketing policy aimed at maximizing business opportunities, purchase and use.\n",
-          "description-german": "Eine Anforderung an ein interaktives System, die aus der Absatzpolitik des Anbieters abgeleitet ist und darauf abzielt, Gesch\u00e4ftschancen, Verk\u00e4ufe und die Nutzung des interaktiven Systems zu maximieren.\n",
+          "description-german": "Eine Anforderung für ein interaktives System basierend auf einer Marketingpolitik, die darauf abzielt, Geschäftschancen, Absatz und Nutzen zu maximieren\n",
           "term-english": "Market requirement",
           "term-german": "Marktanforderung"
         },
@@ -568,18 +639,18 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "A principle for a successful interview: The interviewer treats the user as the Master while the interviewer is the Apprentice. The interviewer asks because they sincerely want to learn \u2013 not to demonstrate their knowledge",
-          "description-german": "Ein Verhaltensprinzip f\u00fcr ein erfolgreiches Interview:  Der Interviewer behandelt den Benutzer als den Meister w\u00e4hrend der Interviewer selbst der Sch\u00fcler ist. Der Interviewer demonstriert nicht sein Wissen, sondern stellt seine Fragen mit dem Ziel etwas zu lernen.",
+          "description-english": "A principle for a successful contextual interview: The interviewer treats the user as the master while the interviewer is the apprentice. The goal of the master-apprentice model is to understand users’ goals and tasks in detail by learning them as an apprentice would.",
+          "description-german": "Ein Prinzip für ein erfolgreiches kontextuelles Interview: Der Interviewer behandelt den Benutzer als den Meister, während der Interviewer selbst der Schüler ist. Ziel des Meister- Schüler-Modells ist es, die Ziele und Aufgaben des Benutzers im Detail zu verstehen, indem man als Schüler vom Benutzer als Meister lernt.",
           "term-english": "Master-apprentice model",
-          "term-german": "Meister-Sch\u00fcler-Modell"
+          "term-german": "Meister-Schüler-Modell"
         },
         {
           "categories": [
             "Planung",
             "Gestaltung"
           ],
-          "description-english": "An approach to design that aims to make interactive systems more usable by focusing on the use of the interactive system and applying human factors, ergonomics and usability knowledge and techniques.\n",
-          "description-german": "Herangehensweise bei der Gestaltung und Entwicklung von interaktiven Systemen, die darauf abzielt, diese gebrauchtauglicher zu machen indem sie sich auf die Verwendung des interaktiven Systems konzentriert und Kenntnisse und Techniken aus den Bereichen der Arbeitswissenschaft, Ergonomie und der Gebrauchstauglichkeit anwendet.\n",
+          "description-english": "An approach to design that aims to make interactive systems more usable by focusing on the use of the interactive system and applying human factors, ergonomics and usability knowledge and methods.",
+          "description-german": "nteraktiven Systemen, die darauf abzielt, diese gebrauchtauglicher zu machen indem sie sich auf die Verwendung des interaktiven System konzentriert und Kenntnisse und Techniken aus den Bereichen der Arbeitswissenschaft, Ergonomie und der Gebrauchstauglichkeit anwendet.",
           "term-english": "Human-centred design",
           "term-german": "Menschzentrierte Gestaltung"
         },
@@ -587,7 +658,7 @@ class Game extends Component {
           "categories": [
             "Planung"
           ],
-          "description-english": "The perception people have of themselves, others, the environment, and the things with which they interact. \n",
+          "description-english": "The perception people have of themselves, others, the environment, and the things with which they interact.\n",
           "description-german": "Die Vorstellung, die Menschen von sich, anderen, der Umgebung und den Dingen haben, mit denen sie interagieren. \n",
           "term-english": "Mental model",
           "term-german": "Mentales Modell"
@@ -625,8 +696,8 @@ class Game extends Component {
             "Evaluierung",
             "Test"
           ],
-          "description-english": "A question in an interview that has no built-in assumptions, and no frame that excludes anything or directs the reply in a certain direction. \n",
-          "description-german": "Eine Frage in einem Interview, die keine impliziten Annahmen beinhaltet und auch keinen Ansatz bietet, einen Aspekt auszuschliessen oder die Antwort in eine bestimmte Richtung zu lenken. \n",
+          "description-english": "A question in an interview that has no built-in assumptions, and no frame that excludes anything or directs the reply in a certain direction.\n",
+          "description-german": "Eine Frage in einem Interview, die keine impliziten Annahmen beinhaltet und auch keinen Ansatz bietet, einen Aspekt auszuschliessen oder die Antwort in eine bestimmte Richtung zu lenken.\n",
           "term-english": "Neutral question",
           "term-german": "Neutrale Frage"
         },
@@ -635,8 +706,8 @@ class Game extends Component {
             "Anforderungen",
             "Gestaltung"
           ],
-          "description-english": "Requirement for use that provides the basis for design and evaluation of an interactive system to meet identified user needs.\n",
-          "description-german": "Anforderung an die Nutzung, die die Basis f\u00fcr die Gestaltung und Evaluierung eines interaktiven Systems in Hinblick auf identifizierte Erfordernisse bildet. \n",
+          "description-english": "A requirement for use that provides the basis for design and evaluation of an interactive system to meet identified user needs.\n",
+          "description-german": "Eine Anforderung an die Nutzung, die die Grundlage für die Gestaltung und die Usability-Evaluierung eines interaktiven Systems bildet, um identifizierte Erfordernisse zu erfüllen.\n",
           "term-english": "User requirement",
           "term-german": "Nutzungsanforderung"
         },
@@ -645,20 +716,20 @@ class Game extends Component {
             "System",
             "Planung"
           ],
-          "description-english": "Users, tasks, resources, and the physical and social environments in which an interactive system is used \n",
-          "description-german": "Benutzer, Aufgaben, Ressourcen sowie die physische und soziale Umgebung in der das interaktive System genutzt wird.\n",
+          "description-english": "A combination of users, goals, tasks, resources, and environments.\n",
+          "description-german": "Eine Kombination aus Benutzern, Zielen, Aufgaben, Ressourcen und Umgebungen\n",
           "term-english": "Context of use",
           "term-german": "Nutzungskontext"
         },
         {
           "categories": [
-            "System",
+            "Anforderungen",
             "Planung"
           ],
-          "description-english": "The key units of information, or data, with which users interact in order to carry out their tasks. \n",
-          "description-german": "Die wichtigsten Informationseinheiten oder Daten mit denen Benutzer interagieren, um ihre Aufgaben durchzuf\u00fchren.\n",
-          "term-english": "Task object",
-          "term-german": "Nutzungsobjekt"
+          "description-english": "A description of the users, goals, tasks, resources, and environments derived from observations, contextual interview and focus groups.\n",
+          "description-german": "Eine Beschreibung der Benutzer, Ziele, Aufgaben, Ressourcen und Umgebungen, die aus Beobachtungen, kontextuellen Interviews und Fokusgruppen hervorgeht.\n",
+          "term-english": "Context of use description",
+          "term-german": "Nutzungs-kontext-beschreibung"
         },
         {
           "categories": [
@@ -666,19 +737,9 @@ class Game extends Component {
             "Test"
           ],
           "description-english": "A question in an interview that does not give any indication of the expected format or content of the answer.\n",
-          "description-german": "Eine Frage in einem Interview, die keine Einschr\u00e4nkung der Antwortm\u00f6glichkeiten nach sich zieht\n",
+          "description-german": "Eine Frage in einem Interview, die keinen Hinweis auf das erwartete Format oder den erwarteten Inhalt der Antwort gibt.\n",
           "term-english": "Open question",
           "term-german": "Offene Frage"
-        },
-        {
-          "categories": [
-            "System",
-            "Gestaltung"
-          ],
-          "description-english": "Assistance delivered through computer software that can be topic-oriented, procedural or reference information. \n",
-          "description-german": "Unterst\u00fctzung die durch ein Computerprogramm bereitgestellt wird. xxx kann themenorientiert, verfahrensorientiert oder ein Hinweis sein.\n",
-          "term-english": "Online help",
-          "term-german": "Onlinehilfe"
         },
         {
           "categories": [
@@ -687,8 +748,8 @@ class Game extends Component {
             "Planung"
           ],
           "description-english": "An organizational rule that users have to follow when conducting their tasks.\n",
-          "description-german": "Eine organisatorische Regel die Benutzer befolgen m\u00fcssen w\u00e4hrend sie ihre Aufgaben l\u00f6sen.\n",
-          "term-english": "Organizational requirement",
+          "description-german": "Eine organisatorische Regel die Benutzer befolgen müssen während sie ihre Aufgaben lösen.\n",
+          "term-english": "Organisational requirement",
           "term-german": "Organisatorische Anforderung"
         },
         {
@@ -696,8 +757,8 @@ class Game extends Component {
             "Rollen",
             "Planung"
           ],
-          "description-english": "A description of a user and what he or she intends to do when using an interactive system. \n",
-          "description-german": "Eine Beschreibung eines Benutzers und was dieser bei der Benutzung eines interaktiven Systems beabsichtigt. \n",
+          "description-english": "A description of a fictitious but realistic user and what they intend to do when using an interactive system \n",
+          "description-german": "Eine Beschreibung eines konstruierten, aber realistischen Benutzers und was dieser bei der Benutzung eines interaktiven Systems beabsichtigt. \n",
           "term-english": "Persona",
           "term-german": "Persona"
         },
@@ -705,8 +766,8 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "An activity in a usability test session where the usability test participant answers questions about his/her experience and general impression of the usability of the interactive system. \n",
-          "description-german": "Eine Aktivit\u00e4t in einem Usability-Test, bei der ein Usability-Testteilnehmer Fragen bez\u00fcglich seines allgemeinen Eindrucks hinsichtlich der Usability des interaktiven Systems beantwortet. \n",
+          "description-english": "An activity in a Usability test session where the usability test participant answers questions about thier user experience and general impression of the Interactive system.  \n",
+          "description-german": "Eine Aktivität in einer Usability-Testsitzung, bei der der Usability-Testteilnehmer Fragen bezüglich seines allgemeinen Eindrucks hinsichtlich der User Experience des interaktiven Systems beantwortet. \n",
           "term-english": "Post-session interview",
           "term-german": "Post-Session Interview"
         },
@@ -714,8 +775,8 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "An activity in a usability test session where the usability test participant answers questions about his/her background and previous experience with the interactive system or related interactive systems. \n",
-          "description-german": "Eine T\u00e4tigkeit bei einem Usability-Test, bei der Usability-Testteilnehmer Fragen bez\u00fcglich ihres Hintergrundes und vorheriger Erfahrung mit dem interaktiven System oder \u00e4hnlichen interaktiven Systemen beantworten. \n",
+          "description-english": "An activity in a usability test session where the usability test participant answers questions about their background and previous experience with the interactive system and related interactive systems.\n",
+          "description-german": "Eine Aktivität in einer Usability-Testsitzung, bei der der Usability-Testteilnehmer Fragen bezüglich seines Hintergrundes und seiner Vorerfahrung mit dem interaktiven System oder ähnlichen interaktiven Systemen beantwortet.\n",
           "term-english": "Pre-session interview",
           "term-german": "Pre-Session Interview"
         },
@@ -723,18 +784,18 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "A person who interacts with an interactive system to achieve goals supported by the system.",
-          "description-german": "Eine Person, die mit einem interaktiven System interagiert, um Ziele zu erreichen, die durch das System unterst\u00fctzt werden.",
+          "description-english": "A user who uses the interactive system for its intended purpose.",
+          "description-german": "Ein Benutzer, der das interaktive System für seinen beabsichtigten Zweck verwendet.",
           "term-english": "Primary user",
-          "term-german": "Prim\u00e4rer Benutzer"
+          "term-german": "Primärer Benutzerr"
         },
         {
           "categories": [
             "Rollen",
             "Test"
           ],
-          "description-english": "A usability specialist who makes notes of usability findings during a usability test session, focus group or interview. \n",
-          "description-german": "Ein Usabilityspezialist, der Notizen \u00fcber Usability-Befunde w\u00e4hrend einer Usability-Testsitzung, Fokusgruppe oder Interview notiert. \n",
+          "description-english": "A user experience professional who makes notes of usability findings during a usability test session, focus group or interview.\n",
+          "description-german": "Ein User Experience Professional, der während einer Usability-Testsitzung, einer Fokusgruppe oder einem Interview Notizen über Usability-Befunde macht.\n",
           "term-english": "Note-taker",
           "term-german": "Protokollant"
         },
@@ -743,8 +804,8 @@ class Game extends Component {
             "Test",
             "System"
           ],
-          "description-english": "A representation of all or part of an interactive system that, although limited in some way, can be used for analysis, design and evaluation.\n",
-          "description-german": "Eine Repr\u00e4sentation von Teilen oder des gesamten interaktiven Systems, die in einem bestimmten Ma\u00df f\u00fcr Analyse, Design und Evaluierung benutzt werden kann.\n",
+          "description-english": "A representation of all or part of an interactive system that, although limited in some way, can be used for analysis, design and usability evaluation.\n",
+          "description-german": "Eine Repräsentation von Teilen oder des gesamten interaktiven Systems, die in einem bestimmten Maße für Analyse, Design und Usability-Evaluierung benutzt werden kann.\n",
           "term-english": "Prototype",
           "term-german": "Prototyp"
         },
@@ -753,29 +814,18 @@ class Game extends Component {
             "Anforderungen",
             "Gestaltung"
           ],
-          "description-english": "A statement of what users must be able to locate, recognize, understand, select or input as part of conducting a task with the interactive system. \n",
-          "description-german": "Eine Beschreibung, was Benutzer w\u00e4hrend der Durchf\u00fchrung einer Aufgabe mit dem interaktiven System finden, erkennen, verstehen, ausw\u00e4hlen oder eingeben m\u00fcssen.\n",
+          "description-english": "A statement of what users must be able to locate, recognise, understand, select or input as part of conducting a task with the interactive system to meet identified user needs in a specified context of use. \n",
+          "description-german": "Eine Aussage darüber, was Benutzer im Rahmen der Durchführung einer Aufgabe mit dem interaktiven System feststellen, erkennen, verstehen, auswählen oder eingeben müssen, um den identifizierten Erfordernissen des Nutzungskontextes zu genügen.\n",
           "term-english": "Qualitative user requirement",
           "term-german": "Qualitative Nutzungsanforderung"
-        },
-        {
-          "categories": [
-            "Planung",
-            "Anforderungen",
-            "Evaluierung"
-          ],
-          "description-english": "The degree to which the interactive system fulfils requirements.\n",
-          "description-german": "Grad der Erf\u00fcllung von Anforderungen durch ein interaktives System.\n",
-          "term-english": "Quality",
-          "term-german": "Qualit\u00e4t"
         },
         {
           "categories": [
             "Anforderungen",
             "Gestaltung"
           ],
-          "description-english": "Required level of usability to meet identified user needs expressed in terms of measures of effectiveness, efficiency and satisfaction in a specified context of use.\n",
-          "description-german": "Ben\u00f6tigtes Ma\u00df an Usability um identifizierten Erfordernissen zu gen\u00fcgen im Sinne der Effektivit\u00e4t, Effizienz und Zufriedenstellung in einem festgelegten Nutzungskontext.\n",
+          "description-english": "A required level of usability to meet identified user needs expressed in terms of measures of effectiveness, efficiency, satisfaction, accessibility, user experience and avoidance of harm from use in a specified context of use. \n",
+          "description-german": "Ein erforderliches Maß an Usability, um die identifizierten Erfordernisse in einem bestimmten Nutzungskontext zu erfüllen, ausgedrückt in Maßen der Effektivität, der Effizienz, der Zufriedenstellung, der Barrierefreiheit, der User Experience und der Vermeidung von Schäden durch die Benutzung.\n",
           "term-english": "Quantitative user requirement",
           "term-german": "Quantitative Nutzungsanforderung"
         },
@@ -784,28 +834,18 @@ class Game extends Component {
             "Planung",
             "Test"
           ],
-          "description-english": "A process for selecting candidates that have the required qualifications to participate in a human-centred activity such as a focus group, contextual interview, or usability test.\n",
-          "description-german": "Akquise von Benutzern, die die erforderlichen Qualifikationen haben, an einer menschzentrierten Aktivit\u00e4t wie z.B. einem Usability-Test, einem kontextuellen Interview oder einer Fokusgruppe teilzunehmen.\n",
+          "description-english": "A process for selecting candidates that have the appropriate characteristics to participate in a human-centred activity such as a focus group, contextual interview, or usability test.\n",
+          "description-german": "Ein Verfahren zur Auswahl von Kandidaten, die die erforderlichen Merkmale haben, an einer menschzentrierten Aktivität, wie z.B. einer Fokusgruppe, einem kontextuellen Interview oder einem Usability-Test, teilzunehmen. \n",
           "term-english": "Recruiting",
           "term-german": "Rekrutierung"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "A series of questions for prospective participants to identify whether they represent the intended users and therefore qualify to participate in a human-centred activity, for example a usability test or a focus group.\n",
-          "description-german": "Eine Reihe von Fragen f\u00fcr potenzielle Teilnehmer hinsichtlich ihrer Qualifikationen zur Teilnahme an einer menschzentrierten Aktivit\u00e4t wie z.B. einem Usability-Test oder einer Fokusgruppe.\n",
-          "term-english": "Recruitment screener",
-          "term-german": "Rekrutierungsfragebogen"
         },
         {
           "categories": [
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A usability test where the usability test participant and the moderator are in different physical locations. \n",
-          "description-german": "Ein Usability-Test bei dem sich der Usability-Testteilnehmer und der Moderator an unterschiedlichen Orten befinden \n(\u201eRemote\u201c bedeutet hier \u201eentfernt liegend\u201c). \n",
+          "description-english": "A usability test where the usability test participant and the Moderator are in different physical locations.\n",
+          "description-german": "Ein Usability-Test bei dem sich der Usability-Testteilnehmer und der Moderator an unterschiedlichen Orten befinden.\n",
           "term-english": "Remote usability test",
           "term-german": "Remote Usability-Test"
         },
@@ -813,47 +853,37 @@ class Game extends Component {
           "categories": [
             "System"
           ],
-          "description-english": "All means required to use an interactive system.\n",
-          "description-german": "Alle Mittel die zur Nutzung eines interaktiven Systems notwendig sind. \n",
-          "term-english": "Resources",
+          "description-english": "All means required to use an Interactive system.\n",
+          "description-german": "Alle Mittel die zur Nutzung eines interaktiven Systems notwendig sind.\n",
+          "term-english": "Resource",
           "term-german": "Ressourcen"
-        },
-        {
-          "categories": [
-            "Anforderungen",
-            "Rollen"
-          ],
-          "description-english": "A duty or function that a person carries out within an organization.\n",
-          "description-german": "Eine Funktion die eine Person innerhalb der Struktur einer Organisation inne hat.\n",
-          "term-english": "Role",
-          "term-german": "Rolle"
         },
         {
           "categories": [
             "Rollen",
             "Planung"
           ],
-          "description-english": "A person who interacts with an interactive system to support\u00a0the use of the system or\u00a0maintain the system.\n",
-          "description-german": "Eine Person, die mit einem interaktiven System interagiert, um die Nutzung des Systems zu unterst\u00fctzen oder das System zu warten.\n",
+          "description-english": "A user who carries out support tasks with the interactive system, for example to maintain it or to train primary users.\n",
+          "description-german": "Ein Benutzer, der unterstützende Aufgaben mit dem interaktiven System ausführt, beispielsweise um es zu pflegen oder um primäre Benutzer zu schulen.\n",
           "term-english": "Secondary user",
-          "term-german": "Sekund\u00e4rer Benutzer"
+          "term-german": "Sekundärer Benutzer"
         },
         {
           "categories": [
             "Gestaltung",
             "Prinzipien"
           ],
-          "description-english": "The property of a dialogue to, at any time, make it obvious to the users which dialogue they are in, where they are within the dialogue, which actions can be taken, and how they can be performed.\n",
-          "description-german": "Die Eigenschaft eines Dialogs zu jeder Zeit dem Benutzer offensichtlich zu machen, in welchem Dialog, an welcher Stelle im Dialog er sich befindet, welche Handlungen unternommen werden k\u00f6nnen und wie diese ausgef\u00fchrt werden k\u00f6nnen.\n",
+          "description-english": "The property of a Dialogue to, at any time, make it obvious to the users which dialogue they are in, where they are within the dialogue, which actions can be taken, and how they can be performed.\n",
+          "description-german": "Die Eigenschaft eines Dialogs zu jeder Zeit dem Benutzer offensichtlich zu machen, in welchem Dialog, an welcher Stelle im Dialog er sich befindet, welche Handlungen unternommen werden können und wie diese ausgeführt werden können.\n",
           "term-english": "Self-descriptiveness",
-          "term-german": "Selbstbeschreibungsf\u00e4higkeit"
+          "term-german": "Selbstbeschreibungsfähigkeit"
         },
         {
           "categories": [
             "Gestaltung",
             "Prinzipien"
           ],
-          "description-english": "The ability of a user to initiate and control the direction and pace of the interaction until the point at which the goal has been met.\n",
+          "description-english": "The ability of a User to initiate and control the direction and pace of the interaction until the point at which the Goal has been met.\n",
           "description-german": "Der Benutzer ist in der Lage einen Dialogablauf zu starten sowie seine Richtung und Geschwindigkeit zu beeinflussen, bis das Ziel erreicht ist.\n",
           "term-english": "Controllability",
           "term-german": "Steuerbarkeit"
@@ -862,7 +892,7 @@ class Game extends Component {
           "categories": [
             "Planung"
           ],
-          "description-english": "A sequence of visual frames illustrating the interplay between a user and an envisioned interactive system. \n",
+          "description-english": "A sequence of visual frames illustrating the interplay between a User and an envisioned interactive system. \n",
           "description-german": "Eine Folge visueller Bildschirminhalte, die das Zusammenspiel zwischen einem Benutzer und einem vorgestellten interaktiven System darstellt. \n",
           "term-english": "Storyboard",
           "term-german": "Storyboard"
@@ -872,58 +902,30 @@ class Game extends Component {
             "Gestaltung",
             "Prinzipien"
           ],
-          "description-english": "A collection of user interface guidelines used to ensure consistency in the appearance and behaviour of the user interface of the interactive systems produced by an organization \n",
-          "description-german": "Eine Sammlung von Gestaltungsregeln die verwendet wird, um die grunds\u00e4tzliche Erscheinung der Benutzungsschnittstelle auf jeglicher Software einer Organisation festzulegen.\n",
-          "term-english": "Styleguide",
-          "term-german": "Styleguide"
+          "description-english": "A collection of user interface guidelines used to ensure consistency in the appearance and behaviour of user interfaces across interactive systems produced by the same organisation\n",
+          "description-german": "Eine Sammlung von Gestaltungsregeln, die verwendet wird, um Konsistenz in der Erscheinung und im Verhalten von Benutzungsschnittstellen von interaktiven Systemen zu gewährleisten, die von derselben Organisation erstellt werden.\n",
+          "term-english": "Style guide",
+          "term-german": "Style Guide"
         },
         {
           "categories": [
             "Evaluierung",
             "Test"
           ],
-          "description-english": "A question in an interview that signals a preference for certain possibilities, or attempts to direct the reply in a certain direction. \n",
-          "description-german": "Eine Frage in einem Interview, die eine Pr\u00e4ferenz f\u00fcr bestimmte Antwortm\u00f6glichkeiten vorgibt oder versucht, die Antwort in eine bestimmte Richtung zu lenken. \n",
+          "description-english": "A question in an Interview that signals a preference for certain possibilities, or attempts to direct the reply in a certain direction. \n",
+          "description-german": "Eine Frage in einem Interview, die eine Präferenz für bestimmte Antwortmöglichkeiten vorgibt oder versucht, die Antwort in eine bestimmte Richtung zu lenken.\n",
           "term-english": "Leading question",
           "term-german": "Suggestionsfrage"
-        },
-        {
-          "categories": [
-            "Evaluierung"
-          ],
-          "description-english": "A type of usability evaluation designed and used to gather conclusions about the merit or worth of an interactive system, especially when a substantial part of it has completed design.\n",
-          "description-german": "Eine Usabilityevaluierung, die darauf ausgerichtet ist, Schlussfolgerungen zur Qualit\u00e4t eines interaktiven Systems aus Sicht der Usability zu ziehen, insbesondere wenn ein wesentlicher Teil der Entwicklung fertig ist.  \n",
-          "term-english": "Summative usability evaluation",
-          "term-german": "Summative Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Prinzipien",
-            "Implementierung"
-          ],
-          "description-english": "Explicit information about an event or a condition from an interactive system to a user.\n",
-          "description-german": "Explizite Information \u00fcber ein Ereignis oder einen Zustand vom interaktiven System an den Benutzer. \n",
-          "term-english": "System-initiated guidance",
-          "term-german": "Systeminitiierte Benutzerf\u00fchrung"
         },
         {
           "categories": [
             "Planung",
             "System"
           ],
-          "description-english": "The physical, social and technical conditions in which a user interacts with an interactive system.\n",
-          "description-german": "Die Gesamtheit der gegebenen Umst\u00e4nde oder Bedingungen, in denen ein Benutzer arbeitet. Diese umfassen die physische, soziale und technische xxx.\n",
+          "description-english": "The physical, social and technical conditions in which a User interacts with an Interactive system.\n",
+          "description-german": "Die physischen, sozialen und technischen Bedingungen, unter denen ein Benutzer mit einem interaktiven System interagiert.\n",
           "term-english": "Environment",
           "term-german": "Umgebung"
-        },
-        {
-          "categories": [
-            "Test"
-          ],
-          "description-english": "A usability test where usability test participants solve usability test tasks without being observed. \n",
-          "description-german": "Ein Usability-Test bei dem Usability-Testteilnehmer Usability-Testaufgaben l\u00f6sen ohne dabei beobachtet zu werden. \n",
-          "term-english": "Unattended usability test",
-          "term-german": "Unbeaufsichtigter Usability-Test"
         },
         {
           "categories": [
@@ -931,28 +933,10 @@ class Game extends Component {
             "Anforderungen",
             "Prinzipien"
           ],
-          "description-english": "Extent to which an interactive system can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use.\n",
-          "description-german": "Ausma\u00df, in dem ein interaktives System durch bestimmte Benutzer in einem bestimmten Nutzungskontext genutzt werden kann, um festgelegte Ziele effektiv, effizient und zufriedenstellend zu erreichen.\n",
+          "description-english": "Extent to which an Interactive system can be used by specified users to achieve specified goals with Effectiveness, Efficiency and Satisfaction in a specified Context of use.\n",
+          "description-german": "Das Ausmaß, in dem ein interaktives System von bestimmten Benutzern benutzt werden kann, um in einem bestimmten Nutzungskontext bestimmte Ziele effektiv, effizient und zufriedenstellend zu erreichen.\n",
           "term-english": "Usability",
           "term-german": "Usability"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who manages a human-centred design process.\n",
-          "description-german": "Eine Person die in einer Querschnittsfunktion verantwortlich einen menschzentrierten Gestaltungsprozess betreut. \n",
-          "term-english": "Usability engineer",
-          "term-german": "Usability Engineer"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A professional who has one or more of the following process roles: \n1.\tUsability engineer, \n2.\tUser requirements engineer, \n3.\tUsability tester,\n4.\tInformation architect,\n5.\tInteraction designer,\n6.\tUser interface designer.",
-          "description-german": "Eine Person die eine oder mehrere der folgenden Rollen hat: \n1.\tUsability Engineer, \n2.\tUser Requirements Engineer, \n3.\tUsability-Tester,\n4.\tInformationsarchitect,\n5.\tInteraktionsdesigner,\n6.\tUser Interface Designer.",
-          "term-english": "Usability professional",
-          "term-german": "Usability Professional"
         },
         {
           "categories": [
@@ -960,8 +944,8 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "A process through which information about the usability of an interactive system is gathered in order to improve the interactive system (known as formative xxx) or to assess the merit or worth of an interactive system (known as summative xxx). \n",
-          "description-german": "Ein Prozess der Informationen \u00fcber die Usability eines interaktiven Systems sammelt um das interaktive System zu verbessern (formative xxx) oder um das interaktive System zu bewerten (summative xxx). \n",
+          "description-english": "A process through which information about the Usability of an Interactive system is gathered in order to improve the interactive system (known as formative usability evaluation) or to assess the merit or worth of an Interactive system (known as aummative usability evaluation).\n",
+          "description-german": "Ein Prozess der Informationen über die Usability eines interaktiven Systems sammelt um das interaktive System zu verbessern (Formative Usability-Evaluierung) oder um das interaktive System zu bewerten (Summative Usability-Evaluierung).\n",
           "term-english": "Usability evaluation",
           "term-german": "Usability-Evaluierung"
         },
@@ -970,8 +954,8 @@ class Game extends Component {
             "System",
             "Planung"
           ],
-          "description-english": "Two or more rooms that are specially equipped for usability testing or focus groups. \n",
-          "description-german": "Zwei oder mehrere R\u00e4ume, die speziell f\u00fcr die Durchf\u00fchrung von Usabiltytests oder Fokusgruppen ausgestattet sind. \n",
+          "description-english": "Two or more rooms that are specially equipped for Usability tests or focus groups. \n",
+          "description-german": "Zwei oder mehrere Räume, die speziell für die Durchführung von Usabilty-Tests oder Fokusgruppen ausgestattet sind.  \n",
           "term-english": "Usability lab",
           "term-german": "Usability-Labor"
         },
@@ -979,18 +963,27 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "A difficulty in using the user interface design that affects the ability of the user to achieve their goals effectively, or efficiently, or with satisfaction. \n",
-          "description-german": "Ein Problem in der Benutzung der Benutzungsschnittstelle, das sich auf die Zufriedenstellung des Benutzers sowie die Effektivit\u00e4t und Effizienz des interaktiven Systems auswirkt. \n",
+          "description-english": "A difficulty in using the user interface that affects the ability of the user to achieve their goals effectively, or efficiently, or with satisfaction.\n",
+          "description-german": "Ein Problem in der Benutzung der Benutzungsschnittstelle, das sich auf die Fähigkeit des Benutzers auswirkt, seine Ziele effektiv oder effizient oder zufriedenstellend zu erreichen.\n",
           "term-english": "Usability problem",
           "term-german": "Usability-Problem"
+        },
+        {
+          "categories": [
+            "Evaluierung"
+          ],
+          "description-english": "A measure given to a usability finding from a usability test to indicate the impact and criticality on the user experience and the consequences.\n",
+          "description-german": "Ein Maß für einen Usability-Befund aus einem Usability-Test, um Hinweise hinsichtlich der Auswirkungen des Befundes auf die User Experience, der Kritikalität sowie der Konsequenzen zu geben.\n",
+          "term-english": "Rating",
+          "term-german": "Bewertung"
         },
         {
           "categories": [
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A usability evaluation that involves representative users performing specific tasks with the interactive system to enable identification of usability problems or the measurement of effectiveness, efficiency, and user satisfaction.\n",
-          "description-german": "Eine Usability-Evaluierung bei der repr\u00e4sentative Benutzer bestimmte Aufgaben mit dem interaktiven System ausf\u00fchren, um Usability-Probleme oder die Messwerte f\u00fcr Effektivit\u00e4t, Effizienz und Zufriedenstellung zu erfassen. \n",
+          "description-english": "A usability evaluation that involves representative users performing specific tasks with the interactive system to enable identification and analysis of usability problems, or the measurement of effectiveness, efficiency, and user satisfaction.\n",
+          "description-german": "Eine Usability-Evaluierung, bei der repräsentative Benutzer bestimmte Aufgaben mit dem interaktiven System ausführen, um Usability-Probleme zu erfassen oder die Messung von Effektivität, Effizienz und Zufriedenstellung zu ermöglichen.\n",
           "term-english": "Usability test",
           "term-german": "Usability-Test"
         },
@@ -998,8 +991,8 @@ class Game extends Component {
           "categories": [
             "Test"
           ],
-          "description-english": "A description of a task that a moderator asks a usability test participant to carry out during a usability test. ",
-          "description-german": "Eine Beschreibung einer typischen Aufgabe, die ein Moderator einem Usability-Testteilnehmer w\u00e4hrend eines Usability-Tests stellt. ",
+          "description-english": "A description of a task that a moderator asks a usability test participant to carry out during a usability test.",
+          "description-german": "Eine Beschreibung einer Aufgabe, die ein Moderator einem Usability-Testteilnehmer während eines Usability-Tests stellt. ",
           "term-english": "Usability test task",
           "term-german": "Usability-Testaufgabe"
         },
@@ -1012,15 +1005,6 @@ class Game extends Component {
           "description-german": "Ein Dokument, das die Ergebnisse eines Usability-Tests beschreibt. \n",
           "term-english": "Usability test report",
           "term-german": "Usability-Testbericht"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who evaluates user interfaces in various stages of realization. \n",
-          "description-german": "Eine Person die Benutzungsschnittstellen in verschiedenen Stadien der Realisierung evaluiert. \n",
-          "term-english": "Usability tester",
-          "term-german": "Usability-Tester"
         },
         {
           "categories": [
@@ -1037,8 +1021,8 @@ class Game extends Component {
             "Gestaltung",
             "Test"
           ],
-          "description-english": "A part of a usability test where one usability test participant carries out representative usability test tasks using the interactive system or a prototype of the interactive system.\n",
-          "description-german": "Der Teil eines Usability-Tests, bei dem ein bestimmter Usability-Testteilnehmer repr\u00e4sentative Usability-Testaufgaben unter Benutzung des interaktiven Systems oder des Prototypen eines interaktiven Systems l\u00f6st.\n",
+          "description-english": "A part of a Usability test where one usability test participant carries out representative Usability test tasks using the Interactive system or a Prototype of the interactive system.\n",
+          "description-german": "Der Teil eines Usability-Tests, bei dem ein bestimmter Usability-Testteilnehmer repräsentative Usability-Testaufgaben unter Benutzung des interaktiven Systems oder des Prototypen eines interaktiven Systems löst.\n",
           "term-english": "Usability test session",
           "term-german": "Usability-Testsitzung"
         },
@@ -1048,7 +1032,7 @@ class Game extends Component {
             "Evaluierung"
           ],
           "description-english": "A checklist used by a moderator in a usability test to keep track of briefing and pre-session interview questions, usability test tasks, and post-session interview questions.",
-          "description-german": "Eine von einem Moderator in einem Usability-Test verwendete Checkliste, um den \u00dcberblick \u00fcber die Fragen des Briefings und des Pre-Session Interviews, die Usability-Testaufgaben und die Fragen des Post-Session Interviews zu behalten.",
+          "description-german": "Eine von einem Moderator in einem Usability-Test verwendete Checkliste, um den Überblick über die Fragen des Briefings und des Pre-Session Interviews, die Usability-Testaufgaben und die Fragen des Post-Session Interviews zu behalten.",
           "term-english": "Usability test script",
           "term-german": "Usability-Testskript"
         },
@@ -1057,35 +1041,18 @@ class Game extends Component {
             "Rollen",
             "Test"
           ],
-          "description-english": "A representative user who solves typical tasks in a usability test.",
-          "description-german": "Repr\u00e4sentativer Benutzer, der typische Aufgaben in einem Usability-Test l\u00f6st.",
+          "description-english": "A representative user who carries out usability test tasks in a usability test session.",
+          "description-german": "in repräsentativer Benutzer, der Usability-Testaufgaben in einer Usability-Testsitzung ausführt.",
           "term-english": "Usability test participant",
           "term-german": "Usability-Testteilnehmer"
         },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who creates interactive prototypes and implements the dialogue and user experience based on the design created by the interaction designer and the scenarios created by the user requirements engineer. The xxx also creates interactive prototypes.\n",
-          "description-german": "Eine Person die den Dialog und das Benutzererlebnis basierend auf dem Design des  Interaktions\u00addesigners und den Nutzungsszenarios des User Requirements Engineers implementiert. Der xxx erzeugt ausserdem interaktive Prototypen.\n",
-          "term-english": "User interface designer",
-          "term-german": "User Interface Designer"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who identifies and describes the actual or intended context of use of users, and derives the user requirements and related organizational requirements, which need to be realized for a specific project. \n",
-          "description-german": "Eine Person die den tats\u00e4chlichen oder geplanten Nutzungskontext von Benutzern identifiziert und beschreibt. Daraus leitet der xxx die Nutzungsanforderungen und damit verbundene organisatorische Anforderungen ab, die f\u00fcr ein bestimmtes Projekt umgesetzt werden m\u00fcssen. \n",
-          "term-english": "User requirements engineer",
-          "term-german": "User Requirements Engineer"
-        },
+ 
         {
           "categories": [
             "Planung"
           ],
-          "description-english": "A form of low-fidelity prototype consisting of schematic diagrams typically comprised of lines, rectangular boxes and text that represent the intended interaction design and navigational flow.\n",
-          "description-german": "Eine Form des Low-fidelity-Prototyps bestehend aus schematischen Diagrammen, typischerweise dargestellt mit Linien, rechteckigen K\u00e4sten und Text der das Interaktionsdesign und den Navigationsfluss repr\u00e4sentiert.\n",
+          "description-english": "A screen or page in a low-fidelity prototype for a graphical user interface comprised of lines, rectangular boxes and text that represent the intended interaction design.\n",
+          "description-german": "Ein Screen oder eine Seite in einem Low-Fidelity-Prototyp für eine grafische Benutzungsschnittstelle, bestehend aus Linien, rechteckigen Kästen und Text, der das zukünftige Interaktionsdesign repräsentiert.\n",
           "term-english": "Wireframe",
           "term-german": "Wireframe"
         },
@@ -1094,21 +1061,177 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "Freedom from discomfort, and positive attitudes towards the use of the product\n",
-          "description-german": "Freiheit von Beeintr\u00e4chtigung und positive Grundeinstellung zur Nutzung des Produkts\n",
+          "description-english": "The extent to which the user’s physical, cognitive and emotional responses that result from the use of an interactive system meet the user’s needs and expectations.\n",
+          "description-german": "Das Ausmaß, in dem die physischen, kognitiven und emotionalen Reaktionen des Benutzers, die sich aus der Benutzung eines interaktiven Systems ergeben, die Bedürfnisse und Erwartungen des Benutzers erfüllen.\n",
           "term-english": "Satisfaction",
           "term-german": "Zufriedenstellung"
         }
       ],
       seconds:0,
       grade:0,
-      choices:[],
+      englishChoices:[],
+      germanChoices:[],
       currentQuestion:null,
       correctAnswer:null,
       toggle:false,
       newQuestion:false,
+      English:localStorage.getItem( "english" )===null?true:localStorage.getItem( "english" ),
       choosedAnswer:null,
       choicesItems:[
+        {
+          "categories": [
+            "Test",
+            "Planung"
+          ],
+          "description-english": "A narrative text description of the procedure a specific user currently follows to complete one or more tasks.",
+          "description-german": "Eine erzählende, textuelle Beschreibung des Vorgehens, das ein bestimmter Benutzer anwendet, um eine oder mehrere Aufgaben zu erledigen.",
+          "term-english": "As-is scenario",
+          "term-german": "Ist-Szenario"
+        },
+        {
+          "categories": [
+            "Rollen"
+          ],
+          "description-english": "\n",
+          "description-german": "\n",
+          "term-english": "User experience professional",
+          "term-german": "User Experience Professional"
+        },
+        {
+          "categories": [
+            "Test",
+            "Evaluierung"
+          ],
+          "description-english": "A usability evaluation based on the judgment of one or more evaluators who examine or use an interactive system to identify potential usability problems and deviations from established dialogue principles, heuristics, user interface guidelines and user requirements.\n",
+          "description-german": "Eine Usability-Evaluierung, die auf der Begutachtung durch einen oder mehrere Evaluatoren basiert, die ein interaktives System prüfen oder benutzen, um potenzielle Usability-Probleme und Abweichungen von anerkannten Dialogprinzipien, Heuristiken, Gestaltungsregeln und Nutzungsanforderungen zu identifizieren.\n",
+          "term-english": "Usability inspection",
+          "term-german": "Usability-Inspektion"
+        },
+        {
+          "categories": [
+            "Evaluierung",
+            "Test"
+          ],
+          "description-english": "A result from a usability evaluation.\n",
+          "description-german": "Ergebnis aus einer Usability-Evaluierung.\n",
+          "term-english": "Usability finding",
+          "term-german": "Usability-Befund"
+        },
+        {
+          "categories": [
+            "Test",
+            "Evaluierung"
+          ],
+          "description-english": "A document reporting the results of a usability test, a usability inspection or a user survey.\n",
+          "description-german": "Ein Dokument, in dem die Ergebnisse eines Usability-Tests, einer Usability-Inspektion oder einer Benutzerbefragung berichtet werden.\n",
+          "term-english": "Usability evaluation report",
+          "term-german": "Usability-Evaluierungsbericht"
+        },
+        {
+          "categories": [
+            "Test"
+          ],
+          "description-english": "A usability test where usability test participants solve usability test tasks without a moderator.\n",
+          "description-german": "Ein Usability-Test, bei dem Usability-Testteilnehmer Usability-Testaufgaben ohne Moderator erledigen.\n",
+          "term-english": "Unmoderated usability test",
+          "term-german": "Unmoderierter Usability-Test"
+        },
+        {
+          "categories": [
+            "Implementierung"
+          ],
+          "description-english": "A basic component of a user interface that is presented to the user by the interactive system.\n",
+          "description-german": "Ein Grundelement einer Benutzungsschnittstelle, die dem Benutzer vom interaktivem System präsentiert wird.\n",
+          "term-english": "User interface element",
+          "term-german": "User Interface Element"
+        },
+        {
+          "categories": [
+            "Evaluierung",
+            "Gestaltung"
+          ],
+          "description-english": "A low-level, specific rule or recommendation for user interface design that leaves little room for interpretation, allowing designers to implement it consistently.\n",
+          "description-german": "Konkrete, spezifische Instruktion oder Empfehlung für das Design von Benutzungsschnittstellen, die wenig Interpretationsspielraum lässt, sodass Designer sie konsistent umsetzen können.\n",
+          "term-english": "User interface guideline",
+          "term-german": "Gestaltungsregel"
+        },
+      /*  {
+          "categories": [
+            "Prinzipien"
+          ],
+          "description-english": "The property of a dialogue that allows users to modify interactions and the presentation of information to suit their individual capabilities and needs.\n",
+          "description-german": "Die Eigenschaft eines Dialogs, die Benutzern ermöglicht, die Interaktion mit dem System und die Darstellung von Informationen an ihre individuellen Fähigkeiten und Bedürfnisse anpassen zu können.\n",
+          "term-english": "Suitability for individualisation",
+          "term-german": "Individualisierbarkeit"
+        },*/
+        {
+          "categories": [
+            "Planung",
+            "Test"
+          ],
+          "description-english": "A method for structuring information – such as menus in a navigation structure – that involves writing key concepts onto different cards and asking users to sort these cards into groups.\n",
+          "description-german": "Eine Methode zum Strukturieren von Information – wie beispielsweise Menüs in einer Navigationsstruktur –, bei der Kernbegriffe auf verschiedene Karten geschrieben werden und Benutzer aufgefordert werden, diese Karten in Gruppen zu sortieren.\n",
+          "term-english": "Card sorting",
+          "term-german": "Card-Sorting"
+        },
+        {
+          "categories": [
+            "Gestaltung",
+            "Anforderungen"
+          ],
+          "description-english": "The naming and structuring of the information that must be accessible to the user.\n",
+          "description-german": "Die Benennung und Strukturierung der Information, die für den Benutzer zugänglich sein muss.\n",
+          "term-english": "Information architecture",
+          "term-german": "Informationsarchitektur"
+        },
+        {
+          "categories": [
+            "Test",
+            "Planung"
+          ],
+          "description-english": "A narrative text description that describes an intended usage situation with the interactive system under development.",
+          "description-german": "Eine erzählende, textuelle Beschreibung, die eine zukünftige Benutzungssituation mit dem in Entwicklung befindlichen interaktiven System beschreibt.",
+          "term-english": "Use scenario",
+          "term-german": "Nutzungsszenario"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Evaluierung"
+          ],
+          "description-english": "A graphical or tabular description of all encounters users have with the interactive system covering all touchpoints that influence the user experience, making the overall user experience tangible for others.\n",
+          "description-german": "Eine grafische oder tabellarische Beschreibung aller Begegnungen, die Benutzer mit dem interaktiven System haben und welche alle die User Experience beeinflussenden Touchpoints (Kontaktpunkte) abdeckt, wodurch die gesamte User Experience für andere greifbar wird.\n",
+          "term-english": "User journey map",
+          "term-german": "User Journey Map"
+        },
+        {
+          "categories": [
+            "Planung"
+          ],
+          "description-english": "The goals that are to be achieved for the user of an interactive system when developing the interactive system.\n",
+          "description-german": "Die Ziele, die für den Benutzer eines interaktiven Systems bei der Entwicklung eines interaktiven Systems erreicht werden sollen.\n",
+          "term-english": "Human-centred quality objectives",
+          "term-german": "Menschzentrierte Qualitätsziele"
+        },
+        {
+          "categories": [
+            "Planung"
+          ],
+          "description-english": "A description of the human-centred design activities and deliverables for an interactive system.\n",
+          "description-german": "Eine Beschreibung der Aktivitäten und der UX-Ergebnisse der menschzentrierten Gestaltung für ein interaktives System.\n",
+          "term-english": "User experience project plan",
+          "term-german": "User Experience Projektplan"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Prinzipien"
+          ],
+          "description-english": "The intended outcome.\n",
+          "description-german": "Das angestrebte Arbeitsergebnis.\n",
+          "term-english": "Goal",
+          "term-german": "Ziel"
+        },
         {
           "categories": [
             "Prinzipien"
@@ -1124,8 +1247,8 @@ class Game extends Component {
             "Gestaltung",
             "Anforderungen"
           ],
-          "description-english": "A condition or capability that must be met or possessed by an interactive system to satisfy an agreement, standard, specification or other formally imposed documents\n",
-          "description-german": "Eine Bedingung oder F\u00e4higkeit, die ein  interaktives System erf\u00fcllen oder besitzen muss, um einer Vereinbarung, einem Standard, einer Spezifikation oder anderen formal zugrunde gelegten Dokumenten zu gen\u00fcgen.\n",
+          "description-english": "A condition or capability that must be met or possessed by an interactive system to satisfy an agreement, standard, specification or other formally imposed documents.\n",
+          "description-german": "Eine Bedingung oder Fähigkeit, die ein interaktives System erfüllen oder besitzen muss, um eine Vereinbarung, eine Norm, eine Spezifikation oder andere formal auferlegte Dokumente zu erfüllen.\n",
           "term-english": "Requirement",
           "term-german": "Anforderung"
         },
@@ -1135,8 +1258,8 @@ class Game extends Component {
             "Prinzipien",
             "Gestaltung"
           ],
-          "description-english": "Activities required to achieve a goal \n",
-          "description-german": "Aktivit\u00e4t die erforderlich ist, um ein Ziel zu erreichen.\n",
+          "description-english": "A set of activities undertaken in order to achieve a specific goal. \n",
+          "description-german": "Eine Menge von Aktivitäten, die unternommen werden, um ein bestimmtes Ziel zu erreichen.\n",
           "term-english": "Task",
           "term-german": "Aufgabe"
         },
@@ -1145,8 +1268,8 @@ class Game extends Component {
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "The property of an interactive system to support the user in the completion of the task, i.e. to base the functionality and the dialogue on the task characteristics (rather than the technology chosen to perform the task).\n",
-          "description-german": "Die Eigenschaft eines interaktives Systems den Benutzer zu unterst\u00fctzen, seine Aufgabe zu erledigen, d. h., die Funktionalit\u00e4t und Dialog an die charakteristischen Eigenschaften der Aufgabe anzupassen, anstatt an die zur Aufgabenerledigung eingesetzten Technologie.\n",
+          "description-english": "The property of an interactive system to support the user in the completion of the task – that is, to base the functionality and the dialogue on the task characteristics (rather than the technology chosen to perform the task).\n",
+          "description-german": "Die Eigenschaft eines interaktiven Systems den Benutzer zu unterstützen, seine Aufgabe zu erledigen, d. h., die Funktionalität und Dialog an die charakteristischen Eigenschaften der Aufgabe anzupassen, anstatt an die zur Aufgabenerledigung eingesetzten Technologie.\n",
           "term-english": "Suitability for the task",
           "term-german": "Aufgabenangemessenheit"
         },
@@ -1154,8 +1277,8 @@ class Game extends Component {
           "categories": [
             "Implementierung"
           ],
-          "description-english": "A description of the subtasks that have to be carried out in order to reach the user\u2019s goals.\n",
-          "description-german": "Eine Beschreibung der Teilaufgaben die erledigt werden m\u00fcssen, um die Ziele des Benutzers zu erreichen.\n",
+          "description-english": "A description of the subtasks within a task that have to be carried out in order to reach the user’s goals.\n",
+          "description-german": "Eine Beschreibung der Teilaufgaben innerhalb einer Aufgabe, die ausgeführt werden müssen, um die Ziele des Benutzers zu erreichen.\n",
           "term-english": "Task model",
           "term-german": "Aufgabenmodell"
         },
@@ -1163,8 +1286,8 @@ class Game extends Component {
           "categories": [
             "Prinzipien"
           ],
-          "description-english": "The attributes and characteristics of an interactive system that allow people with limited vision, hearing, dexterity, cognition or physical mobility to interact effectively and efficiently with the interactive system.\n",
-          "description-german": "Die Attribute und Charakteristiken eines interaktiven Systems die Menschen mit eingeschr\u00e4nkter Sicht, eingeschr\u00e4nktem H\u00f6ren, eingeschr\u00e4nkter Geschicklichkeit, eingeschr\u00e4nkter Kognition oder eingeschr\u00e4nkter physischer Mobilit\u00e4t erm\u00f6glichen sollen effektiv und effizient mit dem interaktiven System zu interagieren.\n",
+          "description-english": "The extent to which an interactive system enables users to interact with it effectively, efficiently and with satisfaction, regardless of their level of vision, hearing, dexterity, cognition, physical mobility, etc.\n",
+          "description-german":  "Das Ausmaß, in dem ein interaktives System den Benutzern ermöglicht, effektiv, effizient und zufriedenstellend zu interagieren, unbeachtet der Ausprägung ihres Sehens, ihres Hörens, ihrer Geschicklichkeit, ihres Denkens, ihrer physischen Beweglichkeit usw.\n",
           "term-english": "Accessibility",
           "term-german": "Barrierefreiheit"
         },
@@ -1173,8 +1296,8 @@ class Game extends Component {
             "Rollen",
             "Anforderungen"
           ],
-          "description-english": "Person who interacts with an interactive system, or who uses\u00a0the output of the system.\n",
-          "description-german": "Person, die mit einem interaktiven System arbeitet oder Daten die vom System erzeugt werden benutzt.\n",
+          "description-english": "A person who interacts with an interactive system, or who uses the output of the system.\n",
+          "description-german": "Eine Person, die mit einem interaktiven System interagiert oder die Ergebnisse, die vom System erzeugt werden, benutzt.\n",
           "term-english": "User",
           "term-german": "Benutzer"
         },
@@ -1183,29 +1306,18 @@ class Game extends Component {
             "Evaluierung",
             "Test"
           ],
-          "description-english": "An evaluation where users are asked to report subjective data into a questionnaire based on their experience in using an interactive system.\n",
-          "description-german": "Eine Evaluierung bei der Benutzer subjektive Daten in einem Fragebogen angeben sollen, basierend auf ihren Erfahrungen bei der Benutzung eines interaktiven Systems. \n",
+          "description-english": "A usability evaluation where users are asked to report subjective data into a questionnaire based on their experience of using an interactive system.\n",
+          "description-german": "Eine Usability-Evaluierung, bei der Benutzer, ausgehend von ihren Erfahrungen bei der Benutzung eines interaktiven Systems, subjektive Daten in einem Fragebogen angeben.\n",
           "term-english": "User survey",
           "term-german": "Benutzerbefragung"
         },
         {
           "categories": [
             "Planung",
-            "Gestaltung",
-            "System"
-          ],
-          "description-english": "Written or other information for users about an interactive system, how it works, and how to use it.\n",
-          "description-german": "F\u00fcr Benutzer geschriebene oder andere Anleitungen zu dem interaktiven System, wie es funktioniert, und wie man es bedient.\n",
-          "term-english": "User documentation",
-          "term-german": "Benutzerdokumentation"
-        },
-        {
-          "categories": [
-            "Planung",
             "Evaluierung"
           ],
-          "description-english": "A person's perceptions and responses resulting from the use or anticipated use of an interactive system.\n",
-          "description-german": "Wahrnehmungen und Reaktionen einer Person, die aus der tats\u00e4chlichen oder erwarteten Benutzung eines interaktiven Systems resultieren. \n",
+          "description-english": "A user’s perceptions and responses that result from the use and/or anticipated use of an interactive system.\n",
+          "description-german": "Die Wahrnehmungen und Reaktionen eines Benutzers, die sich aus der Benutzung und/oder der erwarteten Benutzung eines interaktiven Systems ergeben.\n",
           "term-english": "User experience",
           "term-german": "Benutzererlebnis"
         },
@@ -1217,7 +1329,7 @@ class Game extends Component {
             "Evaluierung"
           ],
           "description-english": "A collection of users with the same or similar personal characteristics and context of use related to the interactive system.",
-          "description-german": "Eine Gruppe von Benutzern mit denselben oder \u00e4hnlichen Personenmerkmalen und Nutzungskontext bezogen auf das interaktive System.",
+          "description-german": "Eine Gruppe von Benutzern mit gleichen oder ähnlichen persönlichen Merkmalen und Nutzungskontexten bezogen auf das interaktive System.",
           "term-english": "User group",
           "term-german": "Benutzergruppe"
         },
@@ -1237,21 +1349,10 @@ class Game extends Component {
             "Gestaltung",
             "System"
           ],
-          "description-english": "Information to help a user to interact with an interactive system. \n",
-          "description-german": "Informationen um einem Benutzer bei der Interaktion mit einem interaktiven System zu helfen.\n",
+          "description-english": "Information to help a user to interact with an interactive system.\n",
+          "description-german": "Informationen, um einem Benutzer bei der Interaktion mit einem interaktiven System zu helfen.\n",
           "term-english": "User assistance",
-          "term-german": "Benutzerunterst\u00fctzung"
-        },
-        {
-          "categories": [
-            "Planung",
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "Usability evaluation that involves representative users performing specific tasks with the interactive system to enable identification of usability problems, or measurements of efficiency, effectiveness, user satisfaction, or other measures of user experience.\n",
-          "description-german": "Usability-Evaluierung, die repr\u00e4sentative Benutzer involviert, die bestimmte Aufgaben mit dem interaktiven System ausf\u00fchren, um die Identifikation von Usability-Problemen oder die Messung von Effizienz, Effektivit\u00e4t und Zufriedenstellung zu erm\u00f6glichen.\n",
-          "term-english": "Usability evaluation \u2013  User based",
-          "term-german": "Benutzerzentrierte Usability-Evaluierung"
+          "term-german": "Benutzerunterstützung"
         },
         {
           "categories": [
@@ -1259,8 +1360,8 @@ class Game extends Component {
             "Gestaltung",
             "Implementierung"
           ],
-          "description-english": "All components of an interactive system (software or hardware) that provide information and controls for the user to accomplish specific tasks with the interactive system.",
-          "description-german": "Alle Bestandteile eines interaktiven Systems (Software oder Hardware), die Informationen und Steuerelemente zur Verf\u00fcgung stellen, die f\u00fcr den Benutzer notwendig sind, um bestimmte Aufgaben mit dem interaktiven System zu erledigen.",
+          "description-english": "All components of an interactive system (software or hardware) that provide information and controls for the user, to allow them to accomplish specific tasks with the interactive system.",
+          "description-german": "Alle Bestandteile eines interaktiven Systems (Software oder Hardware), die dem Benutzer Informationen und Steuerelemente zur Verfügung stellen, die es dem Benutzer erlauben, bestimmte Aufgaben mit dem interaktiven System zu erledigen.",
           "term-english": "User interface",
           "term-german": "Benutzungsschnittstelle"
         },
@@ -1269,8 +1370,8 @@ class Game extends Component {
             "Rollen",
             "System"
           ],
-          "description-english": "A person who watches users who discuss or carry out tasks that are related to the interactive system.\n",
-          "description-german": "Eine Person, die Benutzer beobachtet, die eine Aufgabe diskutieren oder eine Aufgabe mittels eines interaktiven Systems ausf\u00fchren.\n",
+          "description-english": "A person who watches users in an observation, usability test session or focus group.\n",
+          "description-german": "Eine Person, die Benutzer in einer Beobachtung, Usability-Testsitzung oder Fokusgruppe beobachtet. \n",
           "term-english": "Observer",
           "term-german": "Beobachter"
         },
@@ -1279,8 +1380,8 @@ class Game extends Component {
             "Prinzipien",
             "Anforderungen"
           ],
-          "description-english": "A technique for gathering contextual information relating to user needs in which an observer watches users who carry out tasks that are related to the interactive system. \n",
-          "description-german": "Eine Technik f\u00fcr das Sammeln von Kontextinformationen zu den Erfordernissen des Nutzungskontexts. W\u00e4hrend einer xxx sieht der Beobachter dem Benutzer bei der Ausf\u00fchrung von Aufgaben am interaktiven System zu. \n",
+          "description-english": "A method for gathering contextual information relating to user needs in which an observer watches users who carry out tasks that are related to the interactive system.\n",
+          "description-german": "Eine Methode zum Sammeln von Kontextinformationen zu den Erfordernissen des Nutzungskontextes, bei der ein Beobachter Benutzer beobachtet, die mit dem interaktiven System in Beziehung stehende Aufgaben ausführen. \n",
           "term-english": "Observation",
           "term-german": "Beobachtung"
         },
@@ -1288,8 +1389,8 @@ class Game extends Component {
           "categories": [
             "Test"
           ],
-          "description-english": "The first activity in an Interview or a Usability test session where the participant is informed about the purpose of the Interview or Usability test and what their role and contribution are.",
-          "description-german": "Die erste Aktivit\u00e4t in einem Interview oder Usability-Test, in dem dem Teilnehmer erkl\u00e4rt wird, warum das Interview oder der Usability-Test durchgef\u00fchrt wird und was seine Rolle und sein Beitrag ist",
+          "description-english": "The first activity in an interview or a usability test session where the usability test participant is informed about the purpose of the interview or usability test and what their role and contribution will be.",
+          "description-german": "Die erste Aktivität in einem Interview oder in einer Usability-Testsitzung, in der ein Usability-Testteilnehmer über den Zweck des Interviews oder des Usability-Tests, über seine eigene Rolle sowie den erwarteten Beitrag informiert wird.",
           "term-english": "Briefing",
           "term-german": "Briefing"
         },
@@ -1299,8 +1400,8 @@ class Game extends Component {
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A general reusable solution to a commonly occurring problem within a given context in software design that describes a design problem, a solution, and where this solution has been found to work.\n",
-          "description-german": "Eine wiederverwendbare L\u00f6sung f\u00fcr ein Gestaltungsproblem innerhalb eines Kontexts. Ein\u00a0xxx beschreibt ein Gestaltungsproblem, eine L\u00f6sung und wo sich diese L\u00f6sung als funktionierend herausgestellt hat.\n",
+          "description-english": "A solution to a commonly occurring design problem within a given context of use, that describes the design problem, a general solution, and examples of how to apply it.\n",
+          "description-german": "Eine Lösung eines häufig auftretenden Gestaltungsproblems in einem gegebenen Nutzungskontext. Das Design Pattern beschreibt ein Gestaltungsproblem, eine allgemeine Lösung und Beispiele, wie diese Lösung angewandt werden kann.\n",
           "term-english": "Design pattern",
           "term-german": "Design Pattern"
         },
@@ -1311,8 +1412,8 @@ class Game extends Component {
             "Prinzipien",
             "Implementierung"
           ],
-          "description-english": "Interaction between a user and an interactive system that consists of user actions (input) and responses from the interactive system (output) in order to achieve a goal.",
-          "description-german": "Interaktion zwischen einem Benutzer und einem interaktiven System in Form einer Folge von Handlungen des Benutzers (Eingaben) und Antworten des interaktiven Systems (Ausgaben), um ein Ziel zu erreichen.",
+          "description-english": "An interaction between a user and an interactive system that consists of user actions (input) and responses from the interactive system (output) in order to achieve a goal.",
+          "description-german": "Die Interaktion zwischen einem Benutzer und einem interaktiven System in Form einer Folge von Handlungen des Benutzers (Eingaben) und Antworten des interaktiven Systems (Ausgaben), um ein Ziel zu erreichen.",
           "term-english": "Dialogue",
           "term-german": "Dialog"
         },
@@ -1328,39 +1429,21 @@ class Game extends Component {
         },
         {
           "categories": [
-            "Rollen"
-          ],
-          "description-english": "Person who interacts with an interactive system.\n",
-          "description-german": "Eine Person, die mit einem interaktiven System interagiert.\n",
-          "term-english": "Direct user",
-          "term-german": "Direkter Benutzer"
-        },
-        {
-          "categories": [
-            "Test"
-          ],
-          "description-english": "A measure given to a usability problem from a usability test to indicate the impact and criticality on the user experience and the consequences.\n",
-          "description-german": "Ein Ma\u00df f\u00fcr ein Usability-Problem aus einem Usability-Test, das die Auswirkung des Usability-Problems auf das Benutzererlebnis bewertet.\n",
-          "term-english": "Severity rating",
-          "term-german": "Dringlichkeitsstufe"
-        },
-        {
-          "categories": [
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "Extent to which correct and complete goals are achieved.\n",
-          "description-german": "Ausma\u00df der Vollst\u00e4ndigkeit und Genauigkeit der Zielerreichung.\n",
+          "description-english": "The accuracy and completeness with which users achieve specified goals.",
+          "description-german": "Die Genauigkeit und Vollständigkeit, mit der Benutzer festgelegte Ziele erreichen.",
           "term-english": "Effectiveness",
-          "term-german": "Effektivit\u00e4t"
+          "term-german": "Effektivität"
         },
         {
           "categories": [
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "Resources expended to achieve specified goals. \n",
-          "description-german": "Eingesetzte Ressourcen, um bestimmte Ziele zu erreichen.\n",
+          "description-english": "The resources used in relation to the results achieved.",
+          "description-german": "Die verwendeten Ressourcen in Bezug auf die erzielten Ergebnisse.",
           "term-english": "Efficiency",
           "term-german": "Effizienz"
         },
@@ -1370,7 +1453,7 @@ class Game extends Component {
             "Gestaltung"
           ],
           "description-english": "A prerequisite identified as necessary for a user, or a user group, to achieve a goal, implied or stated within a specific context of use.\n",
-          "description-german": "Eine f\u00fcr einen Benutzer oder eine Benutzergruppe als notwendig identifizierte Voraussetzung, um ein Ziel innerhalb eines bestimmten Nutzungskontextes zu erreichen. \n",
+          "description-german": "Eine Voraussetzung, die für einen Benutzer oder eine Benutzergruppe als notwendig erachtet wird, um ein implizites oder im Rahmen eines bestimmten Nutzungskontextes vorgegebenes Ziel zu erreichen.\n",
           "term-english": "User need",
           "term-german": "Erfordernis"
         },
@@ -1380,29 +1463,28 @@ class Game extends Component {
             "Evaluierung"
           ],
           "description-english": "Correspondence to predictable contextual needs of the user and to commonly accepted conventions.\n",
-          "description-german": "\u00dcbereinstimmung mit den aus dem Nutzungskontext heraus vorhersehbaren Benutzerbelangen sowie allgemein anerkannten Konventionen.\n",
+          "description-german": "Übereinstimmung mit den aus dem Nutzungskontext heraus vorhersehbaren Benutzerbelangen sowie allgemein anerkannten Konventionen.\n",
           "term-english": "Conformity with user expectations",
-          "term-german": "Erwartungskonformit\u00e4t"
-        },
-        {
-          "categories": [
-            "Test",
-            "Evaluierung"
-          ],
-          "description-english": "A document reporting the results of a usability test, an inspection or a user survey.\n",
-          "description-german": "Ein Dokument, in dem die Ergebnisse eines Usability-Tests, einer Inspektion oder einer Benutzerbefragung dokumentiert werden.\n",
-          "term-english": "Evaluation report",
-          "term-german": "Evaluierungsbericht"
+          "term-german": "Erwartungskonformität"
         },
         {
           "categories": [
             "Anforderungen",
             "Evaluierung"
           ],
-          "description-english": "The property of a dialogue to achieve the intended result with either no, or minimal, corrective action by the user despite evident errors in input. \n",
+          "description-english": "The property of a dialogue to achieve the intended result with either no, or minimal, corrective action by the user despite evident errors in input.\n",
           "description-german": "Die Eigenschaft eines Dialogs, das beabsichtigte Arbeitsergebnis trotz erkennbar fehlerhafter Eingaben entweder mit keinem oder mit minimalem Korrekturaufwand seitens des Benutzers zu erreichen.\n",
           "term-english": "Error tolerance",
           "term-german": "Fehlertoleranz"
+        },
+        {
+          "categories": [
+            "Prinzipien"
+          ],
+          "description-english": "The property of a Dialogue that allows users to modify interaction and presentation of information to suit their individual capabilities and needs.\n",
+          "description-german": "Die Eigenschaft eines Dialogs die Benutzer ermöglicht die Interaktion mit dem System und die Darstellung von Informationen an ihre individuellen Fähigkeiten und Bedürfnisse anpassen zu können.\n",
+          "term-english": "Suitability for individualization",
+          "term-german": "Individualisierbarkeit"
         },
         {
           "categories": [
@@ -1418,21 +1500,10 @@ class Game extends Component {
         {
           "categories": [
             "Evaluierung",
-            "Test",
-            "Prinzipien"
-          ],
-          "description-english": "A type of usability evaluation designed and used to improve an interactive system, especially when it is still being designed.\n",
-          "description-german": "Eine Art der Usability-Evaluierung die hilft, das Design f\u00fcr ein interaktives System zu verbessern, besonders w\u00e4hrend es noch gestaltet wird.\n",
-          "term-english": "Formative usability evaluation",
-          "term-german": "Formative Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Evaluierung",
             "Test"
           ],
-          "description-english": "A set of questions that is used collect data from users, often in a user survey.\n",
-          "description-german": "Ein Satz von Fragen, der von Benutzern in einer Benutzerbefragung beantwortet wird, um  Daten zu sammeln.\n",
+          "description-english": "A set of questions that is used to collect data from users, often in a user survey.\n",
+          "description-german": "Ein Satz von Fragen, der verwendet wird, um Daten von Benutzern zu sammeln, oft innerhalb einer Benutzerbefragung.\n",
           "term-english": "Questionnaire",
           "term-german": "Fragebogen"
         },
@@ -1442,7 +1513,7 @@ class Game extends Component {
             "Test"
           ],
           "description-english": "An interview question that requires an answer from a predetermined set of alternatives, for example yes and no.\n",
-          "description-german": "Eine Interviewfrage die eine Antwort aus einem vordefinierten Satz von Alternativen fordert, oft einfach \u201eja\u201c oder \u201enein\u201c.\n",
+          "description-german": "Eine Interviewfrage, die eine Antwort aus einem vordefinierten Satz von Alternativen fordert, oft einfach „ja“ oder „nein“.\n",
           "term-english": "Closed question",
           "term-german": "Geschlossene Frage"
         },
@@ -1461,8 +1532,8 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "A usability evaluation method in which one or more evaluators, preferably experts, compare an interactive system to a list of heuristics and identify where the interactive system does not follow those heuristics.\n",
-          "description-german": "Eine Methode der Usability-Evaluierung bei der ein oder mehrere Begutachter \u2013 vorzugsweise Experten \u2013 ein interaktives System mit einer Liste von Heuristiken vergleichen und feststellen an welchen Stellen das interaktive System diesen Heuristiken nicht folgt.\n",
+          "description-english": "A usability inspection in which one or more evaluators compare an interactive system to a list of heuristics and identify where the interactive system does not follow those heuristics.\n",
+          "description-german": "Eine Usability-Inspektion, bei der ein oder mehrere Evaluatoren ein interaktives System mit einer Liste von Heuristiken vergleichen und feststellen, an welchen Stellen das interaktive System diesen Heuristiken nicht folgt.\n",
           "term-english": "Heuristic evaluation",
           "term-german": "Heuristische Evaluierung"
         },
@@ -1471,8 +1542,8 @@ class Game extends Component {
             "Test",
             "System"
           ],
-          "description-english": "A software prototype of the user interface to the interactive system that is being designed. A xxx resembles the finished interactive system and may or may not be interactive.\n",
-          "description-german": "Ein Software Prototyp der Benutzungsschnittstelle des zu designenden interaktiven Systems. Ein xxx \u00e4hnelt dem fertigen interaktiven System und kann interaktiv oder nicht interaktiv sein.\n",
+          "description-english": "A software prototype of the user interface to the interactive system that is being designed. A high-fidelity prototype more closely resembles the finished interactive system.\n",
+          "description-german": "Ein Software-Prototyp der Benutzungsschnittstelle des zu entwickelnden interaktiven Systems. Ein High-Fidelity-Prototyp ähnelt dem fertigen interaktiven System.\n",
           "term-english": "High-fidelity prototype",
           "term-german": "High-fidelity-Prototyp"
         },
@@ -1482,7 +1553,7 @@ class Game extends Component {
             "Prinzipien"
           ],
           "description-english": "A family of standards covering human-centred design.\n",
-          "description-german": "Eine Reihe von Standards, die die menschzentrierte Gestaltung interaktiver Systeme betrifft.  \n",
+          "description-german": "Eine Reihe von Standards, die die menschzentrierte Gestaltung interaktiver Systeme betrifft.\n",
           "term-english": "ISO 9241",
           "term-german": "ISO 9241"
         },
@@ -1490,67 +1561,18 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "Person who\u00a0directly\u00a0uses\u00a0the output of the interactive system, but does not interact directly with the system.\nExample of an xxx:\u00a0\n1.\tA bank customer who receives a paper or electronic statement, or visits a branch is an xxx of the output produced by the bank computer system.",
-          "description-german": "Personen, die direkt die Ergebnisse eines interaktiven Systems nutzen, aber nicht direkt mit dem System interagieren. \nBeispiel f\u00fcr xxx:\n1.\tEin Bankkunde, der ein Dokument oder einen elektronischen Bericht erh\u00e4lt, oder eine Filiale besucht, ist ein xxx eines Arbeitsergebnisses, das mit Hilfe eines Systems erzeugt wurde, das die Mitarbeiter der Bank benutzen.",
+          "description-english": "A user who uses the output of the interactive system, but who does not interact directly with the interactive system.",
+          "description-german": "Ein Benutzer, der die Ergebnisse des interaktiven Systems verwendet, aber nicht direkt mit dem interaktiven System interagiert.",
           "term-english": "Indirect user",
           "term-german": "Indirekter Benutzer"
-        },
-        {
-          "categories": [
-            "Gestaltung",
-            "Prinzipien"
-          ],
-          "description-english": "The property of a dialogue that allows users to modify interaction and presentation of information to suit their individual capabilities and needs.\n",
-          "description-german": "Die Eigenschaft eines Dialogs die Benutzer erm\u00f6glicht die Interaktion mit dem System und die Darstellung von Informationen an ihre individuellen F\u00e4higkeiten und Bed\u00fcrfnisse anpassen zu k\u00f6nnen.\n",
-          "term-english": "Suitability for individualization",
-          "term-german": "Individualisierbarkeit"
-        },
-        {
-          "categories": [
-            "Rollen",
-            "Gestaltung"
-          ],
-          "description-english": "A person who creates and organizes the structure of information to enable each user group to efficiently locate required information when using interactive systems. \n",
-          "description-german": "Eine Person die die Struktur von Information in interaktiven Systemen f\u00fcr das effiziente Auffinden durch jede Benutzergruppe kreiert und organisiert.\n",
-          "term-english": "Information architect",
-          "term-german": "Informationsarchitekt"
-        },
-        {
-          "categories": [
-            "Gestaltung",
-            "Anforderungen"
-          ],
-          "description-english": "The naming and structuring of the information that must be accessible to the user, including task objects, system objects (such as printers) and additional information that users need.",
-          "description-german": "Die Benennung und Strukturierung der Informationen, die f\u00fcr den Benutzer erreichbar sein m\u00fcssen, einschlie\u00dflich der Nutzungsobjekte, Systemobjekte (wie z.B. \u201eDrucker\u201c) und weiterer f\u00fcr den Benutzer erforderlichen Informationen. ",
-          "term-english": "Information architecture",
-          "term-german": "Informationsarchitektur"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "Usability evaluation based on the judgment of one or more evaluators who examine or use an interactive system to identify potential usability problems and deviations from established criteria.\n",
-          "description-german": "Usability-Evaluierung die auf der Beurteilung ein oder mehrerer Evaluatoren basiert, die ein interaktives System pr\u00fcfen oder benutzen, um potentielle Usability-Probleme und Abweichungen von anerkannten Kriterien zu identifizieren.\n",
-          "term-english": "Usability evaluation \u2013 Inspection based",
-          "term-german": "Inspektionsbasierte Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who defines and designs the interaction between humans and system based on user requirements and the context of use.\n",
-          "description-german": "Eine Person die die Interaktion zwischen Mensch und System auf Basis der Nutzungs\u00adanforderungen und Nutzungskontext definiert und konzipiert. \n",
-          "term-english": "Interaction designer",
-          "term-german": "Interaktionsdesigner"
         },
         {
           "categories": [
             "System",
             "Anforderungen"
           ],
-          "description-english": "A combination of hardware, software and/or services that receives input from, and communicates output to, users.\n",
-          "description-german": "Kombination von Hardware-, Software- und Servicekomponenten, die Eingaben von einem Benutzer empf\u00e4ngt und Ausgaben zu einem Benutzer \u00fcbermittelt.\n",
+          "description-english": "A combination of hardware, software and services that users interact with in order to achieve specific goals.\n",
+          "description-german": "Eine Kombination aus Hardware, Software und Dienstleistungen, mit der Benutzer interagieren, um bestimmte Ziele zu erreichen.\n",
           "term-english": "Interactive system",
           "term-german": "Interaktives System"
         },
@@ -1558,28 +1580,18 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "Individual or organization having a right, share, claim or interest in an interactive system or in its possession of characteristics that meet their needs and expectations.\n",
-          "description-german": "Individuum oder Organisation, die ein Anrecht, einen Anteil, einen Anspruch oder ein Interesse auf ein interaktives System oder an dessen Merkmalen hat, die ihren Erfordernissen und Erwartungen entsprechen. \n",
+          "description-english": "An individual or organisation with an active interest in an interactive system.\n",
+          "description-german": "Eine Person oder Organisation mit einem aktiven Interesse an einem interaktiven System.\n",
           "term-english": "Stakeholder",
           "term-german": "Interessenvertreter"
-        },
-        {
-          "categories": [
-            "Anforderungen",
-            "Gestaltung"
-          ],
-          "description-english": "What the interactive system should be capable of from the point of view of the stakeholders.",
-          "description-german": "Was das interaktive System aus Sicht des Interessenvertreters leisten muss.\n",
-          "term-english": "Stakeholder requirement",
-          "term-german": "Interessenvertreteranforderung"
         },
         {
           "categories": [
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A data-gathering technique that studies a few carefully selected individuals in depth to arrive at a fuller understanding of the work practice across all users. Through inquiry and interpretation, it reveals commonalities across an interactive system's user base.\n",
-          "description-german": "Eine Methode der Datensammlung, die sorgf\u00e4ltig ausgew\u00e4hlte Individuen untersucht, um ein tiefes Verst\u00e4ndnis der Arbeitst\u00e4tigkeit der Benutzer zu erreichen. Durch die Befragung und Interpretation werden Gemeinsamkeiten und Unterschiede innerhalb der Benutzer  eines interaktiven Systems aufgedeckt.  \n",
+          "description-english": "A data-gathering method that questions a few carefully selected individuals in depth to arrive at a fuller understanding of the context of use for an existing or planned interactive system. Through inquiry and interpretation, it reveals commonalities and differences across the user base.\n",
+          "description-german": "Eine Methode zur Datensammlung, die einige sorgfältig ausgewählte Personen eingehend befragt, um zu einem besseren Verständnis des Nutzungskontextes für ein vorhandenes oder geplantes interaktives System zu gelangen. Durch die Befragung und Interpretation werden Gemeinsamkeiten und Unterschiede innerhalb der Benutzer eines interaktiven Systems aufgedeckt. \n",
           "term-english": "Interview",
           "term-german": "Interview"
         },
@@ -1587,28 +1599,51 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "A written list of suitable questions and cues used by an interviewer during an interview to make sure that all relevant topics are addressed.",
-          "description-german": "Eine schriftliche Liste passender Fragen und Hinweise, die w\u00e4hrend eines Interviews verwendet wird, um sicherzustellen, dass alle relevanten Themen ber\u00fccksichtigt werden.",
+          "description-english": "A written list of suitable questions and cues used by the interviewer during an interview to make sure that all relevant topics are covered.",
+          "description-german": "Eine schriftliche Liste geeigneter Fragen und Hinweise, die der Interviewer während eines Interviews verwendet, um sicherzustellen, dass alle relevanten Themen abgedeckt werden.",
           "term-english": "Interview checklist",
           "term-german": "Interviewcheckliste"
         },
         {
           "categories": [
             "Anforderungen",
-            "Planung"
+            "Gestaltung",
+            "Implementierung"
           ],
-          "description-english": "Use of the interactive system is easy to understand, regardless of the user's experience, knowledge, language skills, or current concentration level. \n",
-          "description-german": "Die Benutzung des interaktiven Systems ist unmittelbar zu verstehen \u2013 unabh\u00e4ngig von der Erfahrung, vom Wissen, von den Sprachkenntnissen oder vom momentanen Konzentrationsgrad des Benutzers.\n",
-          "term-english": "Intuitive",
-          "term-german": "Intuitiv"
+          "description-english": "A set of principles, methods and approaches for improving productivity by reducing documentation and unnecessary formalism, and focusing on iterative development in short cycles, collaboration and communication, incremental improvement and adaptation to changes.",
+          "description-german": "Eine Reihe von Prinzipien, Methoden und Ansätzen zur Produktivitätssteigerung durch Reduzierung von Dokumentation und unnötigem Formalismus mit Fokus auf iterativer Entwicklung in kurzen Zyklen, Zusammenarbeit und Kommunikation, inkrementeller Verbesserung und Anpassung an Veränderungen.",
+          "term-english": "Agile development",
+          "term-german": "Agile Entwicklung"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Gestaltung",
+            "Implementierung"
+          ],
+          "description-english": "An approach to human-centred design that integrates principles and methods for usability and user experience into agile development, thereby achieving economic advantages.",
+          "description-german": "Ein Ansatz der menschzentrierten Gestaltung, der Prinzipien und Methoden für Usability und User Experience in die agile Entwicklung integriert und damit wirtschaftliche Vorteile erzielt.",
+          "term-english": "Lean UX",
+          "term-german": "Lean UX"
+        },
+        {
+          "categories": [
+            "Anforderungen",
+            "Gestaltung",
+            "Implementierung"
+          ],
+          "description-english": "The level of understanding and implementation of a systematic human-centred design process within an organisation.",
+          "description-german": "Das Verständnis und die Umsetzung eines systematischen Prozesses menschzentrierter Gestaltung in einer Organisation.",
+          "term-english": "Usability maturity",
+          "term-german": "Usability-Reife"
         },
         {
           "categories": [
             "Planung",
             "Evaluierung"
           ],
-          "description-english": "Repetitive.\nAn xxx process repeats steps in the human-centred design process until a usability evaluation of the user interface shows that the user requirements have been adequately met.",
-          "description-german": "Wiederholend.\nEin xxx Vorgehen wiederholt Schritte des Prozesses der menschzentrierten Gestaltung solange, bis eine Usability-Evaluierung der Benutzungsschnittstelle zeigt, dass die Nutzungsanforderungen ausreichend erf\u00fcllt sind.",
+          "description-english": "Repetitive<br/>.An iterative process repeats steps in the human-centred design process until a usability evaluation of the user interface shows that the user requirements have been adequately met.",
+          "description-german": "Wiederholend<br/>.Ein iteratives Vorgehen wiederholt Schritte des Prozesses der menschzentrierten Gestaltung solange, bis eine Usability-Evaluierung der Benutzungsschnittstelle zeigt, dass die Nutzungsanforderungen ausreichend erfüllt sind.",
           "term-english": "Iterative",
           "term-german": "Iterativ"
         },
@@ -1617,8 +1652,8 @@ class Game extends Component {
             "Prinzipien",
             "Evaluierung"
           ],
-          "description-english": "The same information is presented in the same way throughout the interactive system, in accordance with the user\u2019s expectation.\n",
-          "description-german": "Die gleiche Information wird in gleicher Weise innerhalb des gesamten interaktiven Systems entsprechend der Benutzererwartung dargestellt.\n",
+          "description-english": "The same information is presented in the same way throughout the interactive system, in accordance with the user’s expectation.\n",
+          "description-german": "Dieselbe Information wird im interaktiven System durchgängig in gleicher Weise entsprechend der Erwartung des Benutzers präsentiert.\n",
           "term-english": "Consistency",
           "term-german": "Konsistenz"
         },
@@ -1626,8 +1661,8 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "An interview that takes place at the location where the user's interaction with the interactive system usually takes place, for example the user's workplace.\n",
-          "description-german": "Ein Interview das dort stattfindet wo die Interaktion des Benutzers mit dem interaktiven System \u00fcblicherweise stattfindet, z.B. am Arbeitsplatz des Benutzers.\n",
+          "description-english": "An interview that takes place at the location where the user’s interaction with the interactive system usually takes place and focuses on the context of use of the user.\n",
+          "description-german": "Ein Interview, das dort stattfindet, wo die Interaktion des Benutzers mit dem interaktiven System üblicherweise erfolgt und das auf den Nutzungskontext des Benutzers abzielt.\n",
           "term-english": "Contextual interview",
           "term-german": "Kontextuelles Interview"
         },
@@ -1637,17 +1672,17 @@ class Game extends Component {
             "Gestaltung"
           ],
           "description-english": "A dialogue is suitable for learning when it supports and guides the user in learning to use the interactive system.\n",
-          "description-german": "Die Eigenschaft eines Dialogs die Benutzer beim Erlernen der Nutzung des interaktiven Systems zu unterst\u00fctzen und anzuleiten.\n",
+          "description-german": "Die Eigenschaft eines Dialogs die Benutzer beim Erlernen der Nutzung des interaktiven Systems zu unterstützen und anzuleiten.\n",
           "term-english": "Suitability for learning",
-          "term-german": "Lernf\u00f6rderlichkeit"
+          "term-german": "Lernförderlichkeit"
         },
         {
           "categories": [
             "Test",
             "System"
           ],
-          "description-english": "A low-cost, simple illustration of a design or concept used to gather user feedback at the very early stages of design\n",
-          "description-german": "Eine einfache und preiswerte Veranschaulichung eines Designs oder eines Begriffs. Wird benutzt, um Benutzer-Feedback in fr\u00fchen Phasen der Entwicklung einzuholen\n",
+          "description-english": "A low-cost, simple illustration of a design or concept used to gather feedback from users and other stakeholders during the early stages of design. \n",
+          "description-german": "Eine preiswerte, einfache Veranschaulichung eines Designs oder eines Konzepts, das benutzt wird, um Feedback von Benutzern und anderen Interessenvertretern während früher Phasen der Entwicklung einzuholen.\n",
           "term-english": "Low-fidelity prototype",
           "term-german": "Low-fidelity-Prototyp"
         },
@@ -1657,7 +1692,7 @@ class Game extends Component {
             "Gestaltung"
           ],
           "description-english": "A requirement for an interactive system based on marketing policy aimed at maximizing business opportunities, purchase and use.\n",
-          "description-german": "Eine Anforderung an ein interaktives System, die aus der Absatzpolitik des Anbieters abgeleitet ist und darauf abzielt, Gesch\u00e4ftschancen, Verk\u00e4ufe und die Nutzung des interaktiven Systems zu maximieren.\n",
+          "description-german": "Eine Anforderung für ein interaktives System basierend auf einer Marketingpolitik, die darauf abzielt, Geschäftschancen, Absatz und Nutzen zu maximieren\n",
           "term-english": "Market requirement",
           "term-german": "Marktanforderung"
         },
@@ -1666,18 +1701,18 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "A principle for a successful interview: The interviewer treats the user as the Master while the interviewer is the Apprentice. The interviewer asks because they sincerely want to learn \u2013 not to demonstrate their knowledge",
-          "description-german": "Ein Verhaltensprinzip f\u00fcr ein erfolgreiches Interview:  Der Interviewer behandelt den Benutzer als den Meister w\u00e4hrend der Interviewer selbst der Sch\u00fcler ist. Der Interviewer demonstriert nicht sein Wissen, sondern stellt seine Fragen mit dem Ziel etwas zu lernen.",
+          "description-english": "A principle for a successful contextual interview: The interviewer treats the user as the master while the interviewer is the apprentice. The goal of the master-apprentice model is to understand users’ goals and tasks in detail by learning them as an apprentice would.",
+          "description-german": "Ein Prinzip für ein erfolgreiches kontextuelles Interview: Der Interviewer behandelt den Benutzer als den Meister, während der Interviewer selbst der Schüler ist. Ziel des Meister- Schüler-Modells ist es, die Ziele und Aufgaben des Benutzers im Detail zu verstehen, indem man als Schüler vom Benutzer als Meister lernt.",
           "term-english": "Master-apprentice model",
-          "term-german": "Meister-Sch\u00fcler-Modell"
+          "term-german": "Meister-Schüler-Modell"
         },
         {
           "categories": [
             "Planung",
             "Gestaltung"
           ],
-          "description-english": "An approach to design that aims to make interactive systems more usable by focusing on the use of the interactive system and applying human factors, ergonomics and usability knowledge and techniques.\n",
-          "description-german": "Herangehensweise bei der Gestaltung und Entwicklung von interaktiven Systemen, die darauf abzielt, diese gebrauchtauglicher zu machen indem sie sich auf die Verwendung des interaktiven Systems konzentriert und Kenntnisse und Techniken aus den Bereichen der Arbeitswissenschaft, Ergonomie und der Gebrauchstauglichkeit anwendet.\n",
+          "description-english": "An approach to design that aims to make interactive systems more usable by focusing on the use of the interactive system and applying human factors, ergonomics and usability knowledge and methods.",
+          "description-german": "nteraktiven Systemen, die darauf abzielt, diese gebrauchtauglicher zu machen indem sie sich auf die Verwendung des interaktiven System konzentriert und Kenntnisse und Techniken aus den Bereichen der Arbeitswissenschaft, Ergonomie und der Gebrauchstauglichkeit anwendet.",
           "term-english": "Human-centred design",
           "term-german": "Menschzentrierte Gestaltung"
         },
@@ -1685,7 +1720,7 @@ class Game extends Component {
           "categories": [
             "Planung"
           ],
-          "description-english": "The perception people have of themselves, others, the environment, and the things with which they interact. \n",
+          "description-english": "The perception people have of themselves, others, the environment, and the things with which they interact.\n",
           "description-german": "Die Vorstellung, die Menschen von sich, anderen, der Umgebung und den Dingen haben, mit denen sie interagieren. \n",
           "term-english": "Mental model",
           "term-german": "Mentales Modell"
@@ -1723,8 +1758,8 @@ class Game extends Component {
             "Evaluierung",
             "Test"
           ],
-          "description-english": "A question in an interview that has no built-in assumptions, and no frame that excludes anything or directs the reply in a certain direction. \n",
-          "description-german": "Eine Frage in einem Interview, die keine impliziten Annahmen beinhaltet und auch keinen Ansatz bietet, einen Aspekt auszuschliessen oder die Antwort in eine bestimmte Richtung zu lenken. \n",
+          "description-english": "A question in an interview that has no built-in assumptions, and no frame that excludes anything or directs the reply in a certain direction.\n",
+          "description-german": "Eine Frage in einem Interview, die keine impliziten Annahmen beinhaltet und auch keinen Ansatz bietet, einen Aspekt auszuschliessen oder die Antwort in eine bestimmte Richtung zu lenken.\n",
           "term-english": "Neutral question",
           "term-german": "Neutrale Frage"
         },
@@ -1733,8 +1768,8 @@ class Game extends Component {
             "Anforderungen",
             "Gestaltung"
           ],
-          "description-english": "Requirement for use that provides the basis for design and evaluation of an interactive system to meet identified user needs.\n",
-          "description-german": "Anforderung an die Nutzung, die die Basis f\u00fcr die Gestaltung und Evaluierung eines interaktiven Systems in Hinblick auf identifizierte Erfordernisse bildet. \n",
+          "description-english": "A requirement for use that provides the basis for design and evaluation of an interactive system to meet identified user needs.\n",
+          "description-german": "Eine Anforderung an die Nutzung, die die Grundlage für die Gestaltung und die Usability-Evaluierung eines interaktiven Systems bildet, um identifizierte Erfordernisse zu erfüllen.\n",
           "term-english": "User requirement",
           "term-german": "Nutzungsanforderung"
         },
@@ -1743,20 +1778,20 @@ class Game extends Component {
             "System",
             "Planung"
           ],
-          "description-english": "Users, tasks, resources, and the physical and social environments in which an interactive system is used \n",
-          "description-german": "Benutzer, Aufgaben, Ressourcen sowie die physische und soziale Umgebung in der das interaktive System genutzt wird.\n",
+          "description-english": "A combination of users, goals, tasks, resources, and environments.\n",
+          "description-german": "Eine Kombination aus Benutzern, Zielen, Aufgaben, Ressourcen und Umgebungen\n",
           "term-english": "Context of use",
           "term-german": "Nutzungskontext"
         },
         {
           "categories": [
-            "System",
+            "Anforderungen",
             "Planung"
           ],
-          "description-english": "The key units of information, or data, with which users interact in order to carry out their tasks. \n",
-          "description-german": "Die wichtigsten Informationseinheiten oder Daten mit denen Benutzer interagieren, um ihre Aufgaben durchzuf\u00fchren.\n",
-          "term-english": "Task object",
-          "term-german": "Nutzungsobjekt"
+          "description-english": "A description of the users, goals, tasks, resources, and environments derived from observations, contextual interview and focus groups.\n",
+          "description-german": "Eine Beschreibung der Benutzer, Ziele, Aufgaben, Ressourcen und Umgebungen, die aus Beobachtungen, kontextuellen Interviews und Fokusgruppen hervorgeht.\n",
+          "term-english": "Context of use description",
+          "term-german": "Nutzungs-kontext-beschreibung"
         },
         {
           "categories": [
@@ -1764,19 +1799,9 @@ class Game extends Component {
             "Test"
           ],
           "description-english": "A question in an interview that does not give any indication of the expected format or content of the answer.\n",
-          "description-german": "Eine Frage in einem Interview, die keine Einschr\u00e4nkung der Antwortm\u00f6glichkeiten nach sich zieht\n",
+          "description-german": "Eine Frage in einem Interview, die keinen Hinweis auf das erwartete Format oder den erwarteten Inhalt der Antwort gibt.\n",
           "term-english": "Open question",
           "term-german": "Offene Frage"
-        },
-        {
-          "categories": [
-            "System",
-            "Gestaltung"
-          ],
-          "description-english": "Assistance delivered through computer software that can be topic-oriented, procedural or reference information. \n",
-          "description-german": "Unterst\u00fctzung die durch ein Computerprogramm bereitgestellt wird. xxx kann themenorientiert, verfahrensorientiert oder ein Hinweis sein.\n",
-          "term-english": "Online help",
-          "term-german": "Onlinehilfe"
         },
         {
           "categories": [
@@ -1785,8 +1810,8 @@ class Game extends Component {
             "Planung"
           ],
           "description-english": "An organizational rule that users have to follow when conducting their tasks.\n",
-          "description-german": "Eine organisatorische Regel die Benutzer befolgen m\u00fcssen w\u00e4hrend sie ihre Aufgaben l\u00f6sen.\n",
-          "term-english": "Organizational requirement",
+          "description-german": "Eine organisatorische Regel die Benutzer befolgen müssen während sie ihre Aufgaben lösen.\n",
+          "term-english": "Organisational requirement",
           "term-german": "Organisatorische Anforderung"
         },
         {
@@ -1794,8 +1819,8 @@ class Game extends Component {
             "Rollen",
             "Planung"
           ],
-          "description-english": "A description of a user and what he or she intends to do when using an interactive system. \n",
-          "description-german": "Eine Beschreibung eines Benutzers und was dieser bei der Benutzung eines interaktiven Systems beabsichtigt. \n",
+          "description-english": "A description of a fictitious but realistic user and what they intend to do when using an interactive system \n",
+          "description-german": "Eine Beschreibung eines konstruierten, aber realistischen Benutzers und was dieser bei der Benutzung eines interaktiven Systems beabsichtigt. \n",
           "term-english": "Persona",
           "term-german": "Persona"
         },
@@ -1803,8 +1828,8 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "An activity in a usability test session where the usability test participant answers questions about his/her experience and general impression of the usability of the interactive system. \n",
-          "description-german": "Eine Aktivit\u00e4t in einem Usability-Test, bei der ein Usability-Testteilnehmer Fragen bez\u00fcglich seines allgemeinen Eindrucks hinsichtlich der Usability des interaktiven Systems beantwortet. \n",
+          "description-english": "An activity in a Usability test session where the usability test participant answers questions about thier user experience and general impression of the Interactive system.  \n",
+          "description-german": "Eine Aktivität in einer Usability-Testsitzung, bei der der Usability-Testteilnehmer Fragen bezüglich seines allgemeinen Eindrucks hinsichtlich der User Experience des interaktiven Systems beantwortet. \n",
           "term-english": "Post-session interview",
           "term-german": "Post-Session Interview"
         },
@@ -1812,8 +1837,8 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "An activity in a usability test session where the usability test participant answers questions about his/her background and previous experience with the interactive system or related interactive systems. \n",
-          "description-german": "Eine T\u00e4tigkeit bei einem Usability-Test, bei der Usability-Testteilnehmer Fragen bez\u00fcglich ihres Hintergrundes und vorheriger Erfahrung mit dem interaktiven System oder \u00e4hnlichen interaktiven Systemen beantworten. \n",
+          "description-english": "An activity in a usability test session where the usability test participant answers questions about their background and previous experience with the interactive system and related interactive systems.\n",
+          "description-german": "Eine Aktivität in einer Usability-Testsitzung, bei der der Usability-Testteilnehmer Fragen bezüglich seines Hintergrundes und seiner Vorerfahrung mit dem interaktiven System oder ähnlichen interaktiven Systemen beantwortet.\n",
           "term-english": "Pre-session interview",
           "term-german": "Pre-Session Interview"
         },
@@ -1821,18 +1846,18 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "A person who interacts with an interactive system to achieve goals supported by the system.",
-          "description-german": "Eine Person, die mit einem interaktiven System interagiert, um Ziele zu erreichen, die durch das System unterst\u00fctzt werden.",
+          "description-english": "A user who uses the interactive system for its intended purpose.",
+          "description-german": "Ein Benutzer, der das interaktive System für seinen beabsichtigten Zweck verwendet.",
           "term-english": "Primary user",
-          "term-german": "Prim\u00e4rer Benutzer"
+          "term-german": "Primärer Benutzerr"
         },
         {
           "categories": [
             "Rollen",
             "Test"
           ],
-          "description-english": "A usability specialist who makes notes of usability findings during a usability test session, focus group or interview. \n",
-          "description-german": "Ein Usabilityspezialist, der Notizen \u00fcber Usability-Befunde w\u00e4hrend einer Usability-Testsitzung, Fokusgruppe oder Interview notiert. \n",
+          "description-english": "A user experience professional who makes notes of usability findings during a usability test session, focus group or interview.\n",
+          "description-german": "Ein User Experience Professional, der während einer Usability-Testsitzung, einer Fokusgruppe oder einem Interview Notizen über Usability-Befunde macht.\n",
           "term-english": "Note-taker",
           "term-german": "Protokollant"
         },
@@ -1841,8 +1866,8 @@ class Game extends Component {
             "Test",
             "System"
           ],
-          "description-english": "A representation of all or part of an interactive system that, although limited in some way, can be used for analysis, design and evaluation.\n",
-          "description-german": "Eine Repr\u00e4sentation von Teilen oder des gesamten interaktiven Systems, die in einem bestimmten Ma\u00df f\u00fcr Analyse, Design und Evaluierung benutzt werden kann.\n",
+          "description-english": "A representation of all or part of an interactive system that, although limited in some way, can be used for analysis, design and usability evaluation.\n",
+          "description-german": "Eine Repräsentation von Teilen oder des gesamten interaktiven Systems, die in einem bestimmten Maße für Analyse, Design und Usability-Evaluierung benutzt werden kann.\n",
           "term-english": "Prototype",
           "term-german": "Prototyp"
         },
@@ -1851,29 +1876,18 @@ class Game extends Component {
             "Anforderungen",
             "Gestaltung"
           ],
-          "description-english": "A statement of what users must be able to locate, recognize, understand, select or input as part of conducting a task with the interactive system. \n",
-          "description-german": "Eine Beschreibung, was Benutzer w\u00e4hrend der Durchf\u00fchrung einer Aufgabe mit dem interaktiven System finden, erkennen, verstehen, ausw\u00e4hlen oder eingeben m\u00fcssen.\n",
+          "description-english": "A statement of what users must be able to locate, recognise, understand, select or input as part of conducting a task with the interactive system to meet identified user needs in a specified context of use. \n",
+          "description-german": "Eine Aussage darüber, was Benutzer im Rahmen der Durchführung einer Aufgabe mit dem interaktiven System feststellen, erkennen, verstehen, auswählen oder eingeben müssen, um den identifizierten Erfordernissen des Nutzungskontextes zu genügen.\n",
           "term-english": "Qualitative user requirement",
           "term-german": "Qualitative Nutzungsanforderung"
-        },
-        {
-          "categories": [
-            "Planung",
-            "Anforderungen",
-            "Evaluierung"
-          ],
-          "description-english": "The degree to which the interactive system fulfils requirements.\n",
-          "description-german": "Grad der Erf\u00fcllung von Anforderungen durch ein interaktives System.\n",
-          "term-english": "Quality",
-          "term-german": "Qualit\u00e4t"
         },
         {
           "categories": [
             "Anforderungen",
             "Gestaltung"
           ],
-          "description-english": "Required level of usability to meet identified user needs expressed in terms of measures of effectiveness, efficiency and satisfaction in a specified context of use.\n",
-          "description-german": "Ben\u00f6tigtes Ma\u00df an Usability um identifizierten Erfordernissen zu gen\u00fcgen im Sinne der Effektivit\u00e4t, Effizienz und Zufriedenstellung in einem festgelegten Nutzungskontext.\n",
+          "description-english": "A required level of usability to meet identified user needs expressed in terms of measures of effectiveness, efficiency, satisfaction, accessibility, user experience and avoidance of harm from use in a specified context of use. \n",
+          "description-german": "Ein erforderliches Maß an Usability, um die identifizierten Erfordernisse in einem bestimmten Nutzungskontext zu erfüllen, ausgedrückt in Maßen der Effektivität, der Effizienz, der Zufriedenstellung, der Barrierefreiheit, der User Experience und der Vermeidung von Schäden durch die Benutzung.\n",
           "term-english": "Quantitative user requirement",
           "term-german": "Quantitative Nutzungsanforderung"
         },
@@ -1882,28 +1896,18 @@ class Game extends Component {
             "Planung",
             "Test"
           ],
-          "description-english": "A process for selecting candidates that have the required qualifications to participate in a human-centred activity such as a focus group, contextual interview, or usability test.\n",
-          "description-german": "Akquise von Benutzern, die die erforderlichen Qualifikationen haben, an einer menschzentrierten Aktivit\u00e4t wie z.B. einem Usability-Test, einem kontextuellen Interview oder einer Fokusgruppe teilzunehmen.\n",
+          "description-english": "A process for selecting candidates that have the appropriate characteristics to participate in a human-centred activity such as a focus group, contextual interview, or usability test.\n",
+          "description-german": "Ein Verfahren zur Auswahl von Kandidaten, die die erforderlichen Merkmale haben, an einer menschzentrierten Aktivität, wie z.B. einer Fokusgruppe, einem kontextuellen Interview oder einem Usability-Test, teilzunehmen. \n",
           "term-english": "Recruiting",
           "term-german": "Rekrutierung"
-        },
-        {
-          "categories": [
-            "Evaluierung",
-            "Test"
-          ],
-          "description-english": "A series of questions for prospective participants to identify whether they represent the intended users and therefore qualify to participate in a human-centred activity, for example a usability test or a focus group.\n",
-          "description-german": "Eine Reihe von Fragen f\u00fcr potenzielle Teilnehmer hinsichtlich ihrer Qualifikationen zur Teilnahme an einer menschzentrierten Aktivit\u00e4t wie z.B. einem Usability-Test oder einer Fokusgruppe.\n",
-          "term-english": "Recruitment screener",
-          "term-german": "Rekrutierungsfragebogen"
         },
         {
           "categories": [
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A usability test where the usability test participant and the moderator are in different physical locations. \n",
-          "description-german": "Ein Usability-Test bei dem sich der Usability-Testteilnehmer und der Moderator an unterschiedlichen Orten befinden \n(\u201eRemote\u201c bedeutet hier \u201eentfernt liegend\u201c). \n",
+          "description-english": "A usability test where the usability test participant and the Moderator are in different physical locations.\n",
+          "description-german": "Ein Usability-Test bei dem sich der Usability-Testteilnehmer und der Moderator an unterschiedlichen Orten befinden.\n",
           "term-english": "Remote usability test",
           "term-german": "Remote Usability-Test"
         },
@@ -1911,47 +1915,37 @@ class Game extends Component {
           "categories": [
             "System"
           ],
-          "description-english": "All means required to use an interactive system.\n",
-          "description-german": "Alle Mittel die zur Nutzung eines interaktiven Systems notwendig sind. \n",
-          "term-english": "Resources",
+          "description-english": "All means required to use an Interactive system.\n",
+          "description-german": "Alle Mittel die zur Nutzung eines interaktiven Systems notwendig sind.\n",
+          "term-english": "Resource",
           "term-german": "Ressourcen"
-        },
-        {
-          "categories": [
-            "Anforderungen",
-            "Rollen"
-          ],
-          "description-english": "A duty or function that a person carries out within an organization.\n",
-          "description-german": "Eine Funktion die eine Person innerhalb der Struktur einer Organisation inne hat.\n",
-          "term-english": "Role",
-          "term-german": "Rolle"
         },
         {
           "categories": [
             "Rollen",
             "Planung"
           ],
-          "description-english": "A person who interacts with an interactive system to support\u00a0the use of the system or\u00a0maintain the system.\n",
-          "description-german": "Eine Person, die mit einem interaktiven System interagiert, um die Nutzung des Systems zu unterst\u00fctzen oder das System zu warten.\n",
+          "description-english": "A user who carries out support tasks with the interactive system, for example to maintain it or to train primary users.\n",
+          "description-german": "Ein Benutzer, der unterstützende Aufgaben mit dem interaktiven System ausführt, beispielsweise um es zu pflegen oder um primäre Benutzer zu schulen.\n",
           "term-english": "Secondary user",
-          "term-german": "Sekund\u00e4rer Benutzer"
+          "term-german": "Sekundärer Benutzer"
         },
         {
           "categories": [
             "Gestaltung",
             "Prinzipien"
           ],
-          "description-english": "The property of a dialogue to, at any time, make it obvious to the users which dialogue they are in, where they are within the dialogue, which actions can be taken, and how they can be performed.\n",
-          "description-german": "Die Eigenschaft eines Dialogs zu jeder Zeit dem Benutzer offensichtlich zu machen, in welchem Dialog, an welcher Stelle im Dialog er sich befindet, welche Handlungen unternommen werden k\u00f6nnen und wie diese ausgef\u00fchrt werden k\u00f6nnen.\n",
+          "description-english": "The property of a Dialogue to, at any time, make it obvious to the users which dialogue they are in, where they are within the dialogue, which actions can be taken, and how they can be performed.\n",
+          "description-german": "Die Eigenschaft eines Dialogs zu jeder Zeit dem Benutzer offensichtlich zu machen, in welchem Dialog, an welcher Stelle im Dialog er sich befindet, welche Handlungen unternommen werden können und wie diese ausgeführt werden können.\n",
           "term-english": "Self-descriptiveness",
-          "term-german": "Selbstbeschreibungsf\u00e4higkeit"
+          "term-german": "Selbstbeschreibungsfähigkeit"
         },
         {
           "categories": [
             "Gestaltung",
             "Prinzipien"
           ],
-          "description-english": "The ability of a user to initiate and control the direction and pace of the interaction until the point at which the goal has been met.\n",
+          "description-english": "The ability of a User to initiate and control the direction and pace of the interaction until the point at which the Goal has been met.\n",
           "description-german": "Der Benutzer ist in der Lage einen Dialogablauf zu starten sowie seine Richtung und Geschwindigkeit zu beeinflussen, bis das Ziel erreicht ist.\n",
           "term-english": "Controllability",
           "term-german": "Steuerbarkeit"
@@ -1960,7 +1954,7 @@ class Game extends Component {
           "categories": [
             "Planung"
           ],
-          "description-english": "A sequence of visual frames illustrating the interplay between a user and an envisioned interactive system. \n",
+          "description-english": "A sequence of visual frames illustrating the interplay between a User and an envisioned interactive system. \n",
           "description-german": "Eine Folge visueller Bildschirminhalte, die das Zusammenspiel zwischen einem Benutzer und einem vorgestellten interaktiven System darstellt. \n",
           "term-english": "Storyboard",
           "term-german": "Storyboard"
@@ -1970,58 +1964,30 @@ class Game extends Component {
             "Gestaltung",
             "Prinzipien"
           ],
-          "description-english": "A collection of user interface guidelines used to ensure consistency in the appearance and behaviour of the user interface of the interactive systems produced by an organization \n",
-          "description-german": "Eine Sammlung von Gestaltungsregeln die verwendet wird, um die grunds\u00e4tzliche Erscheinung der Benutzungsschnittstelle auf jeglicher Software einer Organisation festzulegen.\n",
-          "term-english": "Styleguide",
-          "term-german": "Styleguide"
+          "description-english": "A collection of user interface guidelines used to ensure consistency in the appearance and behaviour of user interfaces across interactive systems produced by the same organisation\n",
+          "description-german": "Eine Sammlung von Gestaltungsregeln, die verwendet wird, um Konsistenz in der Erscheinung und im Verhalten von Benutzungsschnittstellen von interaktiven Systemen zu gewährleisten, die von derselben Organisation erstellt werden.\n",
+          "term-english": "Style guide",
+          "term-german": "Style Guide"
         },
         {
           "categories": [
             "Evaluierung",
             "Test"
           ],
-          "description-english": "A question in an interview that signals a preference for certain possibilities, or attempts to direct the reply in a certain direction. \n",
-          "description-german": "Eine Frage in einem Interview, die eine Pr\u00e4ferenz f\u00fcr bestimmte Antwortm\u00f6glichkeiten vorgibt oder versucht, die Antwort in eine bestimmte Richtung zu lenken. \n",
+          "description-english": "A question in an Interview that signals a preference for certain possibilities, or attempts to direct the reply in a certain direction. \n",
+          "description-german": "Eine Frage in einem Interview, die eine Präferenz für bestimmte Antwortmöglichkeiten vorgibt oder versucht, die Antwort in eine bestimmte Richtung zu lenken.\n",
           "term-english": "Leading question",
           "term-german": "Suggestionsfrage"
-        },
-        {
-          "categories": [
-            "Evaluierung"
-          ],
-          "description-english": "A type of usability evaluation designed and used to gather conclusions about the merit or worth of an interactive system, especially when a substantial part of it has completed design.\n",
-          "description-german": "Eine Usabilityevaluierung, die darauf ausgerichtet ist, Schlussfolgerungen zur Qualit\u00e4t eines interaktiven Systems aus Sicht der Usability zu ziehen, insbesondere wenn ein wesentlicher Teil der Entwicklung fertig ist.  \n",
-          "term-english": "Summative usability evaluation",
-          "term-german": "Summative Usability-Evaluierung"
-        },
-        {
-          "categories": [
-            "Prinzipien",
-            "Implementierung"
-          ],
-          "description-english": "Explicit information about an event or a condition from an interactive system to a user.\n",
-          "description-german": "Explizite Information \u00fcber ein Ereignis oder einen Zustand vom interaktiven System an den Benutzer. \n",
-          "term-english": "System-initiated guidance",
-          "term-german": "Systeminitiierte Benutzerf\u00fchrung"
         },
         {
           "categories": [
             "Planung",
             "System"
           ],
-          "description-english": "The physical, social and technical conditions in which a user interacts with an interactive system.\n",
-          "description-german": "Die Gesamtheit der gegebenen Umst\u00e4nde oder Bedingungen, in denen ein Benutzer arbeitet. Diese umfassen die physische, soziale und technische xxx.\n",
+          "description-english": "The physical, social and technical conditions in which a User interacts with an Interactive system.\n",
+          "description-german": "Die physischen, sozialen und technischen Bedingungen, unter denen ein Benutzer mit einem interaktiven System interagiert.\n",
           "term-english": "Environment",
           "term-german": "Umgebung"
-        },
-        {
-          "categories": [
-            "Test"
-          ],
-          "description-english": "A usability test where usability test participants solve usability test tasks without being observed. \n",
-          "description-german": "Ein Usability-Test bei dem Usability-Testteilnehmer Usability-Testaufgaben l\u00f6sen ohne dabei beobachtet zu werden. \n",
-          "term-english": "Unattended usability test",
-          "term-german": "Unbeaufsichtigter Usability-Test"
         },
         {
           "categories": [
@@ -2029,28 +1995,10 @@ class Game extends Component {
             "Anforderungen",
             "Prinzipien"
           ],
-          "description-english": "Extent to which an interactive system can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use.\n",
-          "description-german": "Ausma\u00df, in dem ein interaktives System durch bestimmte Benutzer in einem bestimmten Nutzungskontext genutzt werden kann, um festgelegte Ziele effektiv, effizient und zufriedenstellend zu erreichen.\n",
+          "description-english": "Extent to which an Interactive system can be used by specified users to achieve specified goals with Effectiveness, Efficiency and Satisfaction in a specified Context of use.\n",
+          "description-german": "Das Ausmaß, in dem ein interaktives System von bestimmten Benutzern benutzt werden kann, um in einem bestimmten Nutzungskontext bestimmte Ziele effektiv, effizient und zufriedenstellend zu erreichen.\n",
           "term-english": "Usability",
           "term-german": "Usability"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who manages a human-centred design process.\n",
-          "description-german": "Eine Person die in einer Querschnittsfunktion verantwortlich einen menschzentrierten Gestaltungsprozess betreut. \n",
-          "term-english": "Usability engineer",
-          "term-german": "Usability Engineer"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A professional who has one or more of the following process roles: \n1.\tUsability engineer, \n2.\tUser requirements engineer, \n3.\tUsability tester,\n4.\tInformation architect,\n5.\tInteraction designer,\n6.\tUser interface designer.",
-          "description-german": "Eine Person die eine oder mehrere der folgenden Rollen hat: \n1.\tUsability Engineer, \n2.\tUser Requirements Engineer, \n3.\tUsability-Tester,\n4.\tInformationsarchitect,\n5.\tInteraktionsdesigner,\n6.\tUser Interface Designer.",
-          "term-english": "Usability professional",
-          "term-german": "Usability Professional"
         },
         {
           "categories": [
@@ -2058,8 +2006,8 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "A process through which information about the usability of an interactive system is gathered in order to improve the interactive system (known as formative xxx) or to assess the merit or worth of an interactive system (known as summative xxx). \n",
-          "description-german": "Ein Prozess der Informationen \u00fcber die Usability eines interaktiven Systems sammelt um das interaktive System zu verbessern (formative xxx) oder um das interaktive System zu bewerten (summative xxx). \n",
+          "description-english": "A process through which information about the Usability of an Interactive system is gathered in order to improve the interactive system (known as formative usability evaluation) or to assess the merit or worth of an Interactive system (known as aummative usability evaluation).\n",
+          "description-german": "Ein Prozess der Informationen über die Usability eines interaktiven Systems sammelt um das interaktive System zu verbessern (Formative Usability-Evaluierung) oder um das interaktive System zu bewerten (Summative Usability-Evaluierung).\n",
           "term-english": "Usability evaluation",
           "term-german": "Usability-Evaluierung"
         },
@@ -2068,8 +2016,8 @@ class Game extends Component {
             "System",
             "Planung"
           ],
-          "description-english": "Two or more rooms that are specially equipped for usability testing or focus groups. \n",
-          "description-german": "Zwei oder mehrere R\u00e4ume, die speziell f\u00fcr die Durchf\u00fchrung von Usabiltytests oder Fokusgruppen ausgestattet sind. \n",
+          "description-english": "Two or more rooms that are specially equipped for Usability tests or focus groups. \n",
+          "description-german": "Zwei oder mehrere Räume, die speziell für die Durchführung von Usabilty-Tests oder Fokusgruppen ausgestattet sind.  \n",
           "term-english": "Usability lab",
           "term-german": "Usability-Labor"
         },
@@ -2077,18 +2025,27 @@ class Game extends Component {
           "categories": [
             "Evaluierung"
           ],
-          "description-english": "A difficulty in using the user interface design that affects the ability of the user to achieve their goals effectively, or efficiently, or with satisfaction. \n",
-          "description-german": "Ein Problem in der Benutzung der Benutzungsschnittstelle, das sich auf die Zufriedenstellung des Benutzers sowie die Effektivit\u00e4t und Effizienz des interaktiven Systems auswirkt. \n",
+          "description-english": "A difficulty in using the user interface that affects the ability of the user to achieve their goals effectively, or efficiently, or with satisfaction.\n",
+          "description-german": "Ein Problem in der Benutzung der Benutzungsschnittstelle, das sich auf die Fähigkeit des Benutzers auswirkt, seine Ziele effektiv oder effizient oder zufriedenstellend zu erreichen.\n",
           "term-english": "Usability problem",
           "term-german": "Usability-Problem"
+        },
+        {
+          "categories": [
+            "Evaluierung"
+          ],
+          "description-english": "A measure given to a usability finding from a usability test to indicate the impact and criticality on the user experience and the consequences.\n",
+          "description-german": "Ein Maß für einen Usability-Befund aus einem Usability-Test, um Hinweise hinsichtlich der Auswirkungen des Befundes auf die User Experience, der Kritikalität sowie der Konsequenzen zu geben.\n",
+          "term-english": "Rating",
+          "term-german": "Bewertung"
         },
         {
           "categories": [
             "Test",
             "Evaluierung"
           ],
-          "description-english": "A usability evaluation that involves representative users performing specific tasks with the interactive system to enable identification of usability problems or the measurement of effectiveness, efficiency, and user satisfaction.\n",
-          "description-german": "Eine Usability-Evaluierung bei der repr\u00e4sentative Benutzer bestimmte Aufgaben mit dem interaktiven System ausf\u00fchren, um Usability-Probleme oder die Messwerte f\u00fcr Effektivit\u00e4t, Effizienz und Zufriedenstellung zu erfassen. \n",
+          "description-english": "A usability evaluation that involves representative users performing specific tasks with the interactive system to enable identification and analysis of usability problems, or the measurement of effectiveness, efficiency, and user satisfaction.\n",
+          "description-german": "Eine Usability-Evaluierung, bei der repräsentative Benutzer bestimmte Aufgaben mit dem interaktiven System ausführen, um Usability-Probleme zu erfassen oder die Messung von Effektivität, Effizienz und Zufriedenstellung zu ermöglichen.\n",
           "term-english": "Usability test",
           "term-german": "Usability-Test"
         },
@@ -2096,8 +2053,8 @@ class Game extends Component {
           "categories": [
             "Test"
           ],
-          "description-english": "A description of a task that a moderator asks a usability test participant to carry out during a usability test. ",
-          "description-german": "Eine Beschreibung einer typischen Aufgabe, die ein Moderator einem Usability-Testteilnehmer w\u00e4hrend eines Usability-Tests stellt. ",
+          "description-english": "A description of a task that a moderator asks a usability test participant to carry out during a usability test.",
+          "description-german": "Eine Beschreibung einer Aufgabe, die ein Moderator einem Usability-Testteilnehmer während eines Usability-Tests stellt. ",
           "term-english": "Usability test task",
           "term-german": "Usability-Testaufgabe"
         },
@@ -2110,15 +2067,6 @@ class Game extends Component {
           "description-german": "Ein Dokument, das die Ergebnisse eines Usability-Tests beschreibt. \n",
           "term-english": "Usability test report",
           "term-german": "Usability-Testbericht"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who evaluates user interfaces in various stages of realization. \n",
-          "description-german": "Eine Person die Benutzungsschnittstellen in verschiedenen Stadien der Realisierung evaluiert. \n",
-          "term-english": "Usability tester",
-          "term-german": "Usability-Tester"
         },
         {
           "categories": [
@@ -2135,8 +2083,8 @@ class Game extends Component {
             "Gestaltung",
             "Test"
           ],
-          "description-english": "A part of a usability test where one usability test participant carries out representative usability test tasks using the interactive system or a prototype of the interactive system.\n",
-          "description-german": "Der Teil eines Usability-Tests, bei dem ein bestimmter Usability-Testteilnehmer repr\u00e4sentative Usability-Testaufgaben unter Benutzung des interaktiven Systems oder des Prototypen eines interaktiven Systems l\u00f6st.\n",
+          "description-english": "A part of a Usability test where one usability test participant carries out representative Usability test tasks using the Interactive system or a Prototype of the interactive system.\n",
+          "description-german": "Der Teil eines Usability-Tests, bei dem ein bestimmter Usability-Testteilnehmer repräsentative Usability-Testaufgaben unter Benutzung des interaktiven Systems oder des Prototypen eines interaktiven Systems löst.\n",
           "term-english": "Usability test session",
           "term-german": "Usability-Testsitzung"
         },
@@ -2146,7 +2094,7 @@ class Game extends Component {
             "Evaluierung"
           ],
           "description-english": "A checklist used by a moderator in a usability test to keep track of briefing and pre-session interview questions, usability test tasks, and post-session interview questions.",
-          "description-german": "Eine von einem Moderator in einem Usability-Test verwendete Checkliste, um den \u00dcberblick \u00fcber die Fragen des Briefings und des Pre-Session Interviews, die Usability-Testaufgaben und die Fragen des Post-Session Interviews zu behalten.",
+          "description-german": "Eine von einem Moderator in einem Usability-Test verwendete Checkliste, um den Überblick über die Fragen des Briefings und des Pre-Session Interviews, die Usability-Testaufgaben und die Fragen des Post-Session Interviews zu behalten.",
           "term-english": "Usability test script",
           "term-german": "Usability-Testskript"
         },
@@ -2155,35 +2103,18 @@ class Game extends Component {
             "Rollen",
             "Test"
           ],
-          "description-english": "A representative user who solves typical tasks in a usability test.",
-          "description-german": "Repr\u00e4sentativer Benutzer, der typische Aufgaben in einem Usability-Test l\u00f6st.",
+          "description-english": "A representative user who carries out usability test tasks in a usability test session.",
+          "description-german": "in repräsentativer Benutzer, der Usability-Testaufgaben in einer Usability-Testsitzung ausführt.",
           "term-english": "Usability test participant",
           "term-german": "Usability-Testteilnehmer"
         },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who creates interactive prototypes and implements the dialogue and user experience based on the design created by the interaction designer and the scenarios created by the user requirements engineer. The xxx also creates interactive prototypes.\n",
-          "description-german": "Eine Person die den Dialog und das Benutzererlebnis basierend auf dem Design des  Interaktions\u00addesigners und den Nutzungsszenarios des User Requirements Engineers implementiert. Der xxx erzeugt ausserdem interaktive Prototypen.\n",
-          "term-english": "User interface designer",
-          "term-german": "User Interface Designer"
-        },
-        {
-          "categories": [
-            "Rollen"
-          ],
-          "description-english": "A person who identifies and describes the actual or intended context of use of users, and derives the user requirements and related organizational requirements, which need to be realized for a specific project. \n",
-          "description-german": "Eine Person die den tats\u00e4chlichen oder geplanten Nutzungskontext von Benutzern identifiziert und beschreibt. Daraus leitet der xxx die Nutzungsanforderungen und damit verbundene organisatorische Anforderungen ab, die f\u00fcr ein bestimmtes Projekt umgesetzt werden m\u00fcssen. \n",
-          "term-english": "User requirements engineer",
-          "term-german": "User Requirements Engineer"
-        },
+ 
         {
           "categories": [
             "Planung"
           ],
-          "description-english": "A form of low-fidelity prototype consisting of schematic diagrams typically comprised of lines, rectangular boxes and text that represent the intended interaction design and navigational flow.\n",
-          "description-german": "Eine Form des Low-fidelity-Prototyps bestehend aus schematischen Diagrammen, typischerweise dargestellt mit Linien, rechteckigen K\u00e4sten und Text der das Interaktionsdesign und den Navigationsfluss repr\u00e4sentiert.\n",
+          "description-english": "A screen or page in a low-fidelity prototype for a graphical user interface comprised of lines, rectangular boxes and text that represent the intended interaction design.\n",
+          "description-german": "Ein Screen oder eine Seite in einem Low-Fidelity-Prototyp für eine grafische Benutzungsschnittstelle, bestehend aus Linien, rechteckigen Kästen und Text, der das zukünftige Interaktionsdesign repräsentiert.\n",
           "term-english": "Wireframe",
           "term-german": "Wireframe"
         },
@@ -2192,12 +2123,13 @@ class Game extends Component {
             "Evaluierung",
             "Prinzipien"
           ],
-          "description-english": "Freedom from discomfort, and positive attitudes towards the use of the product\n",
-          "description-german": "Freiheit von Beeintr\u00e4chtigung und positive Grundeinstellung zur Nutzung des Produkts\n",
+          "description-english": "The extent to which the user’s physical, cognitive and emotional responses that result from the use of an interactive system meet the user’s needs and expectations.\n",
+          "description-german": "Das Ausmaß, in dem die physischen, kognitiven und emotionalen Reaktionen des Benutzers, die sich aus der Benutzung eines interaktiven Systems ergeben, die Bedürfnisse und Erwartungen des Benutzers erfüllen.\n",
           "term-english": "Satisfaction",
           "term-german": "Zufriedenstellung"
         }
       ]
+      
      
   }
   //const store = require('../store')
@@ -2206,107 +2138,17 @@ class Game extends Component {
 
 
 }
-glossary(){
-  this.props.history.push('/');
-}
-   game(){
-    this.props.history.push('/game');
-  }
-   hallOfFame(){
-    this.props.history.push('/hallOfFame');
-   }
-getMinutes(){
-  return Math.floor(this.state.seconds/60);
-}
-getSeconds(){
-  return('0'+this.state.seconds%60).slice(-2);
-}
-generateQuestion(){
-  var item=this.state.questionsItems.splice(Math.floor(Math.random()*this.state.questionsItems.length), 1);
-  var shuffle = require('shuffle-array'),
-    collection = this.state.choicesItems;
-  shuffle(collection);
-
-  var shuffle2 = require('shuffle-array'),
-    choicesCopy=[item[0]["term-english"],collection[0]["term-english"],collection[10]["term-english"],collection[20]["term-english"]];
-  shuffle2(choicesCopy);
-  this.setState({
-    choices:choicesCopy,
-    currentQuestion:item[0],
-    correctAnswer:item[0]["term-english"],
-    newQuestion:false
-    
-  })
-console.log(item[0]["term-english"]);  
-
-}
- sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
-checkAnswer(item){
-  if(item===this.state.correctAnswer){
-    this.setState(prevState=>({
-      grade:prevState.grade+1
-    })
-    );
-  }
-  else{
-  //  alert("GAME OVER !");
-    document.getElementById(item).className = "btn btn-danger";
-    localStorage.setItem("grade", JSON.stringify(this.state.grade));
-    localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
-  }
-  this.setState({
-    choosedAnswer:item,
-    toggle:true
-  });
-  document.getElementById(this.state.correctAnswer).className = "btn btn-success";
-
-}
-toggle(){
-  document.getElementById(this.state.correctAnswer).className = "btn btn-primary";
-  document.getElementById(this.state.choosedAnswer).className = "btn btn-primary";
-  this.setState({
-    toggle:false,
-    newQuestion:true
-  })
-}
-render(){
-
-    return(
-      <div>
-        
-        <ButtonAppBar
-           glossary={()=>this.glossary()}
-           game={()=>this.game()}
-          hallOfFame={()=>this.hallOfFame()}
-        />
-        <div className="container">
-          <div className="row">
-            <div className={classNames("col-sm-10","col-xs-10","col-md-10","col-lg-10")} >
-              <p className="question" style={{fontFamily:"courier"}}>{this.state.currentQuestion["description-english"]}</p>
-              { this.state.choices.map((item)=> (                  
-                <button onClick={() => this.checkAnswer(item)}  id={item} style={{marginTop:"3%",marginLeft:"8%"}}  type="button" className="btn btn-primary">{item}</button>
-                ))
-              }         
-            </div>
-            <div className={classNames("col-sm-2","col-xs-2","col-md-2","col-lg-2")} >
-              <h5 style={{marginTop:"9%",marginLeft:"10%"}} >{this.state.grade} | 110   &nbsp;&nbsp; {this.getMinutes()}:{this.getSeconds()}</h5>
-            </div>
-          </div>
-        </div>
-          
-      </div>
-    )
-}
+//Here I generate the first question then the generating in componentdid mount
+/* removing this will raise an error */
 componentWillMount(){
+  console.log(localStorage.getItem( "english" ));
+ // alert(this.state.questionsItems.length);
   this.generateQuestion();
 }
+
+//here I generate the timer and always check to toggel the colors of the button according to the choosen solution
+/* this could be used in different ways */
+/* It seems that there are useless coniditions here. But take care, all of them are important and removing any of them would raise logical erros */
 componentDidMount(){
 
   this.myInterval=setInterval(()=>{
@@ -2321,8 +2163,9 @@ componentDidMount(){
         this.setState({
           newQuestion:false
         })
-      this.props.history.push('/hallOfFame')
-      }}
+      this.props.history.push('/hallOfFame');
+     }
+    }
 
     this.setState(prevState =>(({
       seconds:prevState.seconds+1
@@ -2330,6 +2173,158 @@ componentDidMount(){
     )
   },1000) 
 }
+glossary(){
+  this.props.history.push('/');
+}
+game(){
+    this.props.history.push('/game');
+}
+hallOfFame(){
+    this.props.history.push('/hallOfFame');
+}
+// Used to simulate the timer
+getMinutes(){
+  return Math.floor(this.state.seconds/60);
+}
+getSeconds(){
+  return('0'+this.state.seconds%60).slice(-2);
+}
+generateQuestion(){
+  //here I pick random element from the array poping it and returning it
+  var rightAnswer=this.state.questionsItems.splice(Math.floor(Math.random()*this.state.questionsItems.length), 1);
+  //here i shuffle the array of terms to get 3 different choices besside the right choice
+  var shuffle = require('shuffle-array'),
+    collection = this.state.choicesItems;
+  shuffle(collection);
+  var rightCategory = rightAnswer[0]["categories"];
+  var englishChoices=[];
+  var germanChoices=[];
+  //here i select choices from the same category
+  for(var i=0;i<collection.length;i++){
+    for(var j=0;j<rightCategory.length;j++){
+      if(collection[i]["categories"].includes(rightCategory[j])&&englishChoices.length<3){
+      englishChoices.push(collection[i]["term-english"]);
+      germanChoices.push(collection[i]["term-german"]);}
+      if(englishChoices.length===3)
+        break;
+    }
+    if(englishChoices.length===3)
+      break;
+  }
+  englishChoices.push(rightAnswer[0]["term-english"]);
+  germanChoices.push(rightAnswer[0]["term-german"]);
+  var shuffle2 = require('shuffle-array'),
+    englishChoicesCopy=englishChoices;
+  shuffle2(englishChoicesCopy);
+  var shuffle3 = require('shuffle-array'),
+  germanChoicesCopy=germanChoices;
+shuffle3(germanChoicesCopy);
+  this.setState({
+    englishChoices:englishChoicesCopy,
+    germanChoices:germanChoicesCopy,
+    currentQuestion:rightAnswer[0],
+    correctAnswer:rightAnswer[0]["term-english"],
+    newQuestion:false
+    
+  });
+console.log(rightAnswer[0]["term-english"]);  
+
+}
+ sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+/* this method checks the user's answe and accordingly updates the colors of the buttons, then
+ calling toggel to bring the buttons back to there initial state*/
+checkAnswer(item){
+  if(item===this.state.correctAnswer){
+    this.setState(prevState=>({
+      grade:prevState.grade+1
+    })
+    );
+    if(this.state.questionsItems.length===0){
+      alert("WELL DONE!");
+      localStorage.setItem("grade", JSON.stringify(this.state.grade));
+      localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
+      this.props.history.push('/hallOfFame');
+    }
+
+  }
+  else{
+  //  alert("GAME OVER !");
+    document.getElementById(item).className = "btn btn-danger";
+    localStorage.setItem("grade", JSON.stringify(this.state.grade));
+    localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
+  }
+  this.setState({
+    choosedAnswer:item,
+    toggle:true
+  });
+  document.getElementById(this.state.correctAnswer).className = "btn btn-success";
+
+}
+//This method just brink the buttons back to their initaial color after checking the result
+toggle(){
+  document.getElementById(this.state.correctAnswer).className = "btn btn-primary";
+  document.getElementById(this.state.choosedAnswer).className = "btn btn-primary";
+  this.setState({
+    toggle:false,
+    newQuestion:true
+  })
+}
+changeToEnglish(){
+  localStorage.setItem("english", true);
+  this.setState({
+    English:true
+  })
+}
+changeToGerman(){
+  localStorage.setItem("english", false);
+  this.setState({
+    English:false
+  })
+}
+render(){
+
+    return(
+      <div>
+        
+        <ButtonAppBar
+           glossary={()=>this.glossary()}
+           game={()=>this.game()}
+          hallOfFame={()=>this.hallOfFame()}
+          English={this.state.English}
+          changeToEnglish={()=>this.changeToEnglish()}
+          changeToGerman={()=>this.changeToGerman()}
+        />
+        <div className="container">
+          <div className="row">
+            <div className={classNames("col-sm-10","col-xs-10","col-md-10","col-lg-10")} >
+              <p className="question" style={{fontFamily:"courier"}}>{this.state.English?this.state.currentQuestion["description-english"]:this.state.currentQuestion["description-german"]}</p>
+              
+              {this.state.English? this.state.englishChoices.map((item)=> (                  
+                <button onClick={() => this.checkAnswer(item)}  id={item} style={{marginTop:"3%",marginLeft:"8%"}}  type="button" className="btn btn-primary">{item}</button>
+                ))
+                :
+                this.state.germanChoices.map((item)=> (                  
+                  <button onClick={() => this.checkAnswer(item)}  id={item} style={{marginTop:"3%",marginLeft:"8%"}}  type="button" className="btn btn-primary">{item}</button>
+                  ))
+              }         
+            </div>
+            <div className={classNames("col-sm-2","col-xs-2","col-md-2","col-lg-2")} >
+              <h5 style={{marginTop:"9%",marginLeft:"10%"}} >{this.state.grade} | 105   &nbsp;&nbsp; {this.getMinutes()}:{this.getSeconds()}</h5>
+            </div>
+          </div>
+        </div>
+          
+      </div>
+    )
+}
+
 }
 
  export default Game;
