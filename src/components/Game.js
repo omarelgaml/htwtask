@@ -2190,6 +2190,12 @@ getSeconds(){
   return('0'+this.state.seconds%60).slice(-2);
 }
 generateQuestion(){
+  if(this.state.questionsItems.length===0){
+    alert("WELL DONE!");
+    localStorage.setItem("grade", JSON.stringify(this.state.grade));
+    localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
+    this.props.history.push('/hallOfFame');
+  }
   //here I pick random element from the array poping it and returning it
   var rightAnswer=this.state.questionsItems.splice(Math.floor(Math.random()*this.state.questionsItems.length), 1);
   //here i shuffle the array of terms to get 3 different choices besside the right choice
@@ -2202,9 +2208,11 @@ generateQuestion(){
   //here i select choices from the same category
   for(var i=0;i<collection.length;i++){
     for(var j=0;j<rightCategory.length;j++){
-      if(collection[i]["categories"].includes(rightCategory[j])&&englishChoices.length<3){
+      if(collection[i]["categories"].includes(rightCategory[j])&&englishChoices.length<3
+      &&!englishChoices.includes(collection[i]["term-english"])&&collection[i]["term-english"]!==rightAnswer["term-english"]){
       englishChoices.push(collection[i]["term-english"]);
-      germanChoices.push(collection[i]["term-german"]);}
+      germanChoices.push(collection[i]["term-german"]);
+      }
       if(englishChoices.length===3)
         break;
     }
@@ -2213,6 +2221,7 @@ generateQuestion(){
   }
   englishChoices.push(rightAnswer[0]["term-english"]);
   germanChoices.push(rightAnswer[0]["term-german"]);
+  
   var shuffle2 = require('shuffle-array'),
     englishChoicesCopy=englishChoices;
   shuffle2(englishChoicesCopy);
@@ -2246,12 +2255,7 @@ checkAnswer(item){
       grade:prevState.grade+1
     })
     );
-    if(this.state.questionsItems.length===0){
-      alert("WELL DONE!");
-      localStorage.setItem("grade", JSON.stringify(this.state.grade));
-      localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
-      this.props.history.push('/hallOfFame');
-    }
+
 
   }
   else{
