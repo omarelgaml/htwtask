@@ -3,7 +3,14 @@ import '../App.css';
 import classNames from 'classnames';
 import 'bootstrap/dist/css/bootstrap.css';
 import ButtonAppBar from './ButtonAppBar';
-import { debug } from 'util';
+import axios from 'axios'; 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+//import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 class Game extends Component {
   constructor(props){
      
@@ -1072,11 +1079,14 @@ class Game extends Component {
       englishChoices:[],
       germanChoices:[],
       currentQuestion:null,
-      correctAnswer:null,
+      correctAnswerEng:null,
+      correctAnswerGer:null,
       toggle:false,
+      emptyName:false,
       newQuestion:false,
-      English:localStorage.getItem( "english" )===null?true:localStorage.getItem( "english" ),
-      choosedAnswer:null,
+      English:JSON.parse(localStorage.getItem( "english" ))===null?true:JSON.parse(localStorage.getItem( "english" )),
+      choosenAnswer:null,
+      openDialog:false,
       choicesItems:[
         {
           "categories": [
@@ -2141,8 +2151,6 @@ class Game extends Component {
 //Here I generate the first question then the generating in componentdid mount
 /* removing this will raise an error */
 componentWillMount(){
-  console.log(localStorage.getItem( "english" ));
- // alert(this.state.questionsItems.length);
   this.generateQuestion();
 }
 
@@ -2150,20 +2158,19 @@ componentWillMount(){
 /* this could be used in different ways */
 /* It seems that there are useless coniditions here. But take care, all of them are important and removing any of them would raise logical erros */
 componentDidMount(){
-
   this.myInterval=setInterval(()=>{
     if(this.state.toggle===true){
       this.toggle();
     }
-    if(this.state.newQuestion&&(this.state.choosedAnswer===this.state.correctAnswer)){
+    if(this.state.newQuestion&&((this.state.choosenAnswer===this.state.correctAnswerEng)||(this.state.choosenAnswer===this.state.correctAnswerGer))){
         this.generateQuestion();
     }
     else{
       if(this.state.newQuestion){
         this.setState({
-          newQuestion:false
-        })
-      this.props.history.push('/hallOfFame');
+          newQuestion:false,
+          openDialog:true
+        });
      }
     }
 
@@ -2171,7 +2178,18 @@ componentDidMount(){
       seconds:prevState.seconds+1
     })) 
     )
-  },1000) 
+  },1000) ;
+}
+toHHMMSS(time) {
+  var sec_num = parseInt(time, 10); // don't forget the second param
+  var hours   = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+  var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+  if (hours   < 10) {hours   = "0"+hours;}
+  if (minutes < 10) {minutes = "0"+minutes;}
+  if (seconds < 10) {seconds = "0"+seconds;}
+  return hours+':'+minutes+':'+seconds;
 }
 glossary(){
   this.props.history.push('/');
@@ -2182,20 +2200,11 @@ game(){
 hallOfFame(){
     this.props.history.push('/hallOfFame');
 }
-// Used to simulate the timer
-getMinutes(){
-  return Math.floor(this.state.seconds/60);
-}
-getSeconds(){
-  return('0'+this.state.seconds%60).slice(-2);
-}
 generateQuestion(){
   if(this.state.questionsItems.length===0){
-    alert("WELL DONE!");
-    localStorage.setItem("grade", JSON.stringify(this.state.grade));
-    localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
-    this.props.history.push('/hallOfFame');
+    this.setState({openDialog:true});
   }
+  else{
   //here I pick random element from the array poping it and returning it
   var rightAnswer=this.state.questionsItems.splice(Math.floor(Math.random()*this.state.questionsItems.length), 1);
   //here i shuffle the array of terms to get 3 different choices besside the right choice
@@ -2208,8 +2217,7 @@ generateQuestion(){
   //here i select choices from the same category
   for(var i=0;i<collection.length;i++){
     for(var j=0;j<rightCategory.length;j++){
-      if(collection[i]["categories"].includes(rightCategory[j])&&englishChoices.length<3
-      &&!englishChoices.includes(collection[i]["term-english"])&&collection[i]["term-english"]!==rightAnswer["term-english"]){
+      if(collection[i]["categories"].includes(rightCategory[j])&&englishChoices.length<3&&!englishChoices.includes(collection[i]["term-english"])&&collection[i]["term-english"]!==rightAnswer["term-english"]){
       englishChoices.push(collection[i]["term-english"]);
       germanChoices.push(collection[i]["term-german"]);
       }
@@ -2232,12 +2240,13 @@ shuffle3(germanChoicesCopy);
     englishChoices:englishChoicesCopy,
     germanChoices:germanChoicesCopy,
     currentQuestion:rightAnswer[0],
-    correctAnswer:rightAnswer[0]["term-english"],
+    correctAnswerEng:rightAnswer[0]["term-english"],
+    correctAnswerGer:rightAnswer[0]["term-german"],
     newQuestion:false
     
   });
-console.log(rightAnswer[0]["term-english"]);  
-
+  console.log(rightAnswer[0]["term-english"]);  
+  }
 }
  sleep(milliseconds) {
   var start = new Date().getTime();
@@ -2250,54 +2259,79 @@ console.log(rightAnswer[0]["term-english"]);
 /* this method checks the user's answe and accordingly updates the colors of the buttons, then
  calling toggel to bring the buttons back to there initial state*/
 checkAnswer(item){
-  if(item===this.state.correctAnswer){
+  if(this.state.English)
+  document.getElementById(this.state.correctAnswerEng).className = "btn btn-success";
+  else
+  document.getElementById(this.state.correctAnswerGer).className = "btn btn-success";
+  if(item===this.state.correctAnswerEng||item===this.state.correctAnswerGer){
     this.setState(prevState=>({
       grade:prevState.grade+1
     })
     );
-
-
   }
   else{
-  //  alert("GAME OVER !");
     document.getElementById(item).className = "btn btn-danger";
-    localStorage.setItem("grade", JSON.stringify(this.state.grade));
-    localStorage.setItem("time", parseInt(this.getMinutes())*60+parseInt(this.getSeconds()));
   }
   this.setState({
-    choosedAnswer:item,
-    toggle:true
-  });
-  document.getElementById(this.state.correctAnswer).className = "btn btn-success";
-
+    choosenAnswer:item,
+    toggle:true,
+  });  
 }
 //This method just brink the buttons back to their initaial color after checking the result
 toggle(){
-  document.getElementById(this.state.correctAnswer).className = "btn btn-primary";
-  document.getElementById(this.state.choosedAnswer).className = "btn btn-primary";
+  //this.sleep(50);
+  if(this.state.English&&this.state.choosenAnswer!==this.state.correctAnswerEng){
+    this.sleep(500);
+  }
+  if(!this.state.English&&this.state.choosenAnswer!==this.state.correctAnswerGer){
+    this.sleep(500);
+  }
+  if(this.state.English)
+  document.getElementById(this.state.correctAnswerEng).className = "btn btn-primary";
+  else
+  document.getElementById(this.state.correctAnswerGer).className = "btn btn-primary";
+  document.getElementById(this.state.choosenAnswer).className = "btn btn-primary";
   this.setState({
     toggle:false,
     newQuestion:true
-  })
+  });
+
 }
 changeToEnglish(){
-  localStorage.setItem("english", true);
+  localStorage.setItem("english", JSON.stringify(true));
   this.setState({
     English:true
-  })
+  });
 }
 changeToGerman(){
-  localStorage.setItem("english", false);
+  localStorage.setItem("english",JSON.stringify(false));
   this.setState({
     English:false
-  })
+  });
 }
+handleCloseDialog = () => {
+  if(document.getElementById("in").value===""){
+    this.setState({emptyName:true});
+  }
+  else{
+    let record ={
+      name:document.getElementById("in").value,
+      grade: this.state.grade,
+      time:this.toHHMMSS(this.state.seconds),
+      seconds:this.state.seconds
+    };
+    axios.post('http://localhost:4000/records/add',record)
+    .then(res =>{
+      console.log(res.data);
+      this.setState({ openDialog: false});
+      this.props.history.push('/hallOfFame');
+    });
+    }
+};
 render(){
-
     return(
       <div>
-        
-        <ButtonAppBar
+         <ButtonAppBar
            glossary={()=>this.glossary()}
            game={()=>this.game()}
           hallOfFame={()=>this.hallOfFame()}
@@ -2320,11 +2354,33 @@ render(){
               }         
             </div>
             <div className={classNames("col-sm-2","col-xs-2","col-md-2","col-lg-2")} >
-              <h5 style={{marginTop:"9%",marginLeft:"10%"}} >{this.state.grade} | 105   &nbsp;&nbsp; {this.getMinutes()}:{this.getSeconds()}</h5>
+              <h6 style={{marginTop:"9%",marginLeft:"10%"}} >{this.state.grade} | 105   &nbsp; &nbsp; {this.toHHMMSS(this.state.seconds)}</h6>
             </div>
           </div>
         </div>
-          
+        <Dialog
+          open={this.state.openDialog}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Enter you name</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              error={this.state.emptyName}
+              placeholder={this.state.emptyName? "Invalid name":null}
+              margin="dense"
+              id="in"
+              type="text"
+              required={true}
+              fullWidth
+            />
+          </DialogContent>
+            <DialogActions>
+                <Button onClick={this.handleCloseDialog} color="primary">
+                Confirm
+                </Button>
+            </DialogActions>
+        </Dialog>  
       </div>
     )
 }

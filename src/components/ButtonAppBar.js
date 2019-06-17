@@ -53,10 +53,6 @@ class ButtonAppBar extends Component {
             <Button onClick={()=>this.props.game()} color="#777">Quiz</Button>
             <Button onClick={()=>this.props.hallOfFame()} color="#777">Hall of Fame</Button>
         </Typography>
-
-         
-          
-
           <Button onClick={()=>this.props.changeToGerman()} color="#777">{this.props.English?"German":"Deutsch"}</Button>
           <Button onClick={()=>this.props.changeToEnglish()} color="#777">{this.props.English?"English":"Englisch"}</Button>
         </Toolbar>

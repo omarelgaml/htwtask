@@ -2,94 +2,93 @@ import React, { Component } from 'react';
 import '../App.css';
 import ButtonAppBar from './ButtonAppBar'
 import 'bootstrap/dist/css/bootstrap.css';
-import SimpleTable from './SimpleTable';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import axios from 'axios';
+
+const Record= props=>(
+    <tr>
+        <td>{props.record.name}</td>
+        <td>{props.record.grade}</td>
+        <td>{props.record.time}</td>
+    </tr>
+)
+
+
 class HallOfFame extends Component {
     constructor(props){
      
         super(props);
         this.state = {
             ranking:[],
-            rows:[],
-            openDialog:false,
-            name:""
-             }
-        let id = 0;
-        function createData(name, calories, fat) {
-            id += 1;
-            return { id, name, calories, fat};
-          }
-        for(var i=0;i<this.state.ranking.length;i++){
-            this.state.rows.push(createData(this.state.ranking[i]["name"], this.state.ranking[i]["grade"], this.state.ranking[i]["time"]))
-        }
-        if(this.state.ranking.length<10){
-   
-            var rankingCopy=this.state.ranking;
-            var item={"name":this.state.name,"grade":localStorage.getItem( "grade" ),"age":localStorage.getItem( "time" ) }
-            rankingCopy.push(item)
-            this.state.rows.push(createData(this.state.name, 
-             localStorage.getItem( "grade" ) , localStorage.getItem( "time" ) ))
-            this.setState({
-                ranking:rankingCopy
-            })
-        }    
+            English:JSON.parse(localStorage.getItem( "english" ))===null?true:JSON.parse(localStorage.getItem( "english" ))
+             };
 
+    }
+    componentDidMount(){
+        axios.get('http://localhost:4000/records')
+        .then(res=>{
+            res.data.sort(function(a, b){
+                if(a["grade"]===b["grade"]){
+                    return a["seconds"]-b["seconds"]
+                }
+                return b["grade"]-a["grade"]
+            })
+            this.setState({ranking:res.data});
+        })
+        .catch(function(err){
+            console.log(err)
+        });
     }
     glossary(){
         this.props.history.push('/');
+    }
+    game(){
+    this.props.history.push('/game');
+    }
+    hallOfFame(){
+    this.props.history.push('/hallOfFame');
+    }
+    listRanking(){
+        return this.state.ranking.map(function(currentRecord,index){
+            return <Record record={currentRecord} key={index} />;
+        });
+    }
+    changeToEnglish(){
+        localStorage.setItem("english", JSON.stringify(true));
+        this.setState({
+          English:true
+        });
       }
-         game(){
-          this.props.history.push('/game');
-        }
-         hallOfFame(){
-          this.props.history.push('/hallOfFame');
-         }
-    handleClose = () => {
-       
-         this.setState({ openDialog: false,name: document.getElementById("in").value});
-       };
+      changeToGerman(){
+        localStorage.setItem("english",JSON.stringify(false));
+        this.setState({
+          English:false
+        });
+      }
     render(){
-        //console.log(this.rows)
         return(
-            <div>
-         <ButtonAppBar
-       glossary={()=>this.glossary()}
-       game={()=>this.game()}
-       hallOfFame={()=>this.hallOfFame()}
-       />
-                <SimpleTable
-                rows={this.state.rows}
-                />
-                <Dialog
-                 open={this.state.openDialog}
-                aria-labelledby="form-dialog-title"
-                >
-                <DialogTitle id="form-dialog-title">Enter you name</DialogTitle>
-                <DialogContent>
-                <DialogContentText>
-                Congratulation! You are from the top ten
-                </DialogContentText>
-                <TextField
-                autoFocus
-                margin="dense"
-                label="Enter your name"
-                id="in"
-                fullWidth
-                />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={this.handleClose} color="primary">
-                Confirm
-                </Button>
-            </DialogActions>
-            </Dialog>
-        </div>
+            <div>                  
+       <ButtonAppBar
+           glossary={()=>this.glossary()}
+           game={()=>this.game()}
+          hallOfFame={()=>this.hallOfFame()}
+          English={this.state.English}
+          changeToEnglish={()=>this.changeToEnglish()}
+          changeToGerman={()=>this.changeToGerman()}
+        />
+                <table className="table table-striped" style={{marginTop:20}}>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Grade</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.listRanking()}
+                    </tbody>
+                </table>
+
+            </div>
             )
     }
 

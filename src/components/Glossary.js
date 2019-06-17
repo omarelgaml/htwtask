@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import '../App.css';
 import classNames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css';
-import ButtonAppBar from './ButtonAppBar'
+import ButtonAppBar from './ButtonAppBar';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
 class Glossary extends Component {
   
   constructor(props){
@@ -166,7 +169,7 @@ class Glossary extends Component {
             "Gestaltung"
           ],
           "description-english": "<p>A set of activities undertaken in order to achieve a specific <a href=\"#/Goal\">goal</a>.<br />Notes:<br />1.\tMost tasks can be subdivided into subtasks \u2013that is, activities.<br/>2.\tA subtask does not in itself achieve a <a href=\"#/Goal\">goal</a> from the <a href=\"#/User\">user’s</a> point of view but is a necessary decision or action to reach the <a href=\"#/User\">user’s</a> <a href=\"#/Goal\">goals</a>. <br />3.\tMost subtasks lead to choices or inputs of the <a href=\"#/User\">User</a> when using the <a href=\"#/Interactive system\">Interactive system</a>.<br />4.\tSome subtasks can be subdivided into smaller subtasks.<br/>5.\tSubtasks are unsuitable as <a href=\"#/Usability test task\">usability test tasks</a>, because they are very specific.<br />Examples of tasks: <br />1.\tRenting a car is a task. <br />2.\tCancel a car rental reservation is a task. <br />3.\tRegistering on a car rental website is a subtask.<br/>4.\t“Log in to a car rental website” is a subtask.<br/>5.\tThe subtask, “Log in to a car rental website”, can be broken down into smaller subtasks, such as:<br/>a.\tEnter the username;<br/>b.\t Enter the password;<br/>c.\tTick the ‘Remember me’ checkbox.</p>",
-          "description-german": "<p>Eine Menge von Aktivitäten, die unternommen werden, um ein bestimmtes <a href=\"#/Ziel\">Ziel</a> zu erreichen.<br />Anmerkungen:<br />1.\tDie meisten Aufgaben können in Teilaufgaben - also Aktivitäten - unterteilt werden.<br />2.\tMit einer einzelnen Teilaufgabe für sich erreicht man aus Sicht des <a href=\"#/Benutzer\">Benutzers</a> nicht das <a href=\"#/Ziel\">Ziel</a>, jedoch ist sie immer eine notwendige Entscheidung oder Maßnahme, um die <a href=\"#/Ziel\">Ziele</a> des <a href=\"#/Benutzer\">Benutzers</a> zu erreichen.<br />3.\tDie meisten Teilaufgaben führen zu Auswahl- und Eingabemöglichkeiten für den <a href=\"#/Benutzer\">Benutzer</a> bei der Benutzung des <a href=\"#/Interaktives System\">interaktiven Systems</a>.<br/>4.\tEinige Teilaufgaben können in kleinere Teilaufgaben unterteilt werden.<br/>5.\tTeilaufgaben sind als <a href=\"#/Usability-Testaufgabe\">Usability-Testaufgaben</a> ungeeignet, weil sie sehr spezifisch sind.<br />Beispiele f\u00fcr Aufgaben: <br />1.\t„Ein Auto mieten“ ist eine Aufgabe.<br />2.\t\„Eine Mietwagenreservierung stornieren“ ist eine Aufgabe. <br />3.\t„Registrieren auf einer Autovermietungswebsite“ ist eine Teilaufgabe.<br />4.\t„Anmelden auf einer Autovermietungswebsite“ ist eine Teilaufgabe.<br />5.\tDie Teilaufgabe „Anmelden auf einer Autovermietungswebsite“ kann in kleinere Teilaufgaben heruntergebrochen werden, wie z.B.:<br/>a.\tEingeben des Benutzernamens;<br/>b.\tEingeben des Kennworts.<br/>c.\tAktivieren Sie das Kontrollkästchen Angemeldet bleiben</p>",
+          "description-german": "<p>Eine Menge von Aktivitäten, die unternommen werden, um ein bestimmtes <a href=\"#/Ziel\">Ziel</a> zu erreichen.<br />Anmerkungen:<br />1.\tDie meisten Aufgaben können in Teilaufgaben - also Aktivitäten - unterteilt werden.<br />2.\tMit einer einzelnen Teilaufgabe für sich erreicht man aus Sicht des <a href=\"#/Benutzer\">Benutzers</a> nicht das <a href=\"#/Ziel\">Ziel</a>, jedoch ist sie immer eine notwendige Entscheidung oder Maßnahme, um die <a href=\"#/Ziel\">Ziele</a> des <a href=\"#/Benutzer\">Benutzers</a> zu erreichen.<br />3.\tDie meisten Teilaufgaben führen zu Auswahl- und Eingabemöglichkeiten für den <a href=\"#/Benutzer\">Benutzer</a> bei der Benutzung des <a href=\"#/Interaktives System\">interaktiven Systems</a>.<br/>4.\tEinige Teilaufgaben können in kleinere Teilaufgaben unterteilt werden.<br/>5.\tTeilaufgaben sind als <a href=\"#/Usability-Testaufgabe\">Usability-Testaufgaben</a> ungeeignet, weil sie sehr spezifisch sind.<br />Beispiele f\u00fcr Aufgaben: <br />1.\t„Ein Auto mieten“ ist eine Aufgabe.<br />2.\t„Eine Mietwagenreservierung stornieren“ ist eine Aufgabe. <br />3.\t„Registrieren auf einer Autovermietungswebsite“ ist eine Teilaufgabe.<br />4.\t„Anmelden auf einer Autovermietungswebsite“ ist eine Teilaufgabe.<br />5.\tDie Teilaufgabe „Anmelden auf einer Autovermietungswebsite“ kann in kleinere Teilaufgaben heruntergebrochen werden, wie z.B.:<br/>a.\tEingeben des Benutzernamens;<br/>b.\tEingeben des Kennworts.<br/>c.\tAktivieren Sie das Kontrollkästchen Angemeldet bleiben</p>",
           "term-english": "Task",
           "term-german": "Aufgabe"
         },
@@ -1053,15 +1056,12 @@ class Glossary extends Component {
       chosen:0,
       sortedEnglishTerms:[],
       sortedGermanTerms:[],
-      English:localStorage.getItem( "english" )===null?true:localStorage.getItem( "english" )
-    }
-
-    
-    
+      English:JSON.parse(localStorage.getItem( "english" ))===null?true:JSON.parse(localStorage.getItem( "english" ))
+    }    
   }
+  
   //here I make to copies fron the initial content one is sorted in english and one is sorted in german
   componentDidMount(){
-    console.log(localStorage.getItem( "english" ));
    this.urlListener();
    this.state.initialContent.sort(function(a, b) { 
     return a["term-english"].localeCompare(b["term-english"]);
@@ -1076,7 +1076,6 @@ class Glossary extends Component {
     sortedGermanTerms : sortedGer
   });
   }
-
   //this method handle the searching input to filter the definitions
   handleChange = ({target}) => {
     var updatedList = [...this.state.initialContent];
@@ -1127,14 +1126,13 @@ class Glossary extends Component {
       this.props.history.push('/hallOfFame');
   }
   changeToEnglish(){
-    localStorage.setItem("english", true);
-    console.log(localStorage.getItem( "english" ));
+    localStorage.setItem("english", JSON.stringify(true));
     this.setState({
       English:true
     })
   }
   changeToGerman(){
-    localStorage.setItem("english", false);
+    localStorage.setItem("english", JSON.stringify(false));
     this.setState({
       English:false
     })
@@ -1144,6 +1142,7 @@ class Glossary extends Component {
   urlListener(){
     this.unlisten = this.props.history.listen((location) => {
       //var item= location.hash.substring(2).replace(/%20/g, " ");
+      //console.log(JSON.parse(localStorage.getItem("english"))===true);
       var item= decodeURI(location.hash.substring(2));
       this.state.initialContent.map((data,index)=>{
         if(this.state.English){
@@ -1189,28 +1188,29 @@ class Glossary extends Component {
               <input onChange={ this.handleChange } ></input>
               <nav >
                 {this.state.English?
-                <ul> 
-                  { this.state.sortedEnglishTerms.map((item)=> (         
-                  <li style={{paddingBottom:" 7px"}} className="nav-item"><a href={"#/"+item["term-english"]}>{item["term-english"]}</a></li>          
-                    ))
-                  }
-                </ul>
+                  <ul> 
+                    { 
+                      this.state.sortedEnglishTerms.map((item)=> (         
+                      <li style={{paddingBottom:" 7px"}}  className="nav-item"><a href={"#/"+item["term-english"]}>{item["term-english"]}</a></li>          
+                      ))
+                    }
+                  </ul>
                 :
-                <ul> 
-                { this.state.sortedGermanTerms.map((item)=> (         
-                <li style={{paddingBottom:" 7px"}} className="nav-item"><a href={"#/"+item["term-german"]}>{item["term-german"]}</a></li>          
-                  ))
-                }
-              </ul>
-
+                  <ul> 
+                    { this.state.sortedGermanTerms.map((item)=> (         
+                    <li style={{paddingBottom:" 7px"}} className="nav-item"><a href={"#/"+item["term-german"]}>{item["term-german"]}</a></li>          
+                      ))
+                    }
+                </ul>
                 }
               </nav>
             </div>
             <div className={classNames("col-sm-8","col-xs-8","col-md-8","col-lg-8")} >
                 {this.state.English?<h1>{this.state.initialContent[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.initialContent[this.state.chosen]["term-german"]}</h1>}
                 {this.state.English?<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-english"]}} />:<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-german"]}} />}
-                <button onClick={() => this.previous()} type="button" class="btn btn-outline-secondary">{this.state.English?"Previous":"Zurück"}</button>
-                <button onClick={() => this.next()} id="next"  type="button" class="btn btn-outline-secondary">{this.state.English?"Next":"Weiter"}</button>
+                <Button style={{width:" 40%",outline:"none" }}  variant="outlined" color="inherit" onClick={() => this.previous()}>{this.state.English?"Previous":"Zurück"}</Button>
+                <Button style={{width:" 40%",outline:"none"}}  variant="outlined" id="next" color="inherit" onClick={() => this.next()}>{this.state.English?"Next":"Weiter"}</Button>
+
            </div>  
           </div>
         </div>
