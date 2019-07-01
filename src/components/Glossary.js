@@ -4,8 +4,6 @@ import classNames from 'classnames'
 import 'bootstrap/dist/css/bootstrap.css';
 import ButtonAppBar from './ButtonAppBar';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-
 class Glossary extends Component {
   
   constructor(props){
@@ -521,7 +519,7 @@ class Glossary extends Component {
             "Evaluierung"
           ],
           "description-english": "<p> A data-gathering method that questions a few carefully selected individuals in depth to arrive at a fuller understanding of the <a href=\"#/Context of use\">context of use</a> for an existing or planned <a href=\"#/Interactive system\">interactive system</a>. Through inquiry and interpretation, it reveals commonalities and differences across the user base.<br />Notes: <br />1.\tIn an interview, the interviewer (a <a href=\"#/User experience professional\">user experience professional</a>) typically conducts a <a href=\"#/Briefing\">briefing</a> and then asks questions to a <a href=\"#/User\">user</a> about the current <a href=\"#/Context of use\">context of use</a> and, if applicable, about the planned <a href=\"#/Interactive system\">interactive system</a>. The interviewer uses an <a href=\"#/Interview checklist\">interview checklist</a> to ensure that all relevant topics are covered.<br />2.\tInterview questions should be<br/>a.\t <a href=\"#/Open question\">Open</a> rather than <a href=\"#/Closed question\">closed</a>;<br/>b.\t<a href=\"#/Neutral question\">Neutral</a> rather than <a href=\"#/Leading question\">leading</a>.<br />3.\tThe main purpose of an interview is to gather information about <a href=\"#/User\">users</a>, <a href=\"#/Goal\">goals</a>, <a href=\"#/Task\">tasks</a>, <a href=\"#/Resource\">resources</a> and <a href=\"#/Environment\">environments</a> – that is, how things are currently done. In an <a href=\"#/Iterative\">iterative</a> cycle, a <a href=\"#/Low-fidelity prototype\">low-fidelity prototype</a> based on data collected from <a href=\"#/User\">users</a> through <a href=\"#/Observation\">observation</a> and <a href=\"#/Interview\">interviews</a> may be subsequently evaluated with <a href=\"#/User\">users</a> to clarify the understanding of the <a href=\"#/Context of use\">context of use</a>, <a href=\"#/User need\">user needs</a>, <a href=\"#/User requirement\">user requirements</a> and the <a href=\"#/Use scenario\">use scenario</a> for the <a href=\"#/Interactive system\">interactive system</a>.<br/>4.\tInterview participants may make valuable suggestions regarding the expected future system – these can be documented separately and should be probed in subsequent interviews to check their validity. They can also be communicated through <a href=\"#/As-is scenario\">as-is scenarios</a> as shown in example 2 in the definition of <a href=\"#/As-is scenario\">as-is scenario</a>.<br/>5.\tWhere possible, interviews should be done contextually, however any interview is better than no interview at all.<br/>6.\tSuccessful interviewers<br/>a.\tUse <a href=\"#/Open question\">open questions</a> and avoid <a href=\"#/Closed question\">closed questions</a>;<br/>b.\tUse <a href=\"#/Neutral question\">neutral questions</a> and avoid <a href=\"#/Leading question\">leading questions</a>;<br/>c.\tDon’t talk too much;<br/>d.\tUse an <a href=\"#/Interview checklist\">interview checklist</a> but remain flexible;<br/>e.\tPrepare for the interview;<br/>f.\tRemaincurious;<br/>g.\tCheck their notes before the interview participant leaves so they never leave unsure about what happened.<br/>7.\tCompare this definition to <a href=\"#/Contextual interview\">contextual interview</a>, <a href=\"#/Pre-session interview\">pre-session</a> interview and <a href=\"#/Post-session interview\">post-session interview</a>.</p>",
-          "description-german": "<p>Eine Methode zur Datensammlung, die einige sorgfältig ausgewählte Personen eingehend befragt, um zu einem besseren Verständnis des <a href=\"#/Nutzungskontext\">Nutzungskontextes</a> für ein vorhandenes oder geplantes <a href=\"#/Interaktives System\">interaktives System</a> zu gelangen. Durch die Befragung und Interpretation werden Gemeinsamkeiten und Unterschiede innerhalb der <a href=\"#/Benutzer\">Benutzer</a> eines <a href=\"#/Interaktives System\">interaktiven Systems</a> aufgedeckt.<br />Anmerkungen: <br />1.\tIn einem Interview führt der Interviewer (ein <a href=\"#/User Experience Professional\">User Experience Professional</a>) üblicherweise ein <a href=\"#/Briefing\">Briefing</a> durch und stellt danach dem <a href=\"#/Benutzer\">Benutzer</a> Fragen über den aktuellen <a href=\"#/Nutzungskontext\">Nutzungskontext</a> und gegebenenfalls zum geplanten <a href=\"#/Interaktives System\">interaktiven System</a>. Der Interviewer nutzt eine <a href=\"#/Interviewcheckliste\">Interviewcheckliste</a>, um sicherzustellen, dass zu allen relevanten Aspekten befragt wurde.<br />2.\tInterviewfragen sollten<br />a.\teher <a href=\"#/Offene Frage\">offen</a> als <a href=\"#/Geschlossene Frage\">geschlossen</a><br />b.\teher <a href=\"#/Neutrale Frage\">neutral</a> als <a href=\"#/Suggestionsfrage\">suggestiv</a><br />formuliert sein.<br />4.\tDer Hauptzweck eines Interviews besteht darin, Informationen über <a href=\"#/Benutzer\">Benutzer</a>, <a href=\"#/Ziel\">Ziele</a>, <a href=\"#/Aufgabe\">Aufgaben</a>, <a href=\"#/Ressourcen\">Ressourcen</a> und <a href=\"#/Umgebung\">Umgebungen</a> zu sammeln – das heißt darüber, wie Dinge derzeit erledigt werden. In der Praxis wird häufig ein <a href=\"#/Iterativ\">iterativer</a> Zyklus angewandt, bei dem Daten von <a href=\"#/Benutzer\">Benutzern</a> durch <a href=\"#/Beobachtung\">Beobachtung</a> und <a href=\"#/Interview\">Interviews</a> gesammelt werden, dann ein <a href=\"#/Low-fidelity-Prototyp\">Low- Fidelity-Prototyp</a> erstellt wird und dieser <a href=\"#/Prototyp\">Prototyp</a> (der auf Benutzerdaten basiert) mit <a href=\"#/Benutzer\">Benutzern</a> evaluiert wird, um das Verständnis des <a href=\"#/Nutzungskontext\">Nutzungskontextes</a>, der <a href=\"#/Erfordernis\">Erfordernisse</a>, <a href=\"#/Nutzungsanforderung\">Nutzungsanforderungen</a> und <a href=\"#/Nutzungsszenario\">Nutzungsszenarien</a> für das <a href=\"#/Interaktives System\">interaktive System</a> zu klären.<br/>4.\tInterviewteilnehmer können wertvolle Anregungen zum erwarteten zukünftigen System geben - diese können separat dokumentiert werden und sollten in nachfolgenden Interviews auf ihre Stichhaltigkeit überprüft werden. Sie können auch über <a href=\"#/Ist-Szenario\">Ist- Szenarien</a> kommuniziert werden, wie in Beispiel 2 in der Definition von <a href=\"#/Ist-Szenario\">„Ist- Szenarien“</a> gezeigt.<br/>5.\tWenn möglich, sollten Interviews kontextuell durchgeführt werden, jedoch ist jedes Interview besser als gar kein Interview.<br/>6.\tErfolgreiche Interviewer<br/>a.\tverwenden <a href=\"#/Offene Frage\">offene Fragen</a> und vermeiden <a href=\"#/Geschlossene Frage\">geschlossene Fragen</a>;<br/>b.\t verwenden <a href=\"#/Neutrale Frage\">neutrale Fragen</a> und vermeiden <a href=\"#/Suggestionsfrage\">Suggestivfragen</a>;<br/>c.\tRede nicht zu viel.<br/>d.\tverwenden eine <a href=\"#/Interviewcheckliste\">Interviewcheckliste</a>, bleiben jedoch flexibel;<br/>e.\t bereiten sich auf das Interview vor;<br/>f.\tbleibenneugierig;<br/>g.\tüberprüfen ihre Notizen, bevor der Interviewteilnehmer geht, damit sie nie unsicher darüber sind, ob sie alle wesentlichen Informationen zu dem, was sich ereignet hat,erfasst haben.<br/>7.\tVergleiche <a href=\"#/Kontextuelles Interview\">kontextuelles Interview</a>, <a href=\"#/Pre-Session Interview\">Pre-Session-Interview</a> und <a href=\"#/Post-Session Interview\">Post-Session-Interview</a>.</p>",
+          "description-german": "<p>Eine Methode zur Datensammlung, die einige sorgfältig ausgewählte Personen eingehend befragt, um zu einem besseren Verständnis des <a href=\"#/Nutzungskontext\">Nutzungskontextes</a> für ein vorhandenes oder geplantes <a href=\"#/Interaktives System\">interaktives System</a> zu gelangen. Durch die Befragung und Interpretation werden Gemeinsamkeiten und Unterschiede innerhalb der <a href=\"#/Benutzer\">Benutzer</a> eines <a href=\"#/Interaktives System\">interaktiven Systems</a> aufgedeckt.<br />Anmerkungen: <br />1.\tIn einem Interview führt der Interviewer (ein <a href=\"#/User Experience Professional\">User Experience Professional</a>) u��blicherweise ein <a href=\"#/Briefing\">Briefing</a> durch und stellt danach dem <a href=\"#/Benutzer\">Benutzer</a> Fragen über den aktuellen <a href=\"#/Nutzungskontext\">Nutzungskontext</a> und gegebenenfalls zum geplanten <a href=\"#/Interaktives System\">interaktiven System</a>. Der Interviewer nutzt eine <a href=\"#/Interviewcheckliste\">Interviewcheckliste</a>, um sicherzustellen, dass zu allen relevanten Aspekten befragt wurde.<br />2.\tInterviewfragen sollten<br />a.\teher <a href=\"#/Offene Frage\">offen</a> als <a href=\"#/Geschlossene Frage\">geschlossen</a><br />b.\teher <a href=\"#/Neutrale Frage\">neutral</a> als <a href=\"#/Suggestionsfrage\">suggestiv</a><br />formuliert sein.<br />4.\tDer Hauptzweck eines Interviews besteht darin, Informationen über <a href=\"#/Benutzer\">Benutzer</a>, <a href=\"#/Ziel\">Ziele</a>, <a href=\"#/Aufgabe\">Aufgaben</a>, <a href=\"#/Ressourcen\">Ressourcen</a> und <a href=\"#/Umgebung\">Umgebungen</a> zu sammeln – das heißt darüber, wie Dinge derzeit erledigt werden. In der Praxis wird häufig ein <a href=\"#/Iterativ\">iterativer</a> Zyklus angewandt, bei dem Daten von <a href=\"#/Benutzer\">Benutzern</a> durch <a href=\"#/Beobachtung\">Beobachtung</a> und <a href=\"#/Interview\">Interviews</a> gesammelt werden, dann ein <a href=\"#/Low-fidelity-Prototyp\">Low- Fidelity-Prototyp</a> erstellt wird und dieser <a href=\"#/Prototyp\">Prototyp</a> (der auf Benutzerdaten basiert) mit <a href=\"#/Benutzer\">Benutzern</a> evaluiert wird, um das Verständnis des <a href=\"#/Nutzungskontext\">Nutzungskontextes</a>, der <a href=\"#/Erfordernis\">Erfordernisse</a>, <a href=\"#/Nutzungsanforderung\">Nutzungsanforderungen</a> und <a href=\"#/Nutzungsszenario\">Nutzungsszenarien</a> für das <a href=\"#/Interaktives System\">interaktive System</a> zu klären.<br/>4.\tInterviewteilnehmer können wertvolle Anregungen zum erwarteten zukünftigen System geben - diese können separat dokumentiert werden und sollten in nachfolgenden Interviews auf ihre Stichhaltigkeit überprüft werden. Sie können auch über <a href=\"#/Ist-Szenario\">Ist- Szenarien</a> kommuniziert werden, wie in Beispiel 2 in der Definition von <a href=\"#/Ist-Szenario\">„Ist- Szenarien“</a> gezeigt.<br/>5.\tWenn möglich, sollten Interviews kontextuell durchgeführt werden, jedoch ist jedes Interview besser als gar kein Interview.<br/>6.\tErfolgreiche Interviewer<br/>a.\tverwenden <a href=\"#/Offene Frage\">offene Fragen</a> und vermeiden <a href=\"#/Geschlossene Frage\">geschlossene Fragen</a>;<br/>b.\t verwenden <a href=\"#/Neutrale Frage\">neutrale Fragen</a> und vermeiden <a href=\"#/Suggestionsfrage\">Suggestivfragen</a>;<br/>c.\tRede nicht zu viel.<br/>d.\tverwenden eine <a href=\"#/Interviewcheckliste\">Interviewcheckliste</a>, bleiben jedoch flexibel;<br/>e.\t bereiten sich auf das Interview vor;<br/>f.\tbleibenneugierig;<br/>g.\tüberprüfen ihre Notizen, bevor der Interviewteilnehmer geht, damit sie nie unsicher darüber sind, ob sie alle wesentlichen Informationen zu dem, was sich ereignet hat,erfasst haben.<br/>7.\tVergleiche <a href=\"#/Kontextuelles Interview\">kontextuelles Interview</a>, <a href=\"#/Pre-Session Interview\">Pre-Session-Interview</a> und <a href=\"#/Post-Session Interview\">Post-Session-Interview</a>.</p>",
           "term-english": "Interview",
           "term-german": "Interview"
         },
@@ -1056,10 +1054,27 @@ class Glossary extends Component {
       chosen:0,
       sortedEnglishTerms:[],
       sortedGermanTerms:[],
+      EngList:[],
+      GerList:[],
       English:JSON.parse(localStorage.getItem( "english" ))===null?true:JSON.parse(localStorage.getItem( "english" ))
     }    
   }
-  
+  componentWillMount(){
+    this.state.initialContent.sort(function(a, b) { 
+      return a["term-english"].localeCompare(b["term-english"]);
+     });
+    var sortedEng=[...this.state.initialContent];
+     this.state.initialContent.sort(function(a, b) {
+      return a["term-german"].localeCompare(b["term-german"]);
+     });
+    var sortedGer=[...this.state.initialContent];  
+    this.setState({
+      sortedEnglishTerms: sortedEng,
+      sortedGermanTerms : sortedGer,
+      EngList:sortedEng,
+      GerList:sortedGer
+    });
+  }
   //here I make to copies fron the initial content one is sorted in english and one is sorted in german
   componentDidMount(){
    this.urlListener();
@@ -1087,7 +1102,7 @@ class Glossary extends Component {
       updatedList.sort(function(a, b) { 
         return a["term-english"].localeCompare(b["term-english"]);
       });
-      this.setState({sortedEnglishTerms: updatedList});
+      this.setState({EngList: updatedList});
     }
     else{
       updatedList = updatedList.filter(function(item){
@@ -1097,9 +1112,8 @@ class Glossary extends Component {
     updatedList.sort(function(a, b) {
       return a["term-german"].localeCompare(b["term-german"]);
     });
-    this.setState({sortedGermanTerms: updatedList});
-  }
-    
+    this.setState({GerList: updatedList});
+  } 
   };
   next = ()=>{
     if(this.state.chosen<this.state.initialContent.length-1){
@@ -1126,44 +1140,47 @@ class Glossary extends Component {
       this.props.history.push('/hallOfFame');
   }
   changeToEnglish(){
+    document.getElementById("searchInput").value="";
+    let chosenItem=this.state.sortedGermanTerms[this.state.chosen];
+    this.setState(prevState=>({
+      chosen:prevState.sortedEnglishTerms.indexOf(chosenItem),
+      English:true,
+      EngList:prevState.sortedEnglishTerms,
+    }))
     localStorage.setItem("english", JSON.stringify(true));
-    this.setState({
-      English:true
-    })
   }
   changeToGerman(){
+    document.getElementById("searchInput").value="";
+    let chosenItem=this.state.sortedEnglishTerms[this.state.chosen];
+    this.setState(prevState=>({
+      chosen:prevState.sortedGermanTerms.indexOf(chosenItem),
+      English:false,
+      GerList:prevState.sortedGermanTerms
+    }))
     localStorage.setItem("english", JSON.stringify(false));
-    this.setState({
-      English:false
-    })
   }
- 
   //this to keep listening to the URL to handle changing between definitions
   urlListener(){
     this.unlisten = this.props.history.listen((location) => {
-      //var item= location.hash.substring(2).replace(/%20/g, " ");
-      //console.log(JSON.parse(localStorage.getItem("english"))===true);
       var item= decodeURI(location.hash.substring(2));
-      this.state.initialContent.map((data,index)=>{
-        if(this.state.English){
+      if(this.state.English){
+      this.state.sortedEnglishTerms.map((data,index)=>{
           if(data["term-english"]===item){
             this.setState({
               chosen:index
             })
           } 
-         }
-         else{
-          if(data["term-german"]===item){
-            this.setState({
-              chosen:index
-            })
-          } 
-
-         }
-
       });
-     // console.log(this.state.chosen);
-      //console.log(this.state.initialContent.indexOf(location.hash.subString(2)));
+    }
+    else{
+      this.state.sortedGermanTerms.map((data,index)=>{
+        if(data["term-german"]===item){
+          this.setState({
+            chosen:index
+          })
+        } 
+    });    
+    }
     });
 
   }
@@ -1185,19 +1202,19 @@ class Glossary extends Component {
             <div className={classNames("col-sm-4","col-xs-4","col-md-4","col-lg-4")} >
             
               <h1>Content</h1>
-              <input onChange={ this.handleChange } ></input>
+              <input id="searchInput" onChange={ this.handleChange } ></input>
               <nav >
                 {this.state.English?
                   <ul> 
                     { 
-                      this.state.sortedEnglishTerms.map((item)=> (         
+                      this.state.EngList.map((item)=> (         
                       <li style={{paddingBottom:" 7px"}}  className="nav-item"><a href={"#/"+item["term-english"]}>{item["term-english"]}</a></li>          
                       ))
                     }
                   </ul>
                 :
                   <ul> 
-                    { this.state.sortedGermanTerms.map((item)=> (         
+                    { this.state.GerList.map((item)=> (         
                     <li style={{paddingBottom:" 7px"}} className="nav-item"><a href={"#/"+item["term-german"]}>{item["term-german"]}</a></li>          
                       ))
                     }
@@ -1206,10 +1223,10 @@ class Glossary extends Component {
               </nav>
             </div>
             <div className={classNames("col-sm-8","col-xs-8","col-md-8","col-lg-8")} >
-                {this.state.English?<h1>{this.state.initialContent[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.initialContent[this.state.chosen]["term-german"]}</h1>}
-                {this.state.English?<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-english"]}} />:<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.initialContent[this.state.chosen]["description-german"]}} />}
-                <Button style={{width:" 40%",outline:"none" }}  variant="outlined" color="inherit" onClick={() => this.previous()}>{this.state.English?"Previous":"Zurück"}</Button>
-                <Button style={{width:" 40%",outline:"none"}}  variant="outlined" id="next" color="inherit" onClick={() => this.next()}>{this.state.English?"Next":"Weiter"}</Button>
+                {this.state.English?<h1>{this.state.sortedEnglishTerms[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.sortedGermanTerms [this.state.chosen]["term-german"]}</h1>}
+                {this.state.English?<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.sortedEnglishTerms[this.state.chosen]["description-english"]}} />:<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.sortedGermanTerms[this.state.chosen]["description-german"]}} />}
+                <Button style={{width:"40%",outline:"none" }}  variant="outlined" color="inherit" onClick={() => this.previous()}>{this.state.English?"Previous":"Zurück"}</Button>
+                <Button style={{width:"40%",outline:"none"}}  variant="outlined" id="next" color="inherit" onClick={() => this.next()}>{this.state.English?"Next":"Weiter"}</Button>
 
            </div>  
           </div>

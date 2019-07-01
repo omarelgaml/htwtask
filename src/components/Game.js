@@ -37,8 +37,8 @@ class Game extends Component {
           "categories": [
             "Rollen"
           ],
-          "description-english": "\n",
-          "description-german": "\n",
+          "description-english": "A professional who has one or more of the following responsibilities in a project: Planning and managing the human-centred design process, Identifying and describing the context of use, Deriving the user requirements, creating the information architecture and the navigation structure, defining and conceiving the interaction between humans and the interactive system based on the context of use and the user requirements, designing the graphic part of the user interface and carrying out usability evaluations of user interfaces in various stages of realisation.",
+          "description-german": "Ein Fachmann, der einen oder mehrere der folgenden Verantwortungsbereiche in einem Projekt hat, Planung und Management des Prozesses menschzentrierter Gestaltung, Identifizieren und Beschreiben des Nutzungskontextes, Ableiten der Nutzungsanforderungen, Erstellen der Informationsarchitektur und der Navigationsstruktur, Definition und Konzeption der Interaktion zwischen Menschen und dem interaktiven System basierend auf dem Nutzungskontext und den Nutzungsanforderungen, Entwerfen des grafischen Teils der Benutzungsschnittstelle und Durchführung von Usability-Evaluierungen von Benutzungsschnittstellen in verschiedenen Umsetzungsphasen.",
           "term-english": "User experience professional",
           "term-german": "User Experience Professional"
         },
@@ -1083,6 +1083,7 @@ class Game extends Component {
       correctAnswerGer:null,
       toggle:false,
       emptyName:false,
+      done:false,
       newQuestion:false,
       English:JSON.parse(localStorage.getItem( "english" ))===null?true:JSON.parse(localStorage.getItem( "english" )),
       choosenAnswer:null,
@@ -2142,14 +2143,12 @@ class Game extends Component {
       
      
   }
-  //const store = require('../store')
 
-  //console.log(store.getState())
 
 
 }
 //Here I generate the first question then the generating in componentdid mount
-/* removing this will raise an error */
+/* removing this will raise an combile error */
 componentWillMount(){
   this.generateQuestion();
 }
@@ -2169,15 +2168,47 @@ componentDidMount(){
       if(this.state.newQuestion){
         this.setState({
           newQuestion:false,
-          openDialog:true
+        });
+        /*before opening the dialog, I check if this player should be among the top 10 or not if not he/she will be directed
+          to the hall f fame otherwise the dialog will open and the player will give the name
+        */
+        axios.get('http://localhost:4000/records')
+        .then(res=>{
+          if(res.data.length<10){
+            this.setState({openDialog:true})
+          }
+          else{
+            res.data.sort(function(a, b){
+                if(a["grade"]===b["grade"]){
+                    return a["seconds"]-b["seconds"]
+                }
+                return b["grade"]-a["grade"]
+            });           
+            if(res.data[res.data.length-1].grade<this.state.grade||(res.data[res.data.length-1].grade===this.state.grade)&&(res.data[res.data.length-1].seconds>this.state.seconds)){
+              axios.post('http://localhost:4000/records/delete',{id:res.data[res.data.length-1]._id})
+              .then(res2 =>{
+                console.log(res2);
+              })
+              this.setState({openDialog:true});
+            }
+            else{
+              alert("Sorry! you are not from the top ten")
+              this.props.history.push('/hallOfFame');
+            }
+          }
+
+        })
+       .catch(function(err){
+            console.log(err)
         });
      }
     }
-
+    if(!this.state.openDialog){
     this.setState(prevState =>(({
       seconds:prevState.seconds+1
     })) 
     )
+  }
   },1000) ;
 }
 toHHMMSS(time) {
@@ -2211,18 +2242,14 @@ generateQuestion(){
   var shuffle = require('shuffle-array'),
     collection = this.state.choicesItems;
   shuffle(collection);
-  var rightCategory = rightAnswer[0]["categories"];
+  var rightCategory = rightAnswer[0]["categories"][Math.floor(Math.random()*rightAnswer[0]["categories"].length)];
   var englishChoices=[];
   var germanChoices=[];
   //here i select choices from the same category
   for(var i=0;i<collection.length;i++){
-    for(var j=0;j<rightCategory.length;j++){
-      if(collection[i]["categories"].includes(rightCategory[j])&&englishChoices.length<3&&!englishChoices.includes(collection[i]["term-english"])&&collection[i]["term-english"]!==rightAnswer["term-english"]){
+    if(collection[i]["categories"].includes(rightCategory)&&collection[i]["term-english"]!==rightAnswer[0]["term-english"]){
       englishChoices.push(collection[i]["term-english"]);
       germanChoices.push(collection[i]["term-german"]);
-      }
-      if(englishChoices.length===3)
-        break;
     }
     if(englishChoices.length===3)
       break;
@@ -2245,7 +2272,8 @@ shuffle3(germanChoicesCopy);
     newQuestion:false
     
   });
-  console.log(rightAnswer[0]["term-english"]);  
+
+  //console.log(rightAnswer[0]["term-english"]);  
   }
 }
  sleep(milliseconds) {
@@ -2277,7 +2305,7 @@ checkAnswer(item){
     toggle:true,
   });  
 }
-//This method just brink the buttons back to their initaial color after checking the result
+//This method just bring the buttons back to their initaial color after checking the result
 toggle(){
   //this.sleep(50);
   if(this.state.English&&this.state.choosenAnswer!==this.state.correctAnswerEng){
@@ -2315,10 +2343,10 @@ handleCloseDialog = () => {
   }
   else{
     let record ={
-      name:document.getElementById("in").value,
-      grade: this.state.grade,
-      time:this.toHHMMSS(this.state.seconds),
-      seconds:this.state.seconds
+      "name":document.getElementById("in").value,
+      "grade": this.state.grade,
+      "time":this.toHHMMSS(this.state.seconds),
+      "seconds":this.state.seconds
     };
     axios.post('http://localhost:4000/records/add',record)
     .then(res =>{
