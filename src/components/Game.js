@@ -2184,7 +2184,8 @@ componentDidMount(){
                 }
                 return b["grade"]-a["grade"]
             });           
-            if(res.data[res.data.length-1].grade<this.state.grade||(res.data[res.data.length-1].grade===this.state.grade)&&(res.data[res.data.length-1].seconds>this.state.seconds)){
+            
+            if(res.data[res.data.length-1].grade<this.state.grade||(res.data[res.data.length-1].grade===this.state.grade&&res.data[res.data.length-1].seconds>this.state.seconds)){
               axios.post('http://localhost:4000/records/delete',{id:res.data[res.data.length-1]._id})
               .then(res2 =>{
                 console.log(res2);
@@ -2346,6 +2347,7 @@ handleCloseDialog = () => {
       "name":document.getElementById("in").value,
       "grade": this.state.grade,
       "time":this.toHHMMSS(this.state.seconds),
+      "date":new Date(),
       "seconds":this.state.seconds
     };
     axios.post('http://localhost:4000/records/add',record)
@@ -2372,8 +2374,8 @@ render(){
             <div className={classNames("col-sm-10","col-xs-10","col-md-10","col-lg-10")} >
               <p className="question" style={{fontFamily:"courier"}}>{this.state.English?this.state.currentQuestion["description-english"]:this.state.currentQuestion["description-german"]}</p>
               
-              {this.state.English? this.state.englishChoices.map((item)=> (                  
-                <button onClick={() => this.checkAnswer(item)}  id={item} style={{marginTop:"3%",marginLeft:"8%"}}  type="button" className="btn btn-primary">{item}</button>
+              {this.state.English? this.state.englishChoices.map((item,index)=> (                  
+                <button onClick={() => this.checkAnswer(item)} key={index} id={item} style={{marginTop:"3%",marginLeft:"8%"}}  type="button" className="btn btn-primary">{item}</button>
                 ))
                 :
                 this.state.germanChoices.map((item)=> (                  

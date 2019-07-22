@@ -47,14 +47,14 @@ class ButtonAppBar extends Component {
     <div className={classes.root}>
       <AppBar position="static" style={styles.color} >
         <Toolbar>
-        <Typography variant="h6" color="#777" className={classes.grow}>
+        <Typography variant="h6" className={classes.grow}>
             KOMET
-            <Button onClick={()=>this.props.glossary()} color="#777">{this.props.English?"Glossary":"Glossar"}</Button>
-            <Button onClick={()=>this.props.game()} color="#777">Quiz</Button>
-            <Button onClick={()=>this.props.hallOfFame()} color="#777">Hall of Fame</Button>
+            <Button onClick={()=>this.props.glossary()} >{this.props.English?"Glossary":"Glossar"}</Button>
+            <Button onClick={()=>this.props.game()} >Quiz</Button>
+            <Button onClick={()=>this.props.hallOfFame()} >Hall of Fame</Button>
         </Typography>
-          <Button onClick={()=>this.props.changeToGerman()} color="#777">{this.props.English?"German":"Deutsch"}</Button>
-          <Button onClick={()=>this.props.changeToEnglish()} color="#777">{this.props.English?"English":"Englisch"}</Button>
+          <Button onClick={()=>this.props.changeToGerman()} >{this.props.English?"German":"Deutsch"}</Button>
+          <Button onClick={()=>this.props.changeToEnglish()} >{this.props.English?"English":"Englisch"}</Button>
         </Toolbar>
       </AppBar>
     </div>

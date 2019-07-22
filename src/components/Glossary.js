@@ -1164,7 +1164,7 @@ class Glossary extends Component {
     this.unlisten = this.props.history.listen((location) => {
       var item= decodeURI(location.hash.substring(2));
       if(this.state.English){
-      this.state.sortedEnglishTerms.map((data,index)=>{
+      this.state.sortedEnglishTerms.forEach((data,index)=>{
           if(data["term-english"]===item){
             this.setState({
               chosen:index
@@ -1173,7 +1173,7 @@ class Glossary extends Component {
       });
     }
     else{
-      this.state.sortedGermanTerms.map((data,index)=>{
+      this.state.sortedGermanTerms.forEach((data,index)=>{
         if(data["term-german"]===item){
           this.setState({
             chosen:index
@@ -1207,8 +1207,8 @@ class Glossary extends Component {
                 {this.state.English?
                   <ul> 
                     { 
-                      this.state.EngList.map((item)=> (         
-                      <li style={{paddingBottom:" 7px"}}  className="nav-item"><a href={"#/"+item["term-english"]}>{item["term-english"]}</a></li>          
+                      this.state.EngList.map((item,index)=> (         
+                      <li style={{paddingBottom:" 7px"}} key={index}  className="nav-item"><a href={"#/"+item["term-english"]}>{item["term-english"]}</a></li>          
                       ))
                     }
                   </ul>
@@ -1223,7 +1223,7 @@ class Glossary extends Component {
               </nav>
             </div>
             <div className={classNames("col-sm-8","col-xs-8","col-md-8","col-lg-8")} >
-                {this.state.English?<h1>{this.state.sortedEnglishTerms[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.sortedGermanTerms [this.state.chosen]["term-german"]}</h1>}
+                {this.state.English?<h1>{this.state.sortedEnglishTerms[this.state.chosen]["term-english"]}</h1>:<h1>{this.state.sortedGermanTerms[this.state.chosen]["term-german"]}</h1>}
                 {this.state.English?<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.sortedEnglishTerms[this.state.chosen]["description-english"]}} />:<div className="content"  dangerouslySetInnerHTML={{ __html: this.state.sortedGermanTerms[this.state.chosen]["description-german"]}} />}
                 <Button style={{width:"40%",outline:"none" }}  variant="outlined" color="inherit" onClick={() => this.previous()}>{this.state.English?"Previous":"Zurück"}</Button>
                 <Button style={{width:"40%",outline:"none"}}  variant="outlined" id="next" color="inherit" onClick={() => this.next()}>{this.state.English?"Next":"Weiter"}</Button>
