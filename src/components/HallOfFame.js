@@ -3,7 +3,7 @@ import '../App.css';
 import ButtonAppBar from './ButtonAppBar'
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
-
+// This constant will take a record from the database as props, to make a row in the view for it.
 const Record= props=>(
     <tr>
         <td>{props.record.name} {new Date(props.record.date).getDate()}</td>
@@ -11,7 +11,7 @@ const Record= props=>(
         <td>{props.record.time}</td>
     </tr>
 )
-
+//This contant will take three records and create a new table for them.
 const ThreesRecord= props=>(
     <div>
         <h5 style={{marginLeft:"1%"}}>{props.date}</h5>
@@ -43,6 +43,7 @@ class HallOfFame extends Component {
              };
 
     }
+    // requests are sent to get the top threes in every previous month and the top ten for the current month
     componentDidMount(){
         axios.get('http://localhost:4000/records')
         .then(res=>{
@@ -81,11 +82,14 @@ class HallOfFame extends Component {
     hallOfFame(){
     this.props.history.push('/hallOfFame');
     }
+
+    // This will take the top ten players of the current month and make a row for every one
     listRanking(){
         return this.state.ranking.map(function(currentRecord,index){
             return <Record record={currentRecord} key={index} />;
         });
     }
+    //This will take the table which contains the top three of every previous month and create a table for every tree records
     listThrees(){
         let threes=  [...this.state.Threes];
         threes.sort(function(a,b){

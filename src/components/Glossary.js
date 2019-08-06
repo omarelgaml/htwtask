@@ -1059,6 +1059,14 @@ class Glossary extends Component {
       English:JSON.parse(localStorage.getItem( "english" ))===null?true:JSON.parse(localStorage.getItem( "english" ))
     }    
   }
+
+  /*
+    Beside the original unsorted list of defintions, there are two lists for each language version which are english and german.
+    The two lists of each version are identical, but one of them is used to represent the definitions of the current chosen 
+    term and the another one is used for the list of terms in the left of the page.
+
+    This method is called before rendering the page, so we set the lists in it
+  */
   componentWillMount(){
     this.state.initialContent.sort(function(a, b) { 
       return a["term-english"].localeCompare(b["term-english"]);
@@ -1075,21 +1083,12 @@ class Glossary extends Component {
       GerList:sortedGer
     });
   }
-  //here I make to copies fron the initial content one is sorted in english and one is sorted in german
+  /*
+    This method is called after rendering the page. In this method we run the url listener method which will excute its code
+    on changing the url.
+  */
   componentDidMount(){
    this.urlListener();
-   this.state.initialContent.sort(function(a, b) { 
-    return a["term-english"].localeCompare(b["term-english"]);
-   });
-  var sortedEng=[...this.state.initialContent];
-   this.state.initialContent.sort(function(a, b) {
-    return a["term-german"].localeCompare(b["term-german"]);
-   });
-  var sortedGer=[...this.state.initialContent];  
-  this.setState({
-    sortedEnglishTerms: sortedEng,
-    sortedGermanTerms : sortedGer
-  });
   }
   //this method handle the searching input to filter the definitions
   handleChange = ({target}) => {
@@ -1115,6 +1114,8 @@ class Glossary extends Component {
     this.setState({GerList: updatedList});
   } 
   };
+
+  // This method is click handler of the next button to get the next definition
   next = ()=>{
     if(this.state.chosen<this.state.initialContent.length-1){
       this.setState({
@@ -1123,6 +1124,7 @@ class Glossary extends Component {
     }
 
   }
+   // This method is click handler of the previous button to get the previous definition
   previous(){
     if(this.state.chosen>0){
       this.setState({
@@ -1130,6 +1132,7 @@ class Glossary extends Component {
       })
     }
   }
+  //The next three method exist in each component to handle the routing between pages
   glossary(){
     this.props.history.push('/');
   }
@@ -1139,27 +1142,44 @@ class Glossary extends Component {
   hallOfFame(){
       this.props.history.push('/hallOfFame');
   }
+
+  /*
+    This method handle the cnhanging from german to english, first of all we reset the list of terms to the german list and
+    clear the serch input field
+
+    We get the index of the english vesrion of the current chosen definition in the german version 
+
+  */
   changeToEnglish(){
-    document.getElementById("searchInput").value="";
-    let chosenItem=this.state.sortedGermanTerms[this.state.chosen];
-    this.setState(prevState=>({
-      chosen:prevState.sortedEnglishTerms.indexOf(chosenItem),
-      English:true,
-      EngList:prevState.sortedEnglishTerms,
-    }))
-    localStorage.setItem("english", JSON.stringify(true));
+    if(!this.state.English){
+      document.getElementById("searchInput").value="";
+      let chosenItem=this.state.sortedGermanTerms[this.state.chosen];
+      this.setState(prevState=>({
+        chosen:prevState.sortedEnglishTerms.indexOf(chosenItem),
+        English:true,
+        EngList:prevState.sortedEnglishTerms,
+      }))
+      localStorage.setItem("english", JSON.stringify(true));
+    }
   }
+
+  // works as the upper one
   changeToGerman(){
-    document.getElementById("searchInput").value="";
-    let chosenItem=this.state.sortedEnglishTerms[this.state.chosen];
-    this.setState(prevState=>({
-      chosen:prevState.sortedGermanTerms.indexOf(chosenItem),
-      English:false,
-      GerList:prevState.sortedGermanTerms
-    }))
-    localStorage.setItem("english", JSON.stringify(false));
+    if(this.state.English){
+      document.getElementById("searchInput").value="";
+      let chosenItem=this.state.sortedEnglishTerms[this.state.chosen];
+      this.setState(prevState=>({
+        chosen:prevState.sortedGermanTerms.indexOf(chosenItem),
+        English:false,
+        GerList:prevState.sortedGermanTerms
+      }))
+      localStorage.setItem("english", JSON.stringify(false));
+    }
   }
-  //this to keep listening to the URL to handle changing between definitions
+  /*
+    this to keep listening to the URL to handle changing between definitions. When the user clicks on a new term, the url will
+    be changed to the clicked term, so this method runs and get the index of the chosen term in the list of definitions
+  */
   urlListener(){
     this.unlisten = this.props.history.listen((location) => {
       var item= decodeURI(location.hash.substring(2));

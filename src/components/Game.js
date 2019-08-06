@@ -19,7 +19,7 @@ class Game extends Component {
       There is questionsItems and choicesItems in the state with the same initial conent, but after that
       I will take one question from questionsItems and remove it from the list, so at the end the list will
       be empty which indicates the end of the quiz. But the choicesItems should stay with the smame size because
-      i will get the cohoices from it for every quesion
+      I will get the cohoices from it for every quesion
     */
     this.state = {
       questionsItems:[
@@ -2170,7 +2170,8 @@ componentDidMount(){
           newQuestion:false,
         });
         /*before opening the dialog, I check if this player should be among the top 10 or not if not he/she will be directed
-          to the hall f fame otherwise the dialog will open and the player will give the name
+          to the hall of fame otherwise the dialog will open and the player will give the name and will take the place of
+          the last player in the list
         */
         axios.get('http://localhost:4000/records')
         .then(res=>{
@@ -2212,6 +2213,8 @@ componentDidMount(){
   }
   },1000) ;
 }
+
+// This method is used to change the seconed into HH:MM:SS format to be represented in the hall of fame page
 toHHMMSS(time) {
   var sec_num = parseInt(time, 10); // don't forget the second param
   var hours   = Math.floor(sec_num / 3600);
@@ -2223,6 +2226,7 @@ toHHMMSS(time) {
   if (seconds < 10) {seconds = "0"+seconds;}
   return hours+':'+minutes+':'+seconds;
 }
+
 glossary(){
   this.props.history.push('/');
 }
@@ -2232,6 +2236,7 @@ game(){
 hallOfFame(){
     this.props.history.push('/hallOfFame');
 }
+// This method for generating new question if there are defintion still in the list 
 generateQuestion(){
   if(this.state.questionsItems.length===0){
     this.setState({openDialog:true});
@@ -2246,7 +2251,7 @@ generateQuestion(){
   var rightCategory = rightAnswer[0]["categories"][Math.floor(Math.random()*rightAnswer[0]["categories"].length)];
   var englishChoices=[];
   var germanChoices=[];
-  //here i select choices from the same category
+  //here I select choices from the same category
   for(var i=0;i<collection.length;i++){
     if(collection[i]["categories"].includes(rightCategory)&&collection[i]["term-english"]!==rightAnswer[0]["term-english"]){
       englishChoices.push(collection[i]["term-english"]);
@@ -2277,6 +2282,8 @@ shuffle3(germanChoicesCopy);
   //console.log(rightAnswer[0]["term-english"]);  
   }
 }
+
+// This method will be used to pause the code for milli seconds to make the user able to see the changes
  sleep(milliseconds) {
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
@@ -2285,7 +2292,7 @@ shuffle3(germanChoicesCopy);
     }
   }
 }
-/* this method checks the user's answe and accordingly updates the colors of the buttons, then
+/* this method checks the user's answer and accordingly updates the colors of the buttons, then
  calling toggel to bring the buttons back to there initial state*/
 checkAnswer(item){
   if(this.state.English)
@@ -2308,7 +2315,6 @@ checkAnswer(item){
 }
 //This method just bring the buttons back to their initaial color after checking the result
 toggle(){
-  //this.sleep(50);
   if(this.state.English&&this.state.choosenAnswer!==this.state.correctAnswerEng){
     this.sleep(500);
   }
@@ -2338,6 +2344,11 @@ changeToGerman(){
     English:false
   });
 }
+
+/* 
+  This method will be called after the player insert his/her name in the dialog. Two requests will be sent to the server,
+  one to insert the new record and one to delete the list one in the list
+*/
 handleCloseDialog = () => {
   if(document.getElementById("in").value===""){
     this.setState({emptyName:true});
